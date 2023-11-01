@@ -3,7 +3,10 @@
 import FormFieldInput from '@/components/FormInput';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
+import { useToast } from '@/components/ui/use-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
@@ -17,6 +20,8 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const LoginForm = () => {
+  const router = useRouter();
+  const { toast } = useToast();
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -28,10 +33,19 @@ const LoginForm = () => {
   const { isValid, isSubmitting } = form.formState;
 
   const onSubmit = async (values: FormValues) => {
-    try {
-      console.log(values);
-    } catch (error) {
-      console.log(error);
+    const signInData = await signIn('credentials', {
+      email: values.email,
+      password: values.password,
+      redirect: false,
+    });
+
+    if (signInData?.error) {
+      toast({
+        title: 'Error',
+        description: 'Oops. Something went wrong.',
+      });
+    } else {
+      router.push('/');
     }
   };
 
@@ -54,7 +68,7 @@ const LoginForm = () => {
         <Button
           type='submit'
           className='w-full'
-          disabled={!isValid || isSubmitting}
+          disabled={isSubmitting}
         >
           Sign In
         </Button>

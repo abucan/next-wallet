@@ -26,7 +26,7 @@ export default function AuthFormCard({
   linkText,
 }: AuthFormCard) {
   return (
-    <div className='flex flex-col items-center max-w-fill mt-1 md:mt-20'>
+    <div className='flex flex-col items-center max-w-fill mt-1 lg:mt-20'>
       <Card className='w-96'>
         <CardHeader>
           <CardTitle className='font-bold text-2xl md:text-3xl'>
@@ -37,7 +37,7 @@ export default function AuthFormCard({
           </CardDescription>
         </CardHeader>
         <CardContent>{children}</CardContent>
-        <CardFooter className='md:hidden w-full justify-center space-x-1'>
+        <CardFooter className='lg:hidden w-full justify-center space-x-1'>
           <p className='font-medium text-sm'>{cardFooterText}</p>
           <Link
             href={href}

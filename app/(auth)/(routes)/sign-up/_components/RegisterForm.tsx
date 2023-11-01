@@ -4,11 +4,13 @@ import FormFieldInput from '@/components/FormInput';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 const formSchema = z.object({
-  name: z.string().min(3, { message: 'Name is too short' }),
+  username: z.string().min(3, { message: 'Name is too short' }),
   email: z.string().email({ message: 'Invalid email address' }),
   password: z.string().min(6, {
     message: 'Password must be at least 6 characters long',
@@ -18,10 +20,11 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const RegisterForm = () => {
+  const router = useRouter();
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
+      username: '',
       email: '',
       password: '',
     },
@@ -30,10 +33,15 @@ const RegisterForm = () => {
   const { isValid, isSubmitting } = form.formState;
 
   const onSubmit = async (values: FormValues) => {
-    try {
-      console.log(values);
-    } catch (error) {
-      console.log(error);
+    const response = await axios.post('/api/user', values, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.status === 201) {
+      router.push('/sign-in');
+    } else {
+      console.error('[REGISTER_FORM], registration failed');
     }
   };
 
@@ -44,7 +52,7 @@ const RegisterForm = () => {
         className='space-y-4'
       >
         <FormFieldInput
-          name='name'
+          name='username'
           label='Username'
           placeholder='Enter your username'
         />

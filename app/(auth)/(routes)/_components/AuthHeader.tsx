@@ -13,7 +13,7 @@ export default function AuthHeader({
   href,
 }: AuthHeaderProps) {
   return (
-    <div className='p-8 w-full hidden md:flex items-center justify-end space-x-2'>
+    <div className='p-8 w-full hidden lg:flex items-center justify-end space-x-2'>
       <p className='font-medium text-sm'>{label}</p>
       <Button variant='destructive' size='sm'>
         <Link href={href}>{buttonText}</Link>
