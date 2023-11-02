@@ -42,9 +42,16 @@ const LoginForm = () => {
     if (signInData?.error) {
       toast({
         title: 'Error',
-        description: 'Oops. Something went wrong.',
+        description: 'Oops. Email or password do not match.',
+        variant: 'destructive'
       });
     } else {
+      toast({
+        title: 'Success',
+        description: 'Welcome to your dashboard.',
+        variant: 'success'
+      });
+      router.refresh()
       router.push('/');
     }
   };

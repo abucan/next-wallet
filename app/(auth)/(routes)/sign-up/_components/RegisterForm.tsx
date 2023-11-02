@@ -3,6 +3,7 @@
 import FormFieldInput from '@/components/FormInput';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
+import { useToast } from '@/components/ui/use-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
@@ -10,9 +11,15 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 const formSchema = z.object({
-  username: z.string().min(3, { message: 'Name is too short' }),
-  email: z.string().email({ message: 'Invalid email address' }),
-  password: z.string().min(6, {
+  username: z
+    .string()
+    .min(3, { message: 'Name is too short' })
+    .max(20, 'Username is too long'),
+  email: z
+    .string()
+    .min(1, 'Email is required')
+    .email({ message: 'Invalid email address' }),
+  password: z.string().min(1, 'Password is required').min(6, {
     message: 'Password must be at least 6 characters long',
   }),
 });
@@ -21,6 +28,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 const RegisterForm = () => {
   const router = useRouter();
+  const { toast } = useToast();
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,9 +47,19 @@ const RegisterForm = () => {
       },
     });
     if (response.status === 201) {
+      toast({
+        title: 'Account created',
+        description: 'Please sign in to your account.',
+        variant: 'default'
+      });
+      router.refresh();
       router.push('/sign-in');
     } else {
-      console.error('[REGISTER_FORM], registration failed');
+      toast({
+        title: 'Error',
+        description: 'Oops. Something went wrong.',
+        variant: 'destructive'
+      });
     }
   };
 
@@ -69,7 +87,7 @@ const RegisterForm = () => {
         <Button
           type='submit'
           className='w-full'
-          disabled={!isValid || isSubmitting}
+          disabled={isSubmitting}
         >
           Sign In
         </Button>
