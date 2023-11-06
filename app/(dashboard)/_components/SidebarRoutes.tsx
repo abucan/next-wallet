@@ -40,7 +40,7 @@ const routes: SidebarRoutesProps[] = [
 
 const SidebarRoutes = () => {
   return (
-    <div className='flex flex-col w-full gap-y-3'>
+    <div className='flex flex-col w-full gap-y-2'>
       {routes.map((route) => {
         return (
           <SidebarItem

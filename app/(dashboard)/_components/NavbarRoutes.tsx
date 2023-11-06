@@ -11,7 +11,7 @@ export default function NavbarRoutes() {
           <CopyPlus className='mr-2 h-5 w-5' />
           Record
         </Button>
-        <Button variant='default' size='sm'>
+        <Button variant='ghost' size='sm'>
           <FolderPlus className='mr-2 h-5 w-5' />
           Add Account
         </Button>
