@@ -7,6 +7,7 @@ import {
 } from '@/components/ui/avatar';
 import { MoreVertical } from 'lucide-react';
 import SearchInput from './SearchInput';
+import { Separator } from '@/components/ui/separator';
 
 export default function Sidebar() {
   return (

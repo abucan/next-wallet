@@ -6,7 +6,7 @@ export default function NavbarRoutes() {
   return (
     <>
       <SearchInput />
-      <div className='flex flex-row gap-x-4 ml-auto'>
+      <div className='flex flex-row gap-x-4 ml-auto items-center justify-center'>
         <Button variant='outline' size='sm'>
           <CopyPlus className='mr-2 h-5 w-5' />
           Record
