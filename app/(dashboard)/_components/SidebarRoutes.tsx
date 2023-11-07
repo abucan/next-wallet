@@ -40,7 +40,10 @@ const routes: SidebarRoutesProps[] = [
 
 const SidebarRoutes = () => {
   return (
-    <div className='flex flex-col w-full gap-y-2'>
+    <div className='flex flex-col w-full gap-y-1.5'>
+      <p className='font-bold text-xs text-gray-700/60 mb-4 pl-6'>
+        MAIN
+      </p>
       {routes.map((route) => {
         return (
           <SidebarItem

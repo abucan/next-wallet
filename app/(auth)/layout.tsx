@@ -3,11 +3,11 @@ import Logo from '@/components/Logo';
 
 import main_banner from '@/public/main_banner.svg';
 
-export default function AuthLayout({
-  children,
-}: {
+interface AuthLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
     <div className='w-full min-h-screen flex flex-col lg:flex-row'>
       <div className='w-1/2 bg-slate-50 hidden lg:flex lg:flex-col'>
@@ -27,3 +27,5 @@ export default function AuthLayout({
     </div>
   );
 }
+
+export default AuthLayout;

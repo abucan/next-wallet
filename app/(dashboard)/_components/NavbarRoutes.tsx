@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { CopyPlus, FolderPlus } from 'lucide-react';
 import SearchInput from './SearchInput';
 
-export default function NavbarRoutes() {
+const NavbarRoutes = () => {
   return (
     <>
       <SearchInput />
@@ -19,3 +19,5 @@ export default function NavbarRoutes() {
     </>
   );
 }
+
+export default NavbarRoutes;

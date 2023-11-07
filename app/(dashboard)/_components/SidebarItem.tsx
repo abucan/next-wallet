@@ -33,9 +33,9 @@ const SidebarItem = ({
       onClick={onClick}
       type='button'
       className={cn(
-        'flex items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20 rounded-lg',
+        'flex items-center gap-x-2 text-slate-500 text-sm pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20 rounded-lg font-[500] tracking-wide',
         isActive &&
-          'text-mainBlue bg-sky-200/20 hover:bg-sky-200/20 hover:text-mainBlue',
+          'text-black bg-sky-200/20 hover:bg-sky-200/20 hover:text-black font-[600]',
       )}
     >
       <div className='flex items-center gap-x-2 py-3'>
@@ -43,7 +43,7 @@ const SidebarItem = ({
           size={22}
           className={cn(
             'text-slate-500',
-            isActive && 'text-mainBlue',
+            isActive && 'text-black',
           )}
         />
         {label}

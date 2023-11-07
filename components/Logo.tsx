@@ -6,9 +6,9 @@ interface LogoProps {
   width?: number;
 }
 
-export default function Logo({
+const Logo = ({
   width = 250,
-}: LogoProps) {
+}: LogoProps) => {
   return (
     <Image
       src={logo}
@@ -19,3 +19,5 @@ export default function Logo({
     />
   );
 }
+
+export default Logo;

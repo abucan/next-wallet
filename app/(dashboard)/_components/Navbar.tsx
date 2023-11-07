@@ -1,7 +1,7 @@
 import MobileSidebar from './MobileSidebar';
 import NavbarRoutes from './NavbarRoutes';
 
-export default function Navbar() {
+const Navbar = () => {
   return (
     <div className='flex items-center justify-between bg-slate-50 p-4 h-full'>
       <MobileSidebar />
@@ -9,3 +9,5 @@ export default function Navbar() {
     </div>
   );
 }
+
+export default Navbar;
