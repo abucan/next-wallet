@@ -11,7 +11,7 @@ import { Input } from './ui/input';
 
 type FormFieldInputProps = {
   name: string;
-  label: string;
+  label?: string;
   placeholder: string;
 };
 
@@ -26,7 +26,7 @@ const FormFieldInput = ({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className='w-full'>
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <Input
