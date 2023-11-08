@@ -49,7 +49,7 @@ const LoginForm = () => {
       toast({
         title: 'Success',
         description: 'Welcome to your dashboard.',
-        variant: 'success'
+        variant: 'default'
       });
       router.refresh()
       router.push('/');
