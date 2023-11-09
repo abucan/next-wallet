@@ -1,21 +1,21 @@
-import { NextAuthOptions } from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import prisma from './db';
-import { compare } from 'bcrypt';
+import { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import prisma from "./db";
+import { compare } from "bcrypt";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   pages: {
-    signIn: '/sign-in',
+    signIn: "/sign-in",
   },
   providers: [
     CredentialsProvider({
-      name: 'Credentials',
+      name: "Credentials",
       credentials: {
         email: {},
         password: {},
@@ -37,7 +37,7 @@ export const authOptions: NextAuthOptions = {
 
         const passwordMatch = await compare(
           credentials.password,
-          existingUser.password,
+          existingUser.password
         );
 
         if (!passwordMatch) {
@@ -58,16 +58,18 @@ export const authOptions: NextAuthOptions = {
         return {
           ...token,
           username: user.username,
+          id: token.sub,
         };
       }
       return token;
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       return {
         ...session,
         user: {
           ...session.user,
           username: token.username,
+          id: token.id,
         },
       };
     },

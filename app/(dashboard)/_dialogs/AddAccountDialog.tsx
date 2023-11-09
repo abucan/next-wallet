@@ -1,15 +1,13 @@
-import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
-import React from 'react';
-import AddAccountForm from './AddAccountForm';
+} from "@/components/ui/dialog";
+import React from "react";
+import AddAccountForm from "./AddAccountForm";
 
 interface AddDialogAccountProps {
   children: React.ReactNode;

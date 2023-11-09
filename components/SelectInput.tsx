@@ -54,7 +54,7 @@ const FormFieldSelectInput = ({
         <FormItem className='w-full'>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Select>
+            <Select onValueChange={field.onChange}>
               <SelectTrigger className='w-full'>
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>

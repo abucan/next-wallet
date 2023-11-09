@@ -11,7 +11,7 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
   email String @unique
   username String @unique
   password String
@@ -21,12 +21,12 @@ model User {
 }
 
 model Account {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
   name String
   type String
   color String
   balance Float
-  userId Int
+  userId String
   user User @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

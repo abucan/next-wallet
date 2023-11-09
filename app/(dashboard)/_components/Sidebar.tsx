@@ -22,7 +22,7 @@ const Sidebar = async () => {
           {session?.user && <UserLogoutBtn />}
           <Separator />
           <div className='flex flex-row gap-x-2 pb-6 items-center justify-center'>
-            <ProfileCard username='ante' email='ante@email.com' />
+            <ProfileCard />
           </div>
         </div>
       </div>
