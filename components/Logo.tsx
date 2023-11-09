@@ -1,14 +1,8 @@
+import { LogoProps } from '@/ts/interfaces/app_interfaces';
 import Image from 'next/image';
-
 import logo from '@/public/logo.png';
 
-interface LogoProps {
-  width?: number;
-}
-
-const Logo = ({
-  width = 250,
-}: LogoProps) => {
+const Logo = ({ width = 250 }: LogoProps) => {
   return (
     <Image
       src={logo}
@@ -18,6 +12,6 @@ const Logo = ({
       priority
     />
   );
-}
+};
 
 export default Logo;

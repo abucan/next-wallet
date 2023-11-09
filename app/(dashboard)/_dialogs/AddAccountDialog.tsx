@@ -5,18 +5,19 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import React from "react";
-import AddAccountForm from "./AddAccountForm";
+} from '@/components/ui/dialog';
+import {
+  AccountProps,
+  AddDialogAccountProps,
+} from '@/ts/interfaces/app_interfaces';
+import AddAccountForm from './AddAccountForm';
 
-interface AddDialogAccountProps {
-  children: React.ReactNode;
-}
-
-const AddDialogAccount = ({ children }: AddDialogAccountProps) => {
+const AddDialogAccount = ({
+  open,
+  onOpenChange,
+}: AddDialogAccountProps) => {
   return (
-    <Dialog>
-      <DialogTrigger>{children}</DialogTrigger>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Add Account</DialogTitle>
@@ -24,9 +25,7 @@ const AddDialogAccount = ({ children }: AddDialogAccountProps) => {
             Add a new account to your accounts page
           </DialogDescription>
         </DialogHeader>
-        {/* form */}
-        <AddAccountForm />
-        {/* form end */}
+        <AddAccountForm  />
       </DialogContent>
     </Dialog>
   );

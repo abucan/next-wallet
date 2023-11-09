@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { AuthFormCard } from '@/ts/interfaces/app_interfaces';
 import {
   Card,
   CardContent,
@@ -7,15 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-
-interface AuthFormCard {
-  children: React.ReactNode;
-  cardTitle: string;
-  cardDescription: string;
-  cardFooterText: string;
-  href: string;
-  linkText: string;
-}
 
 export default function AuthFormCard({
   children,

@@ -1,11 +1,8 @@
+import { AuthLayoutProps } from '@/ts/interfaces/app_interfaces';
+
 import Image from 'next/image';
-import Logo from '@/components/Logo';
-
 import main_banner from '@/public/main_banner.svg';
-
-interface AuthLayoutProps {
-  children: React.ReactNode;
-}
+import Logo from '@/components/Logo';
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
@@ -26,6 +23,6 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
       <div className='w-full lg:w-1/2 flex flex-col'>{children}</div>
     </div>
   );
-}
+};
 
 export default AuthLayout;

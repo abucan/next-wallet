@@ -1,4 +1,4 @@
-import { Form, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 import {
   FormField,
@@ -32,7 +32,13 @@ const FormFieldInput = ({
             <Input
               placeholder={placeholder}
               {...field}
-              type={name === 'password' ? 'password' : 'text' && name === 'balance' ? 'number' : 'text'}
+              type={
+                name === 'password'
+                  ? 'password'
+                  : 'text' && name === 'balance'
+                  ? 'number'
+                  : 'text'
+              }
             />
           </FormControl>
           <FormMessage />

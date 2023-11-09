@@ -1,11 +1,6 @@
 import Link from 'next/link';
+import { AuthHeaderProps } from '@/ts/interfaces/app_interfaces';
 import { Button } from '@/components/ui/button';
-
-interface AuthHeaderProps {
-  label: string;
-  buttonText: string;
-  href: string;
-}
 
 export default function AuthHeader({
   label,

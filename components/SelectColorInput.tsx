@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-
+import { FormFieldSelectInputProps } from '@/ts/interfaces/app_interfaces';
 import {
   FormField,
   FormItem,
@@ -12,17 +12,9 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Coins, CreditCard, Wallet } from 'lucide-react';
-
-type FormFieldSelectInputProps = {
-  name: string;
-  label?: string;
-  placeholder: string;
-};
 
 interface AccountColorsProps {
   value: string;
