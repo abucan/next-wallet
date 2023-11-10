@@ -8,7 +8,7 @@ const AccountsPage = async () => {
     <div className='p-6 flex flex-col space-y-4'>
       {accounts &&
         accounts.map((account) => {
-          return <AccountCard key={account.name} {...account} />;
+          return <AccountCard key={account.name} account={account} />;
         })}
     </div>
   );

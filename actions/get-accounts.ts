@@ -1,8 +1,7 @@
-import prisma from '@/lib/db';
-import { authOptions } from '@/lib/auth';
-import { getServerSession } from 'next-auth';
-import { GetAccounts } from '@/ts/types/app_types';
-
+import prisma from "@/lib/db";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import { GetAccounts } from "@/ts/types/app_types";
 
 export const getAccounts = async (): Promise<GetAccounts[]> => {
   const session = await getServerSession(authOptions);
@@ -17,6 +16,7 @@ export const getAccounts = async (): Promise<GetAccounts[]> => {
         userId: userId,
       },
       select: {
+        id: true,
         name: true,
         color: true,
         type: true,
@@ -25,7 +25,7 @@ export const getAccounts = async (): Promise<GetAccounts[]> => {
     });
     return accounts;
   } catch (error) {
-    console.log('[GET_ACCOUNTS]', error);
+    console.log("[GET_ACCOUNTS]", error);
     return [];
   }
 };

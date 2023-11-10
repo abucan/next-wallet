@@ -1,4 +1,4 @@
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon } from "lucide-react";
 
 export interface AuthFormCard {
   children: React.ReactNode;
@@ -31,23 +31,17 @@ export interface SidebarRoutesProps {
   href: string;
 }
 
-export interface AddDialogAccountProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-}
-
 export interface AccountProps {
-  name: string;
-  color: string;
-  type: string;
-  balance: string;
-}
-
-export interface AccountCardProps {
+  id?: string;
   name: string;
   color: string;
   type: string;
   balance: number;
+}
+
+export interface AccountCardProps {
+  account: AccountProps;
+  searchParams?: Record<string, string> | null | undefined;
 }
 
 export interface DashboardLayoutProps {
@@ -66,8 +60,9 @@ export interface QueryProviderProps {
   children: React.ReactNode;
 }
 
-export interface FormFieldSelectInputProps {
+export interface ColorInputProps {
   name: string;
   label?: string;
   placeholder: string;
+  initialValue?: string;
 }

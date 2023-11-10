@@ -1,12 +1,12 @@
-import { useFormContext } from 'react-hook-form';
-import { FormFieldSelectInputProps } from '@/ts/interfaces/app_interfaces';
+import { useFormContext } from "react-hook-form";
+import { ColorInputProps } from "@/ts/interfaces/app_interfaces";
 import {
   FormField,
   FormItem,
   FormLabel,
   FormControl,
   FormMessage,
-} from './ui/form';
+} from "./ui/form";
 import {
   Select,
   SelectContent,
@@ -14,7 +14,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from "@/components/ui/select";
 
 interface AccountColorsProps {
   value: string;
@@ -22,28 +22,29 @@ interface AccountColorsProps {
 }
 
 const accountColors: AccountColorsProps[] = [
-  { value: 'red', label: 'Red' },
-  { value: 'green', label: 'Green' },
-  { value: 'blue', label: 'Blue' },
-  { value: 'yellow', label: 'Yellow' },
+  { value: "red", label: "Red" },
+  { value: "green", label: "Green" },
+  { value: "blue", label: "Blue" },
+  { value: "yellow", label: "Yellow" },
 ];
 
-const FormFieldColorSelectInput = ({
+const ColorInput = ({
   name,
   label,
   placeholder,
-}: FormFieldSelectInputProps) => {
+  initialValue,
+}: ColorInputProps) => {
   const { control } = useFormContext();
   return (
     <FormField
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem className='w-full'>
+        <FormItem className="w-full">
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Select onValueChange={field.onChange}>
-              <SelectTrigger className='w-full'>
+            <Select onValueChange={field.onChange} defaultValue={initialValue}>
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
               <SelectContent>
@@ -51,14 +52,14 @@ const FormFieldColorSelectInput = ({
                   {accountColors.map((item) => {
                     return (
                       <SelectItem key={item.value} value={item.value}>
-                        <div className='flex flex-row items-center'>
+                        <div className="flex flex-row items-center capitalize">
                           <div
                             style={{
                               backgroundColor: `${item.value}`,
                             }}
-                            className='w-5 h-5 rounded-full mr-2 p-1 opacity-70'
+                            className="w-5 h-5 rounded-full mr-2 p-1 opacity-70"
                           ></div>
-                          {item.label}
+                          {item.value}
                         </div>
                       </SelectItem>
                     );
@@ -74,4 +75,4 @@ const FormFieldColorSelectInput = ({
   );
 };
 
-export default FormFieldColorSelectInput;
+export default ColorInput;
