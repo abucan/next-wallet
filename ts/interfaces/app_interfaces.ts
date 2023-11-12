@@ -1,4 +1,4 @@
-import { LucideIcon } from "lucide-react";
+import { LucideIcon } from 'lucide-react';
 
 export interface AuthFormCard {
   children: React.ReactNode;
@@ -65,4 +65,16 @@ export interface ColorInputProps {
   label?: string;
   placeholder: string;
   initialValue?: string;
+}
+
+export interface AccountInputProps {
+  name: string;
+  label: string;
+  placeholder: string;
+  initialValue?: string;
+}
+
+export interface PageHeaderProps {
+  title: string;
+  href: string;
 }

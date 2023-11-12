@@ -1,36 +1,30 @@
 'use client';
 
-import FormFieldInput from '@/components/FormInput';
+import * as z from 'zod';
+import { signIn } from 'next-auth/react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginSchema } from '@/ts/form-schemas/form-schemas';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import { useToast } from '@/components/ui/use-toast';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import * as z from 'zod';
+import { useToast } from '@/components/ui/use-toast';
+import FormFieldInput from '@/components/FormInput';
 
-const formSchema = z.object({
-  email: z.string().email({ message: 'Invalid email address' }),
-  password: z.string().min(6, {
-    message: 'Password must be at least 6 characters long',
-  }),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = z.infer<typeof loginSchema>;
 
 const LoginForm = () => {
   const router = useRouter();
   const { toast } = useToast();
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
-  const { isValid, isSubmitting } = form.formState;
+  const { isSubmitting } = form.formState;
 
   const onSubmit = async (values: FormValues) => {
     const signInData = await signIn('credentials', {
@@ -43,15 +37,15 @@ const LoginForm = () => {
       toast({
         title: 'Error',
         description: 'Oops. Email or password do not match.',
-        variant: 'destructive'
+        variant: 'destructive',
       });
     } else {
       toast({
         title: 'Success',
         description: 'Welcome to your dashboard.',
-        variant: 'default'
+        variant: 'default',
       });
-      router.refresh()
+      router.refresh();
       router.push('/');
     }
   };

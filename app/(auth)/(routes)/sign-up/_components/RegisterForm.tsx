@@ -1,36 +1,23 @@
 'use client';
 
-import FormFieldInput from '@/components/FormInput';
+import * as z from 'zod';
+import axios from 'axios';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { registerSchema } from '@/ts/form-schemas/form-schemas';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useToast } from '@/components/ui/use-toast';
-import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import * as z from 'zod';
+import FormFieldInput from '@/components/FormInput';
 
-const formSchema = z.object({
-  username: z
-    .string()
-    .min(3, { message: 'Name is too short' })
-    .max(20, 'Username is too long'),
-  email: z
-    .string()
-    .min(1, 'Email is required')
-    .email({ message: 'Invalid email address' }),
-  password: z.string().min(1, 'Password is required').min(6, {
-    message: 'Password must be at least 6 characters long',
-  }),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = z.infer<typeof registerSchema>;
 
 const RegisterForm = () => {
   const router = useRouter();
   const { toast } = useToast();
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       username: '',
       email: '',
@@ -38,7 +25,7 @@ const RegisterForm = () => {
     },
   });
 
-  const { isValid, isSubmitting } = form.formState;
+  const { isSubmitting } = form.formState;
 
   const onSubmit = async (values: FormValues) => {
     const response = await axios.post('/api/user', values, {
@@ -50,7 +37,7 @@ const RegisterForm = () => {
       toast({
         title: 'Account created',
         description: 'Please sign in to your account.',
-        variant: 'default'
+        variant: 'default',
       });
       router.refresh();
       router.push('/sign-in');
@@ -58,7 +45,7 @@ const RegisterForm = () => {
       toast({
         title: 'Error',
         description: 'Oops. Something went wrong.',
-        variant: 'destructive'
+        variant: 'destructive',
       });
     }
   };

@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import { FormFieldSelectInputProps } from '@/ts/interfaces/app_interfaces';
+import { AccountInputProps } from '@/ts/interfaces/app_interfaces';
 import {
   FormField,
   FormItem,
@@ -33,11 +33,12 @@ const accountTypes: AccountTypesProps[] = [
   },
 ];
 
-const FormFieldSelectInput = ({
+const AccountInput = ({
   name,
   label,
   placeholder,
-}: FormFieldSelectInputProps) => {
+  initialValue,
+}: AccountInputProps) => {
   const { control } = useFormContext();
   return (
     <FormField
@@ -47,7 +48,10 @@ const FormFieldSelectInput = ({
         <FormItem className='w-full'>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Select onValueChange={field.onChange}>
+            <Select
+              onValueChange={field.onChange}
+              defaultValue={initialValue}
+            >
               <SelectTrigger className='w-full'>
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
@@ -76,4 +80,4 @@ const FormFieldSelectInput = ({
   );
 };
 
-export default FormFieldSelectInput;
+export default AccountInput;
