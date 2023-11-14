@@ -1,7 +1,6 @@
 import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
-import AccountSorting from './_components/AccountSorting';
 
 const AccountsLayout = async ({
   children,
