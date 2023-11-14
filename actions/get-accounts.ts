@@ -1,13 +1,19 @@
-import prisma from '@/lib/db';
-import { authOptions } from '@/lib/auth';
-import { getServerSession } from 'next-auth';
-import { GetAccounts } from '@/ts/types/app_types';
-import { redirect } from 'next/navigation';
+import prisma from "@/lib/db";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import { GetAccounts } from "@/ts/types/app_types";
+import { redirect } from "next/navigation";
 
-export const getAccounts = async (): Promise<GetAccounts[]> => {
+export const getAccounts = async ({
+  sortBy,
+  sortOrder,
+}: {
+  sortBy: string;
+  sortOrder: string;
+}): Promise<GetAccounts[]> => {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user?.id) return redirect('/sign-in');
+  if (!session?.user?.id) return redirect("/sign-in");
 
   const userId = session?.user?.id;
 
@@ -24,12 +30,12 @@ export const getAccounts = async (): Promise<GetAccounts[]> => {
         balance: true,
       },
       orderBy: {
-        createdAt: 'desc',
+        [sortBy]: sortOrder,
       },
     });
     return accounts;
   } catch (error) {
-    console.log('[GET_ACCOUNTS]', error);
+    console.log("[GET_ACCOUNTS]", error);
     return [];
   }
 };
