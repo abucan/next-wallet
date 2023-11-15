@@ -7,19 +7,46 @@ import {
   SelectValue,
   SelectGroup,
 } from '@/components/ui/select';
+import {
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from 'next/navigation';
+import qs from 'query-string';
 
 const sortingMap = {
-  AZ: 'Name (A-Z)',
-  ZA: 'Name (Z-A)',
-  NEWEST: 'Newest',
-  OLDEST: 'Oldest',
-  HIGHEST: 'Highest balance',
-  LOWEST: 'Lowest balance',
+  az: 'Name (A-Z)',
+  za: 'Name (Z-A)',
+  newest: 'Newest',
+  oldest: 'Oldest',
+  highest: 'Highest balance',
+  lowest: 'Lowest balance',
 };
 
 const SortingOptions = () => {
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const currentTitle = searchParams.get('title');
+
+  const onClick = (value: string) => {
+    const url = qs.stringifyUrl(
+      {
+        url: pathname,
+        query: {
+          sort: value,
+          title: currentTitle
+        },
+      },
+      { skipNull: true, skipEmptyString: true },
+    );
+
+    router.push(url);
+  };
+
   return (
-    <Select onValueChange={(value) => console.log(value)}>
+    <Select onValueChange={(value) => onClick(value)}>
       <SelectTrigger className='w-[180px]'>
         <SelectValue placeholder='Sort' />
       </SelectTrigger>
