@@ -9,3 +9,11 @@ export type GetAccounts = {
 };
 
 export type FormValues = z.infer<typeof accountSchema>;
+
+export type SortOrder = 'asc' | 'desc';
+
+export type AccountOrderBy = {
+  name?: SortOrder;
+  createdAt?: SortOrder;
+  balance?: SortOrder;
+};

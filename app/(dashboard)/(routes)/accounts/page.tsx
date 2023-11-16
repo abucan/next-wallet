@@ -1,9 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
-import AccountCard from './_components/AccountCard';
-import { getAccounts } from '@/actions/get-accounts';
 import axios from 'axios';
-import SortingOptions from './_components/SortingOptions';
+import { useQuery } from '@tanstack/react-query';
+import { getAccounts } from '@/actions/get-accounts';
+import SortingOptions from './_components/Sorting';
 import SearchInput from '../../_components/SearchInput';
+import Accounts from './_components/Accounts';
 
 const AccountsPage = async ({
   searchParams,
@@ -18,19 +18,18 @@ const AccountsPage = async ({
     title: searchParams.title,
   });
 
+  // const { data, isLoading } = useQuery({
+  //   queryKey: ['accounts', searchParams],
+  //   queryFn: () => getAccounts(searchParams),
+  // });
+
   return (
     <div className='flex flex-col space-y-4'>
       <div className='flex items-center justify-between'>
         <SortingOptions />
         <SearchInput />
       </div>
-      {accounts.length > 0 ? (
-        accounts.map((account) => {
-          return <AccountCard key={account.name} account={account} />;
-        })
-      ) : (
-        <p>No accounts found.</p>
-      )}
+      <Accounts accounts={accounts} />
     </div>
   );
 };

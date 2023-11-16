@@ -1,8 +1,6 @@
 import Link from 'next/link';
-import SearchInput from './SearchInput';
 import { Button } from '@/components/ui/button';
 import { CopyPlus, FolderPlus } from 'lucide-react';
-import Logo from '@/components/Logo';
 
 const NavbarRoutes = () => {
   return (

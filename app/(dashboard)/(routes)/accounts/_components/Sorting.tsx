@@ -36,7 +36,7 @@ const SortingOptions = () => {
         url: pathname,
         query: {
           sort: value,
-          title: currentTitle
+          title: currentTitle,
         },
       },
       { skipNull: true, skipEmptyString: true },
@@ -45,6 +45,7 @@ const SortingOptions = () => {
     router.push(url);
   };
 
+  // TODO: Maybe make a component later for records
   return (
     <Select onValueChange={(value) => onClick(value)}>
       <SelectTrigger className='w-[180px]'>

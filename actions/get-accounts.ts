@@ -1,38 +1,9 @@
 import prisma from '@/lib/db';
-import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
-import { GetAccounts } from '@/ts/types/app_types';
+import { authOptions } from '@/lib/auth';
 import { redirect } from 'next/navigation';
-
-type SortOrder = 'asc' | 'desc';
-
-type AccountOrderBy = {
-  name?: SortOrder;
-  createdAt?: SortOrder;
-  balance?: SortOrder;
-};
-
-// move to utils
-const getOrderByClause = (sorting: string): AccountOrderBy => {
-  console.log('[GET_ORDER_BY_CLAUSE]', sorting);
-
-  switch (sorting) {
-    case 'az':
-      return { name: 'asc' };
-    case 'za':
-      return { name: 'desc' };
-    case 'newest':
-      return { createdAt: 'desc' };
-    case 'oldest':
-      return { createdAt: 'asc' };
-    case 'highest':
-      return { balance: 'desc' };
-    case 'lowest':
-      return { balance: 'asc' };
-    default:
-      return {}; // Default sorting or handle invalid sorting options
-  }
-};
+import { GetAccounts } from '@/ts/types/app_types';
+import { getOrderByClause } from '@/lib/utils';
 
 interface GetAccountsProps {
   sort: string;

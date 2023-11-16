@@ -7,7 +7,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import FormFieldInput from '@/components/FormInput';
 import AccountInput from '@/components/AccountInput';
 import ColorInput from '@/components/ColorInput';
-import PageHeader from '@/components/PageHeader';
 import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 
@@ -37,10 +36,6 @@ const AccountForm = ({
 
   return (
     <>
-      <PageHeader
-        title={isEditing ? 'Edit an account' : 'Add a new account'}
-        href='/accounts'
-      />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(submit)}
