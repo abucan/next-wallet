@@ -1,14 +1,44 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
-import QueryProvider from "@/components/QueryProvider";
+import './globals.css';
+import QueryProvider from '@/components/QueryProvider';
+import { Toaster } from '@/components/ui/toaster';
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = localFont({
+  src: [
+    {
+      path: '../fonts/Roboto-Medium.ttf',
+      weight: '400',
+      style: 'regular',
+    },
+    {
+      path: '../fonts/Roboto-Medium.ttf',
+      weight: '500',
+      style: 'medium',
+    },
+  ],
+  variable: '--font-roboto',
+});
+
+const poppins = localFont({
+  src: [
+    {
+      path: '../fonts/Poppins-Regular.ttf',
+      weight: '400',
+      style: 'regular',
+    },
+    {
+      path: '../fonts/Poppins-Medium.ttf',
+      weight: '500',
+      style: 'medium',
+    },
+  ],
+  variable: '--font-poppins',
+});
 
 export const metadata: Metadata = {
-  title: "Wallet Tracker",
-  description: "Track your expenses and income",
+  title: 'Wallet Tracker',
+  description: 'Track your expenses and income',
 };
 
 export default function RootLayout({
@@ -17,8 +47,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html
+      lang='en'
+      className={`${roboto.variable} ${poppins.variable}`}
+    >
+      <body>
         <QueryProvider>{children}</QueryProvider>
         <Toaster />
       </body>

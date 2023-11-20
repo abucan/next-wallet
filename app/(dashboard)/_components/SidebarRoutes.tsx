@@ -1,12 +1,12 @@
 'use client';
 
-import { ArrowUpDown, Home, User, Wallet } from 'lucide-react';
+import { ArrowUpDown, Home, LayoutDashboard, User, Wallet } from 'lucide-react';
 import { SidebarRoutesProps } from '@/ts/interfaces/app_interfaces';
 import SidebarItem from './SidebarItem';
 
 const routes: SidebarRoutesProps[] = [
   {
-    icon: Home,
+    icon: LayoutDashboard,
     label: 'Dashboard',
     href: '/',
   },
@@ -29,7 +29,7 @@ const routes: SidebarRoutesProps[] = [
 
 const SidebarTitle = ({ title }: { title: string }) => {
   return (
-    <p className='font-bold text-xs text-gray-700/60 mb-4 pl-6'>
+    <p className='text-xs text-[#686868]/50 pl-8 py-3 font-sans font-[400]'>
       {title}
     </p>
   );
@@ -37,8 +37,8 @@ const SidebarTitle = ({ title }: { title: string }) => {
 
 const SidebarRoutes = () => {
   return (
-    <div className='flex flex-col w-full gap-y-1.5'>
-      <SidebarTitle title='MAIN' />
+    <div className='flex flex-col w-full'>
+      <SidebarTitle title='MAIN MENU' />
       {routes.map((route) => {
         return (
           <SidebarItem
