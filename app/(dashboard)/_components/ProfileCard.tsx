@@ -1,35 +1,26 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/components/ui/avatar';
-import { authOptions } from '@/lib/auth';
-import { MoreVertical } from 'lucide-react';
-import { getServerSession } from 'next-auth';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import UserLogoutBtn from "./UserLogoutBtn";
 
 const ProfileCard = async () => {
   const session = await getServerSession(authOptions);
   return (
     <>
       {!!session && (
-        <div className='flex flex-row w-full justify-between'>
-          <div className='flex flex-row space-x-2 items-center justify-center'>
+        <div className="flex flex-row w-full justify-between space-x-2">
+          <div className="flex flex-row space-x-3 items-center justify-center">
             <Avatar>
-              <AvatarImage src='https://github.com/shadcn.png' />
+              <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div>
-              <p className='text-sm font-bold text-gray-700/80'>
+              <p className="text-base font-[500] text-treitary font-mono">
                 {session?.user?.username}
-              </p>
-              <p className='text-xs text-gray-700/60'>
-                {session?.user?.email}
               </p>
             </div>
           </div>
-          <button>
-            <MoreVertical size={20} />
-          </button>
+          <UserLogoutBtn />
         </div>
       )}
     </>

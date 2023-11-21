@@ -17,6 +17,13 @@ module.exports = {
     },
     extend: {
       colors: {
+        sidebar: "#FAFAFA",
+        mainColor: "#FF5151",
+        primaryGrey: "#686868",
+        secondaryGrey: "#303030",
+        treitary: "#161E54",
+        smallIcon: "#737898",
+        sidebarIcon: "#B2B2B2",
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
