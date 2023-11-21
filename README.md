@@ -26,3 +26,4 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 - add the search functionality
 - fix the caching of queries (DELETE)
 - add some stats for dashboard for the accounts, for example number of them or the preview
+- add a hover state for NAVBAR items etc. ADD ACCOUNT

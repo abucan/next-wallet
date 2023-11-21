@@ -19,7 +19,7 @@ interface AccountFormProps {
   isLoadingSubmit?: boolean;
 }
 
-const AccountForm = ({
+const RecordsForm = ({
   submit,
   isEditing,
   initialValues,
@@ -74,7 +74,7 @@ const AccountForm = ({
                   : 'Edit account'
                 : isLoadingSubmit
                 ? 'Creating...'
-                : 'Create an account'}
+                : 'Create a record'}
             </Button>
           </div>
         </form>
@@ -83,4 +83,4 @@ const AccountForm = ({
   );
 };
 
-export default AccountForm;
+export default RecordsForm;

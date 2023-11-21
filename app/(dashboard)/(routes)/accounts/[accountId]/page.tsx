@@ -58,7 +58,7 @@ const AccountIdPage = ({
 
   if (isLoading) {
     return (
-      <div className='p-6 w-full grid place-items-center animate-spin'>
+      <div className='w-full grid place-items-center animate-spin'>
         <Loader />
       </div>
     );

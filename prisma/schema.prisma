@@ -18,6 +18,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   accounts Account[]
+  records Record[]
 }
 
 model Account {
@@ -28,6 +29,20 @@ model Account {
   balance Float
   userId String
   user User @relation(fields: [userId], references: [id])
+  accountRecords Record[]
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Record {
+  id String @id @default(uuid())
+  accountId String
+  account Account @relation(fields: [accountId], references: [id])
+  userId String
+  user User @relation(fields: [userId], references: [id])
+  recordType String
+  amount Float
+  category String
+  createdAt DateTime
   updatedAt DateTime @updatedAt
 }

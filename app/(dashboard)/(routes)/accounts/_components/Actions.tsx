@@ -49,7 +49,7 @@ const Actions = ({ id }: { id: string }) => {
       <Link href={`/accounts/${id}`}>
         <Button variant='outline'>
           <Pencil className='h-4 w-4 mr-2' />
-          Edit
+          <span className='font-mono font-500]'>Edit</span>
         </Button>
       </Link>
       <Button
@@ -58,7 +58,7 @@ const Actions = ({ id }: { id: string }) => {
         disabled={isPending}
       >
         <Trash className='h-4 w-4 mr-2' />
-        Delete
+        <span className='font-mono font-500]'>Delete</span>
       </Button>
     </>
   );
