@@ -8,29 +8,15 @@ export async function GET(
   req: Request,
   { params }: { params: { id: string } }
 ) {
-  console.log(params.id);
-
   try {
     const session = await getServerSession(authOptions);
 
     if (!session)
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
 
-    const sortOptions = {
-      newest: "-createdAt",
-      oldest: "createdAt",
-      highest: "-balance",
-      lowest: "balance",
-    };
-
-    const sortKey = sortOptions.lowest;
-
     const accounts = await prisma.account.findMany({
       where: {
         userId: session?.user?.id,
-      },
-      orderBy: {
-        [sortKey]: "asc",
       },
     });
 

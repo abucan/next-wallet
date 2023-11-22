@@ -1,4 +1,4 @@
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon } from "lucide-react";
 
 export interface AuthFormCard {
   children: React.ReactNode;
@@ -37,6 +37,15 @@ export interface AccountProps {
   color: string;
   type: string;
   balance: number;
+}
+
+export interface RecordProps {
+  id?: string;
+  accountId: string;
+  recordType: string;
+  amount: number;
+  category: string;
+  createdAt: Date;
 }
 
 export interface AccountCardProps {

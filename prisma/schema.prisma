@@ -11,38 +11,38 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  email String @unique
-  username String @unique
-  password String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  accounts Account[]
-  records Record[]
+  id        String    @id @default(uuid())
+  email     String    @unique
+  username  String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  accounts  Account[]
+  records   Record[]
 }
 
 model Account {
-  id String @id @default(uuid())
-  name String
-  type String
-  color String
-  balance Float
-  userId String
-  user User @relation(fields: [userId], references: [id])
+  id             String   @id @default(uuid())
+  name           String
+  type           String
+  color          String
+  balance        Float
+  userId         String
+  user           User     @relation(fields: [userId], references: [id])
   accountRecords Record[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
 model Record {
-  id String @id @default(uuid())
-  accountId String
-  account Account @relation(fields: [accountId], references: [id])
-  userId String
-  user User @relation(fields: [userId], references: [id])
+  id         String   @id @default(uuid())
+  accountId  String
+  account    Account  @relation(fields: [accountId], references: [id])
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
   recordType String
-  amount Float
-  category String
-  createdAt DateTime
-  updatedAt DateTime @updatedAt
+  amount     Float
+  category   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
