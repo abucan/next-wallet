@@ -11,8 +11,6 @@ import AccountSelect from "./AccountSelect";
 import RecordTypeSelect from "./RecordTypeSelect";
 import CategorySelect from "./CategorySelect";
 import DataSelect from "./DateSelect";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 
 type FormValues = z.infer<typeof recordSchema>;
 
@@ -49,22 +47,22 @@ const RecordsForm = ({
             <div className="flex flex-row gap-x-3 items-center">
                 <AccountSelect
                   name="accountId"
-                  label="Account type"
-                  placeholder="Select an account type"
+                  label="Account"
+                  placeholder="Select an account"
                  // initialValue={initialValues?.accountId}
                 />
               <RecordTypeSelect
                 name="recordType"
                 label="Record Type"
-                placeholder="Select an record type"
+                placeholder="Select a record type"
                 initialValue={initialValues?.recordType}
               />
             </div>
             <div className="flex flex-row gap-x-3 items-center">
               <FormFieldInput
                 name="amount"
-                label="Account balance"
-                placeholder="Enter the starting balance"
+                label="Amount"
+                placeholder="Enter the amount"
               />
               <FormFieldInput
                 name="currency"
@@ -74,13 +72,13 @@ const RecordsForm = ({
             </div>
             <CategorySelect
               name="category"
-              label="Category type"
-              placeholder="Select an category type"
+              label="Category"
+              placeholder="Select an category"
               initialValue={initialValues?.category}
             />
             <DataSelect
               name="date"
-              label="Select a record date"
+              label="Record Date"
               placeholder="Pick a date"
             />
             <Button type="submit" disabled={isSubmitting}>
