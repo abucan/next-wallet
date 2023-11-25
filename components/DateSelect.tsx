@@ -1,12 +1,10 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
+import { InputProps } from "@/ts/interfaces/app_interfaces";
+import { useFormContext } from "react-hook-form";
+import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { useForm, useFormContext } from "react-hook-form";
-import * as z from "zod";
-
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -22,14 +20,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-type DataSelectProps = {
-  name: string;
-  label: string;
-  placeholder: string;
-  initialValue?: Date;
-};
-
-const DataSelect = ({ name, label, placeholder }: DataSelectProps) => {
+const DataSelect = ({ name, label, placeholder }: InputProps) => {
   const { control } = useFormContext();
 
   return (

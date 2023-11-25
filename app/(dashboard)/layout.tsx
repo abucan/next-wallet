@@ -1,8 +1,8 @@
-import { DashboardLayoutProps } from "@/ts/interfaces/app_interfaces";
+import { PropsWithChildren } from "react";
 import Navbar from "./_components/Navbar";
 import Sidebar from "./_components/Sidebar";
 
-const DashboardLayout = ({ children }: DashboardLayoutProps) => {
+const DashboardLayout = ({ children }: PropsWithChildren) => {
   return (
     <div className="h-full">
       <div className="h-[75px] md:pl-72 fixed inset-y-0 w-full z-50">

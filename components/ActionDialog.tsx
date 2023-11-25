@@ -1,3 +1,5 @@
+import { ActionDialogProps } from '@/ts/interfaces/app_interfaces';
+import { Button } from './ui/button';
 import {
   Dialog,
   DialogContent,
@@ -6,17 +8,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Button } from './ui/button';
-
-interface ActionDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  onClick: () => void;
-  isBtnDisabled: boolean;
-  dialogTitle: string;
-  dialogDescription: string;
-  dialogBtnText: string;
-}
 
 const ActionDialog = ({
   open,

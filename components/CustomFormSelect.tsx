@@ -1,5 +1,6 @@
+import { InputProps } from '@/ts/interfaces/app_interfaces';
+import { GenericInputProps } from '@/ts/types/app_types';
 import { useFormContext } from 'react-hook-form';
-import { AccountInputProps } from '@/ts/interfaces/app_interfaces';
 import {
   FormField,
   FormItem,
@@ -15,30 +16,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Coins, CreditCard, Wallet } from 'lucide-react';
 
-interface AccountTypesProps {
-  value: string;
-  label: string;
-  icon: React.ReactNode;
-}
-
-const accountTypes: AccountTypesProps[] = [
-  { value: 'general', label: 'General Account', icon: <Wallet /> },
-  { value: 'cash', label: 'Cash Account', icon: <Coins /> },
-  {
-    value: 'credit_card',
-    label: 'Credit Card',
-    icon: <CreditCard />,
-  },
-];
-
-const AccountInput = ({
+const CustomFormSelect = ({
   name,
   label,
   placeholder,
   initialValue,
-}: AccountInputProps) => {
+  options,
+}: InputProps & { options: GenericInputProps[] }) => {
   const { control } = useFormContext();
   return (
     <FormField
@@ -57,18 +42,14 @@ const AccountInput = ({
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  {accountTypes.map((item) => {
-                    return (
-                      <SelectItem key={item.value} value={item.value}>
-                        <div className='flex flex-row items-center'>
-                          <span className='mr-1 p-1'>
-                            {item.icon}
-                          </span>
-                          {item.label}
-                        </div>
-                      </SelectItem>
-                    );
-                  })}
+                  {options.map((item) => (
+                    <SelectItem key={item.value} value={item.value}>
+                      <div className='flex flex-row items-center'>
+                        <span className='mr-1 p-1'>{item.icon}</span>
+                        {item.label}
+                      </div>
+                    </SelectItem>
+                  ))}
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -80,4 +61,4 @@ const AccountInput = ({
   );
 };
 
-export default AccountInput;
+export default CustomFormSelect;

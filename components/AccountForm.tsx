@@ -1,31 +1,29 @@
 'use client';
 
-import * as z from 'zod';
+import * as z from 'zod'; // MAYBE REMOVE
 import { zodResolver } from '@hookform/resolvers/zod';
 import { accountSchema } from '@/ts/form-schemas/form-schemas';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import FormFieldInput from '@/components/FormInput';
-import AccountInput from '@/components/AccountInput';
 import ColorInput from '@/components/ColorInput';
 import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
-
-type FormValues = z.infer<typeof accountSchema>;
-
-interface AccountFormProps {
-  submit: SubmitHandler<FormValues>;
-  isEditing: boolean;
-  initialValues?: FormValues;
-  isLoadingSubmit?: boolean;
-}
+import {
+  SelectOptionsProps,
+  GenericFormProps,
+} from '@/ts/interfaces/app_interfaces';
+import { AccountFormValues } from '@/ts/types/app_types';
+import CustomFormSelect from './CustomFormSelect';
+// icons
+import { Coins, CreditCard, Wallet } from 'lucide-react';
 
 const AccountForm = ({
   submit,
   isEditing,
   initialValues,
   isLoadingSubmit,
-}: AccountFormProps) => {
-  const form = useForm<FormValues>({
+}: GenericFormProps<AccountFormValues>) => {
+  const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountSchema),
     defaultValues: {
       ...initialValues,
@@ -33,6 +31,17 @@ const AccountForm = ({
   });
 
   const { isSubmitting } = form.formState;
+
+  // LATER IN DEV, MOVE AROUND
+  const accountTypes: SelectOptionsProps[] = [
+    { value: 'general', label: 'General Account', icon: <Wallet /> },
+    { value: 'cash', label: 'Cash Account', icon: <Coins /> },
+    {
+      value: 'credit_card',
+      label: 'Credit Card',
+      icon: <CreditCard />,
+    },
+  ];
 
   return (
     <>
@@ -55,13 +64,13 @@ const AccountForm = ({
                 initialValue={initialValues?.color}
               />
             </div>
-            <AccountInput
+            <CustomFormSelect
               name='type'
-              label='Account type'
-              placeholder='Select an account type'
+              label='Account'
+              placeholder='Select an account'
               initialValue={initialValues?.type}
+              options={accountTypes}
             />
-
             <FormFieldInput
               name='balance'
               label='Account balance'

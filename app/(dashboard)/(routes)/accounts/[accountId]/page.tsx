@@ -1,14 +1,14 @@
 'use client';
 
 import axios from 'axios';
+import { Account } from '@/models/account';
 import AccountForm from '@/components/AccountForm';
 import { toast } from '@/components/ui/use-toast';
-import { AccountProps } from '@/ts/interfaces/app_interfaces';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { Loader } from 'lucide-react';
 import { SubmitHandler } from 'react-hook-form';
-import { FormValues } from '@/ts/types/app_types';
+import { AccountFormValues } from '@/ts/types/app_types';
 
 const AccountIdPage = ({
   params,
@@ -28,7 +28,7 @@ const AccountIdPage = ({
   });
 
   const { mutate: editAccount, status } = useMutation({
-    mutationFn: (account: AccountProps) => {
+    mutationFn: (account: Account) => {
       return axios.patch(
         `/api/accounts/${params.accountId}`,
         account,
@@ -50,8 +50,8 @@ const AccountIdPage = ({
 
   const isLoadingSubmit = status === 'pending';
 
-  const handleEditAccount: SubmitHandler<FormValues> = (
-    values: FormValues,
+  const handleEditAccount: SubmitHandler<AccountFormValues> = (
+    values: AccountFormValues,
   ) => {
     editAccount(values);
   };

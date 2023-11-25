@@ -1,31 +1,6 @@
 "use client";
-
-import { ArrowUpDown, LayoutDashboard, User, Wallet } from "lucide-react";
-import { SidebarRoutesProps } from "@/ts/interfaces/app_interfaces";
+import { routes } from "@/lib/route";
 import SidebarItem from "./SidebarItem";
-
-const routes: SidebarRoutesProps[] = [
-  {
-    icon: LayoutDashboard,
-    label: "Dashboard",
-    href: "/",
-  },
-  {
-    icon: Wallet,
-    label: "Accounts",
-    href: "/accounts",
-  },
-  {
-    icon: ArrowUpDown,
-    label: "Records",
-    href: "/records",
-  },
-  {
-    icon: User,
-    label: "User",
-    href: "/user",
-  },
-];
 
 const SidebarTitle = ({ title }: { title: string }) => {
   return (

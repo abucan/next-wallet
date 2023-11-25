@@ -27,3 +27,4 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 - fix the caching of queries (DELETE)
 - add some stats for dashboard for the accounts, for example number of them or the preview
 - add a hover state for NAVBAR items etc. ADD ACCOUNT
+- when deleting an account, delete all the records linked to that account

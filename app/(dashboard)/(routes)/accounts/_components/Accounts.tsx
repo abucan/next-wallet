@@ -1,11 +1,7 @@
-import { AccountProps } from '@/ts/interfaces/app_interfaces';
+import { Account } from '@/models/account';
 import AccountItem from './AccountItem';
 
-interface Props {
-  accounts: AccountProps[];
-}
-
-const Accounts = ({ accounts }: Props) => {
+const Accounts = ({ accounts }: { accounts: Account[] }) => {
   return (
     <>
       {accounts.map((account) => {

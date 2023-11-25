@@ -1,5 +1,6 @@
+import { InputProps } from '@/ts/interfaces/app_interfaces';
 import { useFormContext } from 'react-hook-form';
-import { ColorInputProps } from '@/ts/interfaces/app_interfaces';
+import { accountColors } from '@/lib/colors';
 import {
   FormField,
   FormItem,
@@ -15,14 +16,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { accountColors } from '@/lib/colors';
 
 const ColorInput = ({
   name,
   label,
   placeholder,
   initialValue,
-}: ColorInputProps) => {
+}: InputProps) => {
   const { control } = useFormContext();
   return (
     <FormField

@@ -5,15 +5,15 @@ import AccountForm from '@/components/AccountForm';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from '@/components/ui/use-toast';
-import { AccountProps } from '@/ts/interfaces/app_interfaces';
 import { SubmitHandler } from 'react-hook-form';
-import { FormValues } from '@/ts/types/app_types';
+import { AccountFormValues } from '@/ts/types/app_types';
+import { Account } from '@/models/account';
 
 const CreateAccountPage = () => {
   const router = useRouter();
 
   const { mutate: createPost, status } = useMutation({
-    mutationFn: (account: AccountProps) => {
+    mutationFn: (account: Account) => {
       return axios.post('/api/accounts', account);
     },
     onError: (error) => {
@@ -32,8 +32,8 @@ const CreateAccountPage = () => {
 
   const isLoadingSubmit = status === 'pending';
 
-  const handleCreateAccount: SubmitHandler<FormValues> = (
-    values: FormValues,
+  const handleCreateAccount: SubmitHandler<AccountFormValues> = (
+    values: AccountFormValues,
   ) => {
     createPost(values);
   };

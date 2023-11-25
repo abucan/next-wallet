@@ -1,10 +1,9 @@
-import { AuthLayoutProps } from '@/ts/interfaces/app_interfaces';
-
 import Image from 'next/image';
-import main_banner from '@/public/main_banner.svg';
 import Logo from '@/components/Logo';
+import main_banner from '@/public/main_banner.svg';
+import { PropsWithChildren } from 'react';
 
-const AuthLayout = ({ children }: AuthLayoutProps) => {
+const AuthLayout = ({ children }: PropsWithChildren) => {
   return (
     <div className='w-full min-h-screen flex flex-col lg:flex-row'>
       <div className='w-1/2 bg-slate-50 hidden lg:flex lg:flex-col'>

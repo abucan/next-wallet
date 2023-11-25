@@ -1,4 +1,5 @@
-import { LucideIcon } from "lucide-react";
+import { LucideIcon } from 'lucide-react';
+import { FieldValues, SubmitHandler } from 'react-hook-form';
 
 export interface AuthFormCard {
   children: React.ReactNode;
@@ -9,19 +10,16 @@ export interface AuthFormCard {
   linkText: string;
 }
 
+export interface GenericFormProps<T extends FieldValues> {
+  submit: SubmitHandler<T>;
+  isEditing: boolean;
+  initialValues?: T;
+  isLoadingSubmit?: boolean;
+}
+
 export interface AuthHeaderProps {
   label: string;
   buttonText: string;
-  href: string;
-}
-
-export interface AuthLayoutProps {
-  children: React.ReactNode;
-}
-
-export interface SidebarItemProps {
-  icon: LucideIcon;
-  label: string;
   href: string;
 }
 
@@ -31,59 +29,30 @@ export interface SidebarRoutesProps {
   href: string;
 }
 
-export interface AccountProps {
-  id?: string;
-  name: string;
-  color: string;
-  type: string;
-  balance: number;
+export interface SelectOptionsProps {
+  value: string;
+  label: string;
+  icon: React.ReactNode;
 }
 
-export interface RecordProps {
-  id?: string;
-  accountId: string;
-  recordType: string;
-  amount: number;
-  category: string;
-  createdAt: Date;
-}
-
-export interface AccountCardProps {
-  account: AccountProps;
-  searchParams?: Record<string, string> | null | undefined;
-}
-
-export interface DashboardLayoutProps {
-  children: React.ReactNode;
-}
-
-export interface LogoProps {
-  width?: number;
-}
-
-export interface SessionProviderProps {
-  children: React.ReactNode;
-}
-
-export interface QueryProviderProps {
-  children: React.ReactNode;
-}
-
-export interface ColorInputProps {
-  name: string;
-  label?: string;
-  placeholder: string;
-  initialValue?: string;
-}
-
-export interface AccountInputProps {
+export interface InputProps {
   name: string;
   label: string;
   placeholder: string;
   initialValue?: string;
 }
 
-export interface PageHeaderProps {
-  title: string;
-  href: string;
+export interface ActionDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onClick: () => void;
+  isBtnDisabled: boolean;
+  dialogTitle: string;
+  dialogDescription: string;
+  dialogBtnText: string;
+}
+
+export interface SearchAccountProps {
+  sort?: string;
+  title?: string;
 }

@@ -3,10 +3,15 @@ import Link from 'next/link';
 import { Button } from './ui/button';
 import { XCircle } from 'lucide-react';
 import { Separator } from './ui/separator';
-import { PageHeaderProps } from '@/ts/interfaces/app_interfaces';
 import { usePathname } from 'next/navigation';
 
-const PageHeader = ({ title, href }: PageHeaderProps) => {
+const PageHeader = ({
+  title,
+  href,
+}: {
+  title: string;
+  href: string;
+}) => {
   const pathname = usePathname();
   const isAccountsPage = pathname.includes('/accounts/create')
     ? 'Add an account'

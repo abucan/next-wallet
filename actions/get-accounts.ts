@@ -1,22 +1,18 @@
-import prisma from "@/lib/db";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import { GetAccounts } from "@/ts/types/app_types";
-import { getOrderByClause } from "@/lib/utils";
-
-interface GetAccountsProps {
-  sort?: string;
-  title?: string;
-}
+import prisma from '@/lib/db';
+import { Account } from '@/models/account';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
+import { redirect } from 'next/navigation';
+import { getOrderByClause } from '@/lib/utils';
+import { SearchAccountProps } from '@/ts/interfaces/app_interfaces';
 
 export const getAccounts = async ({
-  sort = "az",
+  sort = 'az',
   title,
-}: GetAccountsProps): Promise<GetAccounts[]> => {
+}: SearchAccountProps): Promise<Account[]> => {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user?.id) return redirect("/sign-in");
+  if (!session?.user?.id) return redirect('/sign-in');
 
   const userId = session?.user?.id;
 
@@ -31,15 +27,15 @@ export const getAccounts = async ({
       select: {
         id: true,
         name: true,
-        color: true,
         type: true,
+        color: true,
         balance: true,
       },
       orderBy: getOrderByClause(sort),
     });
     return accounts;
   } catch (error) {
-    console.log("[GET_ACCOUNTS]", error);
+    console.log('[GET_ACCOUNTS]', error);
     return [];
   }
 };

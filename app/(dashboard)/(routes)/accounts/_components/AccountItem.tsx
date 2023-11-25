@@ -1,8 +1,8 @@
 import Actions from './Actions';
-import { Card } from '@/components/ui/card';
-import { AccountProps } from '@/ts/interfaces/app_interfaces';
-import { getAccountType } from '@/actions/get-account-type';
+import { Account } from '@/models/account';
 import { getIconComponent } from '@/components/AccountIcon';
+import { getAccountType } from '@/actions/get-account-type';
+import { Card } from '@/components/ui/card';
 
 const AccountItem = ({
   id,
@@ -10,7 +10,7 @@ const AccountItem = ({
   name,
   type,
   balance,
-}: AccountProps) => {
+}: Account) => {
   const AccountCardIcon = getIconComponent(type);
   return (
     <Card className='flex flex-row items-center justify-between p-3'>
