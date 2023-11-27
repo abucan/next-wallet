@@ -17,6 +17,10 @@ import CustomFormSelect from './CustomFormSelect';
 // icons
 import { Car, Home, TrendingDown, TrendingUp } from 'lucide-react';
 import { FaHospital } from 'react-icons/fa';
+import {
+  categoryTypes,
+  recordTypes,
+} from '@/actions/get-category-type';
 
 const RecordForm = ({
   submit,
@@ -32,22 +36,6 @@ const RecordForm = ({
   });
 
   const { isSubmitting } = form.formState;
-
-  // LATER IN DEV, MOVE AROUND
-  const categoryTypes: SelectOptionsProps[] = [
-    { value: 'HOUSING', label: 'House Bills', icon: Home },
-    { value: 'CAR', label: 'Car Expenses', icon: Car },
-    {
-      value: 'HOSPITAL',
-      label: 'Hospital Bills',
-      icon: FaHospital,
-    },
-  ];
-
-  const recordTypes: SelectOptionsProps[] = [
-    { value: 'INCOME', label: 'Income', icon: TrendingUp },
-    { value: 'EXPENSE', label: 'Expense', icon: TrendingDown },
-  ];
 
   return (
     <>
