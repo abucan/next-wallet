@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Account } from '@/models/account';
 import { InputProps } from '@/ts/interfaces/app_interfaces';
 import { useFormContext } from 'react-hook-form';
-import { getIconComponent } from './AccountIcon';
+import { getAccountIcon } from '@/actions/get-account-type';
 import {
   FormField,
   FormItem,
@@ -64,7 +64,7 @@ const AccountSelect = ({
                   {!isLoading &&
                     userAccounts &&
                     userAccounts.map((item) => {
-                      const AccountIcon = getIconComponent(item.type);
+                      const AccountIcon = getAccountIcon(item.type);
                       return (
                         <SelectItem key={item.id} value={item?.id!}>
                           <div className='flex flex-row items-center'>

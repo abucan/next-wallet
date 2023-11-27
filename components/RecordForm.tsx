@@ -1,6 +1,5 @@
 'use client';
 
-import * as z from 'zod'; // MAYBE REMOVE
 import { zodResolver } from '@hookform/resolvers/zod';
 import { recordSchema } from '@/ts/form-schemas/form-schemas';
 import { useForm } from 'react-hook-form';
@@ -36,18 +35,18 @@ const RecordForm = ({
 
   // LATER IN DEV, MOVE AROUND
   const categoryTypes: SelectOptionsProps[] = [
-    { value: 'house', label: 'House Bills', icon: <Home /> },
-    { value: 'car', label: 'Car Expenses', icon: <Car /> },
+    { value: 'HOUSING', label: 'House Bills', icon: Home },
+    { value: 'CAR', label: 'Car Expenses', icon: Car },
     {
-      value: 'hospital',
+      value: 'HOSPITAL',
       label: 'Hospital Bills',
-      icon: <FaHospital />,
+      icon: FaHospital,
     },
   ];
 
   const recordTypes: SelectOptionsProps[] = [
-    { value: 'income', label: 'Income', icon: <TrendingUp /> },
-    { value: 'expense', label: 'Expense', icon: <TrendingDown /> },
+    { value: 'INCOME', label: 'Income', icon: TrendingUp },
+    { value: 'EXPENSE', label: 'Expense', icon: TrendingDown },
   ];
 
   return (

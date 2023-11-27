@@ -1,8 +1,8 @@
-import prisma from "@/lib/db";
-import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { recordSchema } from "@/ts/form-schemas/form-schemas";
+import prisma from '@/lib/db';
+import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
+import { recordSchema } from '@/ts/form-schemas/form-schemas';
 
 export async function POST(req: Request) {
   try {
@@ -13,7 +13,10 @@ export async function POST(req: Request) {
       recordSchema.parse(body);
 
     if (!session)
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      return NextResponse.json(
+        { message: 'Unauthorized' },
+        { status: 401 },
+      );
 
     const accountExists = await prisma.account.findUnique({
       where: {
@@ -23,7 +26,10 @@ export async function POST(req: Request) {
     });
 
     if (!accountExists) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      return NextResponse.json(
+        { message: 'Unauthorized' },
+        { status: 401 },
+      );
     }
 
     const newRecord = await prisma.$transaction([
@@ -42,7 +48,8 @@ export async function POST(req: Request) {
         },
         data: {
           balance: {
-            [recordType === "income" ? "increment" : "decrement"]: amount,
+            [recordType === 'INCOME' ? 'increment' : 'decrement']:
+              amount,
           },
         },
       }),
@@ -50,7 +57,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(newRecord, { status: 201 });
   } catch (error) {
-    console.log("[POST_RECORD]", error);
-    return new NextResponse("Internal Error", { status: 500 });
+    console.log('[POST_RECORD]', error);
+    return new NextResponse('Internal Error', { status: 500 });
   }
 }

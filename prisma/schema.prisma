@@ -24,7 +24,7 @@ model User {
 model Account {
   id             String   @id @default(uuid())
   name           String
-  type           String
+  type           AccountType
   color          String
   balance        Float
   userId         String
@@ -40,9 +40,39 @@ model Record {
   account    Account  @relation(fields: [accountId], references: [id])
   userId     String
   user       User     @relation(fields: [userId], references: [id])
-  recordType String
+  recordType RecordType
   amount     Float
-  category   String
+  category   CategoryType
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+}
+
+enum CategoryType {
+  HOUSING
+  TRANSPORTATION
+  UTILITIES
+  FOOD_GROCERIES
+  HEALTHCARE
+  EDUCATION
+  ENTERTAINMENT
+  PERSONAL_CARE
+  SAVINGS_INVESTMENTS
+  DEBT_REPAYMENT
+}
+
+enum RecordType {
+  EXPENSE
+  INCOME
+}
+
+enum AccountType {
+  BANK_ACCOUNT
+  CREDIT_CARD
+  SAVINGS
+  CHECKING
+  INVESTMENT
+  LOAN
+  RETIREMENT
+  CRYPTO
+  EMERGENCY_FUND
 }

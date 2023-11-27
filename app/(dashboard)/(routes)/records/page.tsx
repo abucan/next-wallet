@@ -1,9 +1,12 @@
-const Records = () => {
+import { getRecords } from '@/actions/get-records';
+import { DataTable } from './_components/data-table';
+import { columns } from './_components/columns';
+
+const Records = async () => {
+  const records = await getRecords();
   return (
-    <div>
-      <h1 className='font-mono font-[500] text-2xl text-treitary'>
-        Records
-      </h1>
+    <div className='md:pr-12'>
+      <DataTable columns={columns} data={records}/>
     </div>
   );
 };

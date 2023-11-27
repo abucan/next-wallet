@@ -1,22 +1,19 @@
 import Actions from './Actions';
 import { Account } from '@/models/account';
-import { getIconComponent } from '@/components/AccountIcon';
-import { getAccountType } from '@/actions/get-account-type';
+import {
+  getAccountIcon,
+  getAccountType,
+} from '@/actions/get-account-type';
 import { Card } from '@/components/ui/card';
 
-const AccountItem = ({
-  id,
-  color,
-  name,
-  type,
-  balance,
-}: Account) => {
-  const AccountCardIcon = getIconComponent(type);
+const AccountItem = ({ id, color, name, type, balance }: Account) => {
+  const AccountIcon = getAccountIcon(type);
+
   return (
     <Card className='flex flex-row items-center justify-between p-3'>
       <div className='flex flex-row space-x-2 items-center justify-center text-lg font-light'>
         <div style={{ color: color, opacity: 1 }}>
-          <AccountCardIcon />
+          <AccountIcon />
         </div>
         <p className='font-mono font-[500] text-lg text-treitary'>
           {name}

@@ -1,6 +1,5 @@
 'use client';
 
-import * as z from 'zod'; // MAYBE REMOVE
 import { zodResolver } from '@hookform/resolvers/zod';
 import { accountSchema } from '@/ts/form-schemas/form-schemas';
 import { useForm } from 'react-hook-form';
@@ -8,14 +7,10 @@ import FormFieldInput from '@/components/FormInput';
 import ColorInput from '@/components/ColorInput';
 import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
-import {
-  SelectOptionsProps,
-  GenericFormProps,
-} from '@/ts/interfaces/app_interfaces';
+import { GenericFormProps } from '@/ts/interfaces/app_interfaces';
 import { AccountFormValues } from '@/ts/types/app_types';
 import CustomFormSelect from './CustomFormSelect';
-// icons
-import { Coins, CreditCard, Wallet } from 'lucide-react';
+import { accountTypes } from '@/actions/get-account-type';
 
 const AccountForm = ({
   submit,
@@ -31,17 +26,6 @@ const AccountForm = ({
   });
 
   const { isSubmitting } = form.formState;
-
-  // LATER IN DEV, MOVE AROUND
-  const accountTypes: SelectOptionsProps[] = [
-    { value: 'general', label: 'General Account', icon: <Wallet /> },
-    { value: 'cash', label: 'Cash Account', icon: <Coins /> },
-    {
-      value: 'credit_card',
-      label: 'Credit Card',
-      icon: <CreditCard />,
-    },
-  ];
 
   return (
     <>

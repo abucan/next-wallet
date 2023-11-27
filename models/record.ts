@@ -1,9 +1,11 @@
+import { CategoryType, RecordType } from '@prisma/client';
+
 export interface Record {
   id?: string;
   accountId: string;
-  recordType: string;
+  recordType: RecordType;
   amount: number;
-  category: string;
+  category: CategoryType;
   createdAt?: Date;
   updatedAt?: Date;
   userId?: string;

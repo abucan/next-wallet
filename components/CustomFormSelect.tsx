@@ -40,16 +40,21 @@ const CustomFormSelect = ({
               <SelectTrigger className='w-full'>
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className='max-h-[200px]'>
                 <SelectGroup>
-                  {options.map((item) => (
-                    <SelectItem key={item.value} value={item.value}>
-                      <div className='flex flex-row items-center'>
-                        <span className='mr-1 p-1'>{item.icon}</span>
-                        {item.label}
-                      </div>
-                    </SelectItem>
-                  ))}
+                  {options.map((item) => {
+                    const { icon: CurrentIcon } = item;
+                    return (
+                      <SelectItem key={item.value} value={item.value}>
+                        <div className='flex flex-row items-center'>
+                          <span className='mr-1 p-1'>
+                            <CurrentIcon />
+                          </span>
+                          {item.label}
+                        </div>
+                      </SelectItem>
+                    );
+                  })}
                 </SelectGroup>
               </SelectContent>
             </Select>

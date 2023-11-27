@@ -18,5 +18,5 @@ export type AccountOrderBy = {
 export type GenericInputProps = {
   value: string;
   label: string;
-  icon: React.ReactNode;
+  icon: React.ComponentType;
 };
