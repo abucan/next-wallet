@@ -6,9 +6,10 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl         = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
 }
 
 model User {
@@ -23,29 +24,29 @@ model User {
 }
 
 model Account {
-  id             String   @id @default(uuid())
+  id             String      @id @default(uuid())
   name           String
   type           AccountType
   color          String
   balance        Float
   userId         String
-  user           User     @relation(fields: [userId], references: [id])
+  user           User        @relation(fields: [userId], references: [id])
   accountRecords Record[]
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
 }
 
 model Record {
-  id         String   @id @default(uuid())
+  id         String       @id @default(uuid())
   accountId  String
-  account    Account  @relation(fields: [accountId], references: [id])
+  account    Account      @relation(fields: [accountId], references: [id])
   userId     String
-  user       User     @relation(fields: [userId], references: [id])
+  user       User         @relation(fields: [userId], references: [id])
   recordType RecordType
   amount     Float
   category   CategoryType
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
 }
 
 enum CategoryType {
