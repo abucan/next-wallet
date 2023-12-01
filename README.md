@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
-![Logo](./public/logo_test_2.png)
+![alt tag](https://next-wallet-five.vercel.app/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Flogo_test.1bed5bf4.png&w=256&q=75)
 
 ## TODO
 
