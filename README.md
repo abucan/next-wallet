@@ -1,24 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
+![alt tag](https://next-wallet-five.vercel.app/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Flogo_test.1bed5bf4.png&w=256&q=75)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## TODO
 
@@ -26,3 +8,4 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 - add some stats for dashboard for the accounts, for example number of them or the preview
 - add a hover state for NAVBAR items etc. ADD ACCOUNT
 - when deleting an account, delete all the records linked to that account
+```
