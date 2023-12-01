@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
-![Logo](public/logo_test_2.png)
+![Logo](./public/logo_test_2.png)
 
 ## TODO
 
