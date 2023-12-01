@@ -69,6 +69,7 @@ enum RecordType {
 
 enum AccountType {
   BANK_ACCOUNT
+  CASH
   CREDIT_CARD
   SAVINGS
   CHECKING
