@@ -1,8 +1,6 @@
-![alt tag](https://next-wallet-five.vercel.app/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Flogo_test.1bed5bf4.png&w=256&q=75)
-
-## Getting Started
-
-First, run the development server:
+<p align="center">
+![logo](https://next-wallet-five.vercel.app/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Flogo_test.1bed5bf4.png&w=256&q=75)
+</p>
 
 ```bash
 
