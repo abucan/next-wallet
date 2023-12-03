@@ -55,7 +55,7 @@ export const categoryTypes: SelectOptionsProps[] = [
     icon: MdSavings,
   },
   {
-    value: 'DEPT_REPAYMENT',
+    value: 'DEBT_REPAYMENT',
     label: 'Debt & Repayment',
     icon: GiPayMoney,
   },

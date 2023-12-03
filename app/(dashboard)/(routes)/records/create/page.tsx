@@ -35,7 +35,7 @@ const CreateRecordPage = () => {
 
   const handleCreateRecord: SubmitHandler<RecordFormValues> = (
     values: RecordFormValues,
-  ) => {
+  ) => {    
     createPost(values);
   };
 
