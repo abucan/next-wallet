@@ -16,11 +16,13 @@ import {
   getCategoryIcon,
   getCategoryName,
 } from '@/actions/get-category-type';
+import { format } from 'date-fns';
+import Link from 'next/link';
 
 export const columns: ColumnDef<Record>[] = [
   {
     accessorKey: 'category',
-    header: () => <div className=''>Category</div>,
+    header: 'Category',
     cell: ({ row }) => {
       const formatted = getCategoryName(row.getValue('category'));
       const Icon = getCategoryIcon(row.getValue('category'));
@@ -37,7 +39,7 @@ export const columns: ColumnDef<Record>[] = [
   },
   {
     accessorKey: 'recordType',
-    header: () => <div className=''>Record Type</div>,
+    header: 'Record Type',
     cell: ({ row }) => {
       const recordType = row.getValue('recordType');
       const formatted =
@@ -54,14 +56,15 @@ export const columns: ColumnDef<Record>[] = [
     accessorKey: 'amount',
     header: ({ column }) => {
       return (
-        <Button
-          variant='ghost'
+        <div
+          className='flex flex-row items-center hover:cursor-pointer'
           onClick={() =>
             column.toggleSorting(column.getIsSorted() === 'asc')
           }
         >
-          Amount <ArrowUpDown className='ml-2 h-4 w-4' />
-        </Button>
+          Amount
+          <ArrowUpDown className='ml-2 h-4 w-4' />
+        </div>
       );
     },
     cell: ({ row }) => {
@@ -78,7 +81,29 @@ export const columns: ColumnDef<Record>[] = [
       );
     },
   },
-
+  {
+    accessorKey: 'createdAt',
+    header: ({ column }) => {
+      return (
+        <div
+          className='flex flex-row items-center hover:cursor-pointer'
+          onClick={() =>
+            column.toggleSorting(column.getIsSorted() === 'asc')
+          }
+        >
+          Date
+          <ArrowUpDown className='ml-2 h-4 w-4' />
+        </div>
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <div className='font-[500] font-mono text-treitary'>
+          {format(row.getValue('createdAt'), 'dd/MM/yyyy')}
+        </div>
+      );
+    },
+  },
   {
     id: 'actions',
     cell: ({ row }) => {
@@ -95,13 +120,7 @@ export const columns: ColumnDef<Record>[] = [
           <DropdownMenuContent align='end'>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={() =>
-                navigator.clipboard.writeText(record.accountId)
-              }
-            >
-              Edit Record
-            </DropdownMenuItem>
+            <DropdownMenuItem>Edit record</DropdownMenuItem>
             <DropdownMenuItem>Delete Record</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

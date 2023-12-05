@@ -8,15 +8,9 @@ import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import AccountSelect from './AccountSelect';
 import DataSelect from './DateSelect';
-import {
-  SelectOptionsProps,
-  GenericFormProps,
-} from '@/ts/interfaces/app_interfaces';
+import { GenericFormProps } from '@/ts/interfaces/app_interfaces';
 import { RecordFormValues } from '@/ts/types/app_types';
 import CustomFormSelect from './CustomFormSelect';
-// icons
-import { Car, Home, TrendingDown, TrendingUp } from 'lucide-react';
-import { FaHospital } from 'react-icons/fa';
 import {
   categoryTypes,
   recordTypes,

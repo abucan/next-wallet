@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const session = await getServerSession(authOptions);
 
     const body = await req.json();
-    const { accountId, recordType, amount, category } =
+    const { accountId, recordType, amount, category, date } =
       recordSchema.parse(body);
 
     if (!session)
@@ -40,6 +40,7 @@ export async function POST(req: Request) {
           amount: amount,
           category: category,
           userId: session.user.id,
+          createdAt: new Date(date),
         },
       }),
       prisma.account.update({
