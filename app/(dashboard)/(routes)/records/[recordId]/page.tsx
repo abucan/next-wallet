@@ -16,21 +16,22 @@ const RecordIdPage = ({
   params: { recordId: string };
 }) => {
   const router = useRouter();
-  console.log("here", params.recordId);
 
-  const { data: account, isLoading } = useQuery({
+  const { data: record, isLoading } = useQuery<Record>({
     queryKey: ['record', params.recordId],
     queryFn: async () => {
       const response = await axios.get(
         `/api/records/${params.recordId}`,
       );
+
       return response.data;
     },
   });
 
   const { mutate: editAccount, status } = useMutation({
-    mutationFn: (account: Record) => {
-      return axios.patch(`/api/accounts/${params.recordId}`, account);
+    mutationFn: (record: Record) => {
+      console.log(record);
+      return axios.patch(`/api/records/${params.recordId}`, record);
     },
     onError: (error) => {
       console.log(error);
@@ -38,7 +39,7 @@ const RecordIdPage = ({
     onSuccess: () => {
       toast({
         title: 'Success',
-        description: 'Account updated successfully.',
+        description: 'Record updated successfully.',
         variant: 'default',
       });
       router.push('/records');
@@ -67,7 +68,8 @@ const RecordIdPage = ({
       submit={handleEditAccount}
       isEditing={true}
       isLoadingSubmit={isLoadingSubmit}
-      initialValues={account}
+      initialValues={record}
+      id={record?.id}
     />
   );
 };

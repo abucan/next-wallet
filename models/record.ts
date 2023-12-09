@@ -1,4 +1,8 @@
-import { CategoryType, RecordType } from '@prisma/client';
+import {
+  AccountType,
+  CategoryType,
+  RecordType,
+} from '@prisma/client';
 
 export interface Record {
   id?: string;
@@ -9,4 +13,5 @@ export interface Record {
   createdAt?: Date;
   updatedAt?: Date;
   userId?: string;
+  accountName?: AccountType;
 }

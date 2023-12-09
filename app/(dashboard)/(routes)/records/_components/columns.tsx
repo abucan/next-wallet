@@ -28,7 +28,7 @@ export const columns: ColumnDef<Record>[] = [
       const Icon = getCategoryIcon(row.getValue('category'));
 
       return (
-        <div className='font-[500] font-mono text-treitary flex flex-row items-center'>
+        <div className='font-[500] font-mono text-tertiary flex flex-row items-center'>
           <span className='mr-2 text-base'>
             <Icon />
           </span>
@@ -46,7 +46,7 @@ export const columns: ColumnDef<Record>[] = [
         recordType === 'EXPENSE' ? 'Expense' : 'Income';
 
       return (
-        <div className='font-[500] font-mono text-treitary'>
+        <div className='font-[500] font-mono text-tertiary'>
           {formatted}
         </div>
       );
@@ -75,7 +75,7 @@ export const columns: ColumnDef<Record>[] = [
       }).format(amount);
 
       return (
-        <div className='font-[500] font-mono text-treitary'>
+        <div className='font-[500] font-mono text-tertiary'>
           {formatted}
         </div>
       );
@@ -98,7 +98,7 @@ export const columns: ColumnDef<Record>[] = [
     },
     cell: ({ row }) => {
       return (
-        <div className='font-[500] font-mono text-treitary'>
+        <div className='font-[500] font-mono text-tertiary'>
           {format(row.getValue('createdAt'), 'dd/MM/yyyy')}
         </div>
       );
@@ -108,7 +108,6 @@ export const columns: ColumnDef<Record>[] = [
     id: 'actions',
     cell: ({ row }) => {
       const record = row.original;
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -120,8 +119,11 @@ export const columns: ColumnDef<Record>[] = [
           <DropdownMenuContent align='end'>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Edit record</DropdownMenuItem>
-            <DropdownMenuItem>Delete Record</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={`/records/${record.id}`}>
+                Edit & Delete
+              </Link>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

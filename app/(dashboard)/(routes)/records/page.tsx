@@ -6,7 +6,7 @@ const Records = async () => {
   const records = await getRecords();
   return (
     <div className='md:pr-12'>
-      <DataTable columns={columns} data={records}/>
+      <DataTable columns={columns} data={records} />
     </div>
   );
 };

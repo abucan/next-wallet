@@ -15,15 +15,15 @@ const AccountItem = ({ id, color, name, type, balance }: Account) => {
         <div style={{ color: color, opacity: 1 }}>
           <AccountIcon />
         </div>
-        <p className='font-mono font-[500] text-lg text-treitary'>
+        <p className='font-mono font-[500] text-lg text-tertiary'>
           {name}
         </p>
-        <div className='bg-slate-100 py-0.5 px-3 rounded-full text-mainColor/70 text-sm font-[400] font-sans flex items-center justify-center'>
+        <div className='border border-gray-200 py-0.5 px-3 rounded-full text-main-color text-sm font-[400] font-sans flex items-center justify-center'>
           {getAccountType(type)}
         </div>
       </div>
       <div className='flex flex-row space-x-4 items-center'>
-        <p className='text-lg font-mono font-[400] text-treitary mr-20'>
+        <p className='text-lg font-mono font-[400] text-tertiary mr-20'>
           {balance}
           <span className='font-bold'> EUR</span>
         </p>

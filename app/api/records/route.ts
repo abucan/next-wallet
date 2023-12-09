@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const session = await getServerSession(authOptions);
 
     const body = await req.json();
-    const { accountId, recordType, amount, category, date } =
+    const { accountId, recordType, amount, category, createdAt } =
       recordSchema.parse(body);
 
     if (!session)
@@ -22,6 +22,9 @@ export async function POST(req: Request) {
       where: {
         id: accountId,
         userId: session.user.id,
+      },
+      select: {
+        type: true,
       },
     });
 
@@ -40,7 +43,8 @@ export async function POST(req: Request) {
           amount: amount,
           category: category,
           userId: session.user.id,
-          createdAt: new Date(date),
+          createdAt: new Date(createdAt),
+          accountName: accountExists.type,
         },
       }),
       prisma.account.update({
