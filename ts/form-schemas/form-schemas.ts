@@ -24,7 +24,7 @@ export const recordSchema = z.object({
   recordType: z.nativeEnum(RecordType),
   category: z.nativeEnum(CategoryType),
   accountId: z.string(),
-  date: z.any(),
+  createdAt: z.any(),
 });
 
 export const registerSchema = z.object({

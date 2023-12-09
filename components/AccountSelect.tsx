@@ -44,6 +44,10 @@ const AccountSelect = ({
     };
   });
 
+  const currentRecordAccount = userAccounts?.find(
+    (item) => item.id === initialValue,
+  )?.id;
+
   return (
     <FormField
       control={control}
@@ -54,7 +58,7 @@ const AccountSelect = ({
           <FormControl>
             <Select
               onValueChange={field.onChange}
-              defaultValue={initialValue}
+              defaultValue={currentRecordAccount || initialValue}
             >
               <SelectTrigger className='w-full'>
                 <SelectValue placeholder={placeholder} />

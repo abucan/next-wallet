@@ -5,7 +5,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SidebarRoutesProps } from '@/ts/interfaces/app_interfaces';
 
-const SidebarItem = ({ icon: Icon, label, href }: SidebarRoutesProps) => {
+const SidebarItem = ({
+  icon: Icon,
+  label,
+  href,
+}: SidebarRoutesProps) => {
   const pathname = usePathname();
 
   const isActive =
@@ -18,14 +22,17 @@ const SidebarItem = ({ icon: Icon, label, href }: SidebarRoutesProps) => {
       href={href}
       type='button'
       className={cn(
-        'flex transition-all pl-8 py-4 font-mono font-[400] text-base text-[#686868]',
-        isActive && 'text-mainColor font-[500]'
+        'flex transition-all pl-8 py-4 font-mono font-[400] text-base text-primary-grey',
+        isActive && 'text-main-color font-[500]',
       )}
     >
-      <div className='flex items-center justify-center gap-x-6 cursor-pointer'>
+      <div className='flex items-center justify-center gap-x-6 cursor-pointer hover:text-main-color transition-all duration-300'>
         <Icon
           size={24}
-          className={cn('text-sidebarIcon', isActive && 'text-mainColor')}
+          className={cn(
+            'text-primary-grey',
+            isActive && 'text-main-color',
+          )}
         />
         {label}
       </div>

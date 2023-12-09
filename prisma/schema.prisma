@@ -45,6 +45,7 @@ model Record {
   recordType RecordType
   amount     Float
   category   CategoryType
+  accountName AccountType
   createdAt  DateTime     
   updatedAt  DateTime     @updatedAt
 }

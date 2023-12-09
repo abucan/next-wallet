@@ -15,12 +15,19 @@ import {
   categoryTypes,
   recordTypes,
 } from '@/actions/get-category-type';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+import { toast } from './ui/use-toast';
+import ActionDialog from './ActionDialog';
 
 const RecordForm = ({
   submit,
   isEditing,
   initialValues,
   isLoadingSubmit,
+  id,
 }: GenericFormProps<RecordFormValues>) => {
   const form = useForm<RecordFormValues>({
     resolver: zodResolver(recordSchema),
@@ -29,10 +36,43 @@ const RecordForm = ({
     },
   });
 
+  const router = useRouter();
+  const [showDialog, setShowDialog] = useState(false);
+
+  const { mutate: deleteRecord, isPending } = useMutation({
+    mutationFn: async () => {
+      return axios.delete(`/api/records/${id}`);
+    },
+    onError: (error) => {
+      setShowDialog(false);
+      console.log(error);
+    },
+    onSuccess: () => {
+      toast({
+        title: 'Success',
+        description: 'Record deleted successfully.',
+        variant: 'default',
+      });
+      setShowDialog(false);
+      router.push('/records');
+      router.refresh();
+    },
+  });
+
   const { isSubmitting } = form.formState;
 
   return (
     <>
+      <ActionDialog
+        open={showDialog}
+        onOpenChange={setShowDialog}
+        onClick={() => deleteRecord()}
+        isBtnDisabled={isPending}
+        dialogTitle='Do you want to delete this record?'
+        dialogDescription='This action cannot be undone. This will permanently delete
+    your record.'
+        dialogBtnText={isPending ? 'Deleting...' : 'Delete'}
+      />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(submit)}
@@ -44,6 +84,7 @@ const RecordForm = ({
                 name='accountId'
                 label='Account'
                 placeholder='Select an account'
+                initialValue={initialValues?.accountId}
               />
               <CustomFormSelect
                 name='recordType'
@@ -73,19 +114,40 @@ const RecordForm = ({
               options={categoryTypes}
             />
             <DataSelect
-              name='date'
+              name='createdAt'
               label='Record Date'
               placeholder='Pick a date'
+              initialValue={initialValues?.createdAt}
             />
-            <Button type='submit' disabled={isSubmitting}>
-              {isEditing
-                ? isLoadingSubmit
-                  ? 'Editing...'
-                  : 'Edit record'
-                : isLoadingSubmit
-                ? 'Creating...'
-                : 'Create a record'}
-            </Button>
+            <div
+              className={
+                isEditing ? 'w-full flex flex-row space-x-4' : 'w-1/4'
+              }
+            >
+              <Button
+                type='submit'
+                disabled={isSubmitting}
+                className='w-full'
+              >
+                {isEditing
+                  ? isLoadingSubmit
+                    ? 'Editing...'
+                    : 'Edit record'
+                  : isLoadingSubmit
+                  ? 'Creating...'
+                  : 'Create a record'}
+              </Button>
+              {isEditing && (
+                <Button
+                  className='w-full'
+                  variant='destructive'
+                  type='button'
+                  onClick={() => setShowDialog(!showDialog)}
+                >
+                  Delete
+                </Button>
+              )}
+            </div>
           </div>
         </form>
       </Form>

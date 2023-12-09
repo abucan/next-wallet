@@ -1,26 +1,31 @@
-"use client";
+'use client';
 
-import { InputProps } from "@/ts/interfaces/app_interfaces";
-import { useFormContext } from "react-hook-form";
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import { InputProps } from '@/ts/interfaces/app_interfaces';
+import { useFormContext } from 'react-hook-form';
+import { cn } from '@/lib/utils';
+import { format } from 'date-fns';
+import { CalendarIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from '@/components/ui/popover';
 
-const DataSelect = ({ name, label, placeholder }: InputProps) => {
+const DataSelect = ({
+  name,
+  label,
+  placeholder,
+  initialValue,
+}: InputProps) => {
   const { control } = useFormContext();
 
   return (
@@ -28,34 +33,38 @@ const DataSelect = ({ name, label, placeholder }: InputProps) => {
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem className="flex flex-col w-full">
+        <FormItem className='flex flex-col w-full'>
           <FormLabel>{label}</FormLabel>
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>
                 <Button
-                  variant={"outline"}
+                  variant={'outline'}
                   className={cn(
-                    "w-full pl-3 text-left font-normal",
-                    !field.value && "text-muted-foreground"
+                    'w-full pl-3 text-left font-normal',
+                    !field.value && 'text-muted-foreground',
                   )}
                 >
-                  {field.value ? (
-                    format(field.value, "PPP")
+                  {field.value instanceof Date ? (
+                    format(field.value, 'PPP')
                   ) : (
-                    <span>{placeholder}</span>
+                    <span>
+                      {initialValue
+                        ? format(new Date(initialValue!), 'PPP')
+                        : placeholder}
+                    </span>
                   )}
-                  <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                  <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                 </Button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
+            <PopoverContent className='w-auto p-0' align='start'>
               <Calendar
-                mode="single"
+                mode='single'
                 selected={field.value}
                 onSelect={field.onChange}
                 disabled={(date) =>
-                  date > new Date() || date < new Date("1900-01-01")
+                  date > new Date() || date < new Date('1900-01-01')
                 }
                 initialFocus
               />

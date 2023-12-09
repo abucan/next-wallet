@@ -65,13 +65,24 @@ export async function DELETE(
       );
     }
 
-    const deletedAccount = await prisma.account.delete({
-      where: {
-        id: params.accountId,
-      },
-    });
+    const deleteAccountAndRecords = await prisma.$transaction([
+      prisma.record.deleteMany({
+        where: {
+          accountId: account.id,
+          userId: session?.user?.id,
+        },
+      }),
+      prisma.account.delete({
+        where: {
+          id: params.accountId,
+          userId: session?.user?.id,
+        },
+      }),
+    ]);
 
-    return NextResponse.json(deletedAccount, { status: 200 });
+    return NextResponse.json(deleteAccountAndRecords, {
+      status: 200,
+    });
   } catch (error) {
     console.log('[ACCOUNT_ID_DELETE]', error);
     return new NextResponse('Internal Error', { status: 500 });

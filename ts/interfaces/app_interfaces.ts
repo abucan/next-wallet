@@ -15,6 +15,7 @@ export interface GenericFormProps<T extends FieldValues> {
   isEditing: boolean;
   initialValues?: T;
   isLoadingSubmit?: boolean;
+  id?: string;
 }
 
 export interface AuthHeaderProps {
