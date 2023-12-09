@@ -17,8 +17,7 @@ const Logo = ({ width = 130 }: { width?: number }) => {
       src = logo_dark;
       break;
     default:
-      src =
-        'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+      src = logo_test;
       break;
   }
 
