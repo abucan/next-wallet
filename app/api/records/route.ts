@@ -35,12 +35,13 @@ export async function POST(req: Request) {
       );
     }
 
+    const numAmount = Number(amount * 100);
     const newRecord = await prisma.$transaction([
       prisma.record.create({
         data: {
           accountId: accountId,
           recordType: recordType,
-          amount: amount,
+          amount: numAmount,
           category: category,
           userId: session.user.id,
           createdAt: new Date(createdAt),
@@ -54,7 +55,7 @@ export async function POST(req: Request) {
         data: {
           balance: {
             [recordType === 'INCOME' ? 'increment' : 'decrement']:
-              amount,
+              numAmount,
           },
         },
       }),

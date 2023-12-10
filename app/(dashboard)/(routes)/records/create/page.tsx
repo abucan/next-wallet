@@ -8,6 +8,9 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler } from 'react-hook-form';
+import { Button } from '@/components/ui/button';
+import { XCircle } from 'lucide-react';
+import Link from 'next/link';
 
 const CreateRecordPage = () => {
   const router = useRouter();
@@ -35,12 +38,22 @@ const CreateRecordPage = () => {
 
   const handleCreateRecord: SubmitHandler<RecordFormValues> = (
     values: RecordFormValues,
-  ) => {    
+  ) => {
     createPost(values);
   };
 
   return (
     <>
+      <div className='w-full ml-auto pb-6 flex flex-row items-center justify-between md:pr-12'>
+        <h1 className='font-mono font-[500] text-2xl text-tertiary'>
+          Add Record
+        </h1>
+        <Link href='/records'>
+          <Button variant='destructive' className='font-sans'>
+            <XCircle className='h-4 w-4 mr-2' /> Cancel
+          </Button>
+        </Link>
+      </div>
       <RecordForm
         submit={handleCreateRecord}
         isEditing={false}

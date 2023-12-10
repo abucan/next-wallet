@@ -1,12 +1,12 @@
-import { AccountOrderBy } from "@/ts/types/app_types";
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
- 
+import { AccountOrderBy } from '@/ts/types/app_types';
+import { type ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
-export function getOrderByClause (sorting: string): AccountOrderBy  {
+export function getOrderByClause(sorting: string): AccountOrderBy {
   switch (sorting) {
     case 'az':
       return { name: 'asc' };
@@ -23,4 +23,14 @@ export function getOrderByClause (sorting: string): AccountOrderBy  {
     default:
       return {};
   }
-};
+}
+
+export function formatCurrency(amount: number) {
+  const euroFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'EUR',
+    minimumFractionDigits: 2,
+  });
+
+  return euroFormatter.format(amount / 100);
+}

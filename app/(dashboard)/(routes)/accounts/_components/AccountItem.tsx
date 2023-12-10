@@ -5,6 +5,7 @@ import {
   getAccountType,
 } from '@/actions/get-account-type';
 import { Card } from '@/components/ui/card';
+import { formatCurrency } from '@/lib/utils';
 
 const AccountItem = ({ id, color, name, type, balance }: Account) => {
   const AccountIcon = getAccountIcon(type);
@@ -23,9 +24,9 @@ const AccountItem = ({ id, color, name, type, balance }: Account) => {
         </div>
       </div>
       <div className='flex flex-row space-x-4 items-center'>
-        <p className='text-lg font-mono font-[400] text-tertiary mr-20'>
-          {balance}
-          <span className='font-bold'> EUR</span>
+        <p className='text-lg font-mono text-tertiary mr-20 font-bold'>
+          {formatCurrency(balance)}
+          {/* <span className='font-bold'> EUR</span> */}
         </p>
         <Actions id={`${id}`} />
       </div>

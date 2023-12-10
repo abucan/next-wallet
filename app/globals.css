@@ -7,6 +7,20 @@
   display: none;
 }
 
+input::placeholder {
+  color: green;
+}
+
+@layer components {
+  .input-label {
+    @apply font-sans font-[500] text-sm tracking-wide !important;
+  }
+
+  .input-placeholder {
+    @apply font-mono font-[400] text-xs !important;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

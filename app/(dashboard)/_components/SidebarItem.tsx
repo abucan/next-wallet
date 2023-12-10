@@ -26,15 +26,17 @@ const SidebarItem = ({
         isActive && 'text-main-color font-[500]',
       )}
     >
-      <div className='flex items-center justify-center gap-x-6 cursor-pointer hover:text-main-color transition-all duration-300'>
+      <div className='flex items-center justify-center gap-x-6 cursor-pointer group'>
         <Icon
           size={24}
           className={cn(
-            'text-primary-grey',
+            'text-primary-grey group-hover:text-main-color transition-all duration-200',
             isActive && 'text-main-color',
           )}
         />
-        {label}
+        <span className='group-hover:text-main-color transition-all duration-200'>
+          {label}
+        </span>
       </div>
     </Link>
   );

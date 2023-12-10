@@ -30,7 +30,7 @@ const ColorInput = ({
       name={name}
       render={({ field }) => (
         <FormItem className='w-full'>
-          <FormLabel>{label}</FormLabel>
+          <FormLabel className='input-label'>{label}</FormLabel>
           <FormControl>
             <Select
               onValueChange={field.onChange}
@@ -43,7 +43,11 @@ const ColorInput = ({
                 <SelectGroup>
                   {accountColors.map((item) => {
                     return (
-                      <SelectItem key={item.value} value={item.value}>
+                      <SelectItem
+                        key={item.value}
+                        value={item.value}
+                        className='hover:cursor-pointer'
+                      >
                         <div className='flex flex-row items-center capitalize'>
                           <div
                             style={{

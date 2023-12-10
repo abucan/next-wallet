@@ -107,6 +107,7 @@ export async function PATCH(
       );
     }
 
+    const numBalance = Number(balance * 100);
     const account = await prisma.account.update({
       where: {
         id: accountId,
@@ -116,7 +117,7 @@ export async function PATCH(
         name,
         color,
         type,
-        balance,
+        balance: numBalance,
       },
     });
 

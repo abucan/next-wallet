@@ -13,6 +13,7 @@ const FormFieldInput = ({
   name,
   label = '',
   placeholder,
+  disabled,
 }: InputProps) => {
   const { control } = useFormContext();
   return (
@@ -21,9 +22,11 @@ const FormFieldInput = ({
       name={name}
       render={({ field }) => (
         <FormItem className='w-full'>
-          <FormLabel>{label}</FormLabel>
+          <FormLabel className='input-label'>{label}</FormLabel>
           <FormControl>
             <Input
+              disabled={disabled}
+              className={disabled ? '' : 'input-placeholder'}
               placeholder={placeholder}
               {...field}
               type={

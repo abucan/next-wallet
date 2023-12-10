@@ -19,11 +19,19 @@ const AccountsPage = async ({
 
   return (
     <div className='flex flex-col space-y-4'>
-      <div className='flex items-center justify-between'>
-        <SortingOptions />
-        <SearchInput />
-      </div>
-      <Accounts accounts={accounts} />
+      {accounts.length > 0 ? (
+        <>
+          <div className='flex items-center justify-between'>
+            <SortingOptions />
+            <SearchInput />
+          </div>
+          <Accounts accounts={accounts} />
+        </>
+      ) : (
+        <h1 className='font-mono font-[400] text-2xl text-tertiary'>
+          No Accounts To Show...
+        </h1>
+      )}
     </div>
   );
 };

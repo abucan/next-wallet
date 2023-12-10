@@ -18,6 +18,7 @@ import {
 } from '@/actions/get-category-type';
 import { format } from 'date-fns';
 import Link from 'next/link';
+import { formatCurrency } from '@/lib/utils';
 
 export const columns: ColumnDef<Record>[] = [
   {
@@ -69,10 +70,7 @@ export const columns: ColumnDef<Record>[] = [
     },
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue('amount'));
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'EUR',
-      }).format(amount);
+      const formatted = formatCurrency(amount);
 
       return (
         <div className='font-[500] font-mono text-tertiary'>

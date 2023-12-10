@@ -41,6 +41,7 @@ export interface InputProps {
   label: string;
   placeholder: string;
   initialValue?: string;
+  disabled?: boolean;
 }
 
 export interface ActionDialogProps {

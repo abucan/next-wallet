@@ -33,6 +33,7 @@ const RecordForm = ({
     resolver: zodResolver(recordSchema),
     defaultValues: {
       ...initialValues,
+      amount: initialValues?.amount && initialValues.amount / 100,
     },
   });
 
@@ -104,6 +105,7 @@ const RecordForm = ({
                 name='currency'
                 label='Currency'
                 placeholder='EUR'
+                disabled={true}
               />
             </div>
             <CustomFormSelect
@@ -134,8 +136,8 @@ const RecordForm = ({
                     ? 'Editing...'
                     : 'Edit record'
                   : isLoadingSubmit
-                  ? 'Creating...'
-                  : 'Create a record'}
+                  ? 'Adding...'
+                  : 'Add record'}
               </Button>
               {isEditing && (
                 <Button
