@@ -22,6 +22,7 @@ const AccountForm = ({
     resolver: zodResolver(accountSchema),
     defaultValues: {
       ...initialValues,
+      balance: initialValues?.balance && initialValues.balance / 100,
     },
   });
 
@@ -66,8 +67,8 @@ const AccountForm = ({
                   ? 'Editing...'
                   : 'Edit account'
                 : isLoadingSubmit
-                ? 'Creating...'
-                : 'Create an account'}
+                ? 'Adding...'
+                : 'Add account'}
             </Button>
           </div>
         </form>

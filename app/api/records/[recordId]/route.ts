@@ -95,10 +95,11 @@ export async function PATCH(
       );
     }
 
+    const convertedAmount = Number(amount * 100);
     const newAmount =
-      amount !== recordExits.amount
-        ? amount - recordExits.amount
-        : amount;
+      convertedAmount !== recordExits.amount
+        ? convertedAmount - recordExits.amount
+        : convertedAmount;
 
     const patchedRecord = await prisma.$transaction([
       prisma.record.update({
@@ -109,7 +110,7 @@ export async function PATCH(
         data: {
           accountId,
           recordType,
-          amount,
+          amount: convertedAmount,
           category,
           createdAt: new Date(createdAt),
           accountName: accountExists.type,

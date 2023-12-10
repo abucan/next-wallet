@@ -86,9 +86,10 @@ export function DataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className='h-24 text-center'
+                  className='h-24 text-center font-mono'
                 >
-                  No results.
+                  No results. Create an account and make some
+                  transactions.
                 </TableCell>
               </TableRow>
             )}

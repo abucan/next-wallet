@@ -54,7 +54,7 @@ const AccountSelect = ({
       name={name}
       render={({ field }) => (
         <FormItem className='w-full'>
-          <FormLabel>{label}</FormLabel>
+          <FormLabel className='input-label'>{label}</FormLabel>
           <FormControl>
             <Select
               onValueChange={field.onChange}
@@ -70,7 +70,11 @@ const AccountSelect = ({
                     userAccounts.map((item) => {
                       const AccountIcon = getAccountIcon(item.type);
                       return (
-                        <SelectItem key={item.id} value={item?.id!}>
+                        <SelectItem
+                          key={item.id}
+                          value={item?.id!}
+                          className='hover:cursor-pointer'
+                        >
                           <div className='flex flex-row items-center'>
                             <span
                               className='mr-1 p-1'

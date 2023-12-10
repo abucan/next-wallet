@@ -34,14 +34,14 @@ const DataSelect = ({
       name={name}
       render={({ field }) => (
         <FormItem className='flex flex-col w-full'>
-          <FormLabel>{label}</FormLabel>
+          <FormLabel className='input-label'>{label}</FormLabel>
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>
                 <Button
                   variant={'outline'}
                   className={cn(
-                    'w-full pl-3 text-left font-normal',
+                    'w-full pl-3 text-left font-normal input-placeholder',
                     !field.value && 'text-muted-foreground',
                   )}
                 >
