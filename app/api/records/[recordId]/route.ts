@@ -85,6 +85,7 @@ export async function PATCH(
       select: {
         amount: true,
         accountId: true,
+        recordType: true,
       },
     });
 
@@ -96,10 +97,29 @@ export async function PATCH(
     }
 
     const convertedAmount = Number(amount * 100);
-    const newAmount =
-      convertedAmount !== recordExits.amount
-        ? convertedAmount - recordExits.amount
-        : convertedAmount;
+    var realAmount = convertedAmount;
+
+    if (
+      convertedAmount !== recordExits.amount &&
+      recordType === recordExits.recordType
+    ) {
+      realAmount = convertedAmount - recordExits.amount;
+    } else if (recordType !== recordExits.recordType) {
+      realAmount =
+        convertedAmount - recordExits.amount + recordExits.amount * 2;
+    }
+
+    // if(recordType !== recordExits.recordType && convertedAmount !== recordExits.amount) {
+
+    // }
+
+    // const newAmount =
+    //   convertedAmount !== recordExits.amount
+    //     ? convertedAmount - recordExits.amount
+    //     : convertedAmount;
+
+    // const changedType =
+    //   recordType !== recordExits.recordType && convertedAmount * 2;
 
     const patchedRecord = await prisma.$transaction([
       prisma.record.update({
@@ -124,7 +144,7 @@ export async function PATCH(
         data: {
           balance: {
             [recordType === 'INCOME' ? 'increment' : 'decrement']:
-              newAmount,
+              realAmount,
           },
         },
       }),
