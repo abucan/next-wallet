@@ -7,7 +7,14 @@ import {
 import { Card } from '@/components/ui/card';
 import { formatCurrency } from '@/lib/utils';
 
-const AccountItem = ({ id, color, name, type, balance }: Account) => {
+const AccountItem = ({
+  id,
+  color,
+  name,
+  type,
+  currentBalance,
+  startedBalance,
+}: Account) => {
   const AccountIcon = getAccountIcon(type);
 
   return (
@@ -25,7 +32,7 @@ const AccountItem = ({ id, color, name, type, balance }: Account) => {
       </div>
       <div className='flex flex-row space-x-4 items-center'>
         <p className='text-lg font-mono text-tertiary mr-20 font-bold'>
-          {formatCurrency(balance)}
+          {formatCurrency(currentBalance + startedBalance)}
           {/* <span className='font-bold'> EUR</span> */}
         </p>
         <Actions id={`${id}`} />

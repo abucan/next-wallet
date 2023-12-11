@@ -96,7 +96,8 @@ export async function PATCH(
   try {
     const session = await getServerSession(authOptions);
     const body = await req.json();
-    const { name, color, type, balance } = accountSchema.parse(body);
+    const { name, color, type, startedBalance } =
+      accountSchema.parse(body);
 
     const { accountId } = params;
 
@@ -107,7 +108,7 @@ export async function PATCH(
       );
     }
 
-    const numBalance = Number(balance * 100);
+    const newStartedBalance = Number(startedBalance * 100);
     const account = await prisma.account.update({
       where: {
         id: accountId,
@@ -117,7 +118,7 @@ export async function PATCH(
         name,
         color,
         type,
-        balance: numBalance,
+        startedBalance: newStartedBalance,
       },
     });
 

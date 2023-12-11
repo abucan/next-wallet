@@ -29,7 +29,8 @@ export const getAccounts = async ({
         name: true,
         type: true,
         color: true,
-        balance: true,
+        startedBalance: true,
+        currentBalance: true,
       },
       orderBy: getOrderByClause(sort),
     });

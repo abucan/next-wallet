@@ -142,7 +142,7 @@ export async function PATCH(
           userId: session?.user?.id,
         },
         data: {
-          balance: {
+          currentBalance: {
             [recordType === 'INCOME' ? 'increment' : 'decrement']:
               realAmount,
           },
@@ -195,7 +195,7 @@ export async function DELETE(
         userId: session.user.id,
       },
       select: {
-        balance: true,
+        currentBalance: true,
       },
     });
 
@@ -213,7 +213,7 @@ export async function DELETE(
           userId: session.user.id,
         },
         data: {
-          balance: {
+          currentBalance: {
             [recordExits.recordType === 'INCOME'
               ? 'decrement'
               : 'increment']: recordExits.amount,

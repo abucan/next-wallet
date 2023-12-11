@@ -53,7 +53,7 @@ export async function POST(req: Request) {
           id: accountId,
         },
         data: {
-          balance: {
+          currentBalance: {
             [recordType === 'INCOME' ? 'increment' : 'decrement']:
               numAmount,
           },
