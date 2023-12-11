@@ -28,7 +28,8 @@ model Account {
   name           String
   type           AccountType
   color          String
-  balance        Float
+  startedBalance Float
+  currentBalance Float
   userId         String
   user           User        @relation(fields: [userId], references: [id])
   accountRecords Record[]

@@ -12,7 +12,7 @@ export const accountSchema = z.object({
   }),
   color: AccountColor,
   type: z.nativeEnum(AccountType),
-  balance: z.coerce
+  startedBalance: z.coerce
     .number()
     .min(1, { message: 'Please enter a value greater than 0' }),
 });

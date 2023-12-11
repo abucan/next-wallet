@@ -5,7 +5,8 @@ export interface Account {
   name: string;
   type: AccountType;
   color: string;
-  balance: number;
+  startedBalance: number;
+  currentBalance: number;
   userId?: string;
   createdAt?: Date;
   updatedAt?: Date;

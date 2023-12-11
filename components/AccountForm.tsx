@@ -22,7 +22,9 @@ const AccountForm = ({
     resolver: zodResolver(accountSchema),
     defaultValues: {
       ...initialValues,
-      balance: initialValues?.balance && initialValues.balance / 100,
+      startedBalance:
+        initialValues?.startedBalance &&
+        initialValues.startedBalance / 100,
     },
   });
 
@@ -57,7 +59,7 @@ const AccountForm = ({
               options={accountTypes}
             />
             <FormFieldInput
-              name='balance'
+              name='startedBalance'
               label='Account balance'
               placeholder='Enter the starting balance'
             />

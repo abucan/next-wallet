@@ -12,7 +12,8 @@ const Accounts = ({ accounts }: { accounts: Account[] }) => {
             color={account.color}
             name={account.name}
             type={account.type}
-            balance={account.balance}
+            startedBalance={account.startedBalance}
+            currentBalance={account.currentBalance}
           />
         );
       })}

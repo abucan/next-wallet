@@ -35,20 +35,22 @@ export async function POST(req: Request) {
     const session = await getServerSession(authOptions);
 
     const body = await req.json();
-    const { name, color, type, balance } = accountSchema.parse(body);
+    const { name, color, type, startedBalance } =
+      accountSchema.parse(body);
 
     if (!session)
       return NextResponse.json(
         { message: 'Unauthorized' },
         { status: 401 },
       );
-    const numBalance = Number(balance * 100);
+    const numBalance = Number(startedBalance * 100);
     const post = await prisma.account.create({
       data: {
         name,
         color,
         type,
-        balance: numBalance,
+        startedBalance: numBalance,
+        currentBalance: 0,
         userId: session?.user?.id,
       },
     });
