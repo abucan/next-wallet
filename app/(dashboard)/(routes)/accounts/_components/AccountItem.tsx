@@ -27,8 +27,7 @@ const AccountItem = ({
       </div>
       <div className='flex flex-row space-x-4 items-center'>
         <p className='text-lg font-mono text-tertiary mr-20 font-bold'>
-          {currentBalance && formatCurrency(currentBalance + startedBalance)}
-          {/* <span className='font-bold'> EUR</span> */}
+          {formatCurrency(currentBalance! + startedBalance)}
         </p>
         <Actions id={`${id}`} />
       </div>
