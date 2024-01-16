@@ -12,13 +12,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Record } from '@/models/record';
-import {
-  getCategoryIcon,
-  getCategoryName,
-} from '@/actions/get-category-type';
+import { getCategoryIcon, getCategoryName } from '@/actions/get-category-type';
 import { format } from 'date-fns';
 import Link from 'next/link';
 import { formatCurrency } from '@/lib/utils';
+import { TrackExpenseButton } from '@/app/(dashboard)/_components/TrackExpenseButton';
 
 export const columns: ColumnDef<Record>[] = [
   {
@@ -43,13 +41,10 @@ export const columns: ColumnDef<Record>[] = [
     header: 'Record Type',
     cell: ({ row }) => {
       const recordType = row.getValue('recordType');
-      const formatted =
-        recordType === 'EXPENSE' ? 'Expense' : 'Income';
+      const formatted = recordType === 'EXPENSE' ? 'Expense' : 'Income';
 
       return (
-        <div className='font-[500] font-mono text-tertiary'>
-          {formatted}
-        </div>
+        <div className='font-[500] font-mono text-tertiary'>{formatted}</div>
       );
     },
   },
@@ -59,9 +54,7 @@ export const columns: ColumnDef<Record>[] = [
       return (
         <div
           className='flex flex-row items-center hover:cursor-pointer'
-          onClick={() =>
-            column.toggleSorting(column.getIsSorted() === 'asc')
-          }
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Amount
           <ArrowUpDown className='ml-2 h-4 w-4' />
@@ -73,9 +66,7 @@ export const columns: ColumnDef<Record>[] = [
       const formatted = formatCurrency(amount);
 
       return (
-        <div className='font-[500] font-mono text-tertiary'>
-          {formatted}
-        </div>
+        <div className='font-[500] font-mono text-tertiary'>{formatted}</div>
       );
     },
   },
@@ -85,9 +76,7 @@ export const columns: ColumnDef<Record>[] = [
       return (
         <div
           className='flex flex-row items-center hover:cursor-pointer'
-          onClick={() =>
-            column.toggleSorting(column.getIsSorted() === 'asc')
-          }
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Date
           <ArrowUpDown className='ml-2 h-4 w-4' />
@@ -118,9 +107,12 @@ export const columns: ColumnDef<Record>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link href={`/records/${record.id}`}>
+              {/* <Link href={`/records/${record.id}`}>
                 Edit & Delete
-              </Link>
+              </Link> */}
+              <TrackExpenseButton mode='modal' asChild>
+                <p>Edit & Delete</p>
+              </TrackExpenseButton>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

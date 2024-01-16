@@ -11,10 +11,7 @@ import DataSelect from './DateSelect';
 import { GenericFormProps } from '@/ts/interfaces/app_interfaces';
 import { RecordFormValues } from '@/ts/types/app_types';
 import CustomFormSelect from './CustomFormSelect';
-import {
-  categoryTypes,
-  recordTypes,
-} from '@/actions/get-category-type';
+import { categoryTypes, recordTypes } from '@/actions/get-category-type';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
@@ -79,7 +76,7 @@ const RecordForm = ({
           onSubmit={form.handleSubmit(submit)}
           className='w-full flex flex-col items-center justify-center'
         >
-          <div className='w-1/2 space-y-4 border px-6 py-8 rounded-lg bg-card text-card-foreground shadow-sm'>
+          <div className='w-full space-y-4 border px-6 py-8 rounded-lg bg-card text-card-foreground'>
             <div className='flex flex-row gap-x-3 items-center'>
               <AccountSelect
                 name='accountId'
@@ -122,15 +119,9 @@ const RecordForm = ({
               initialValue={initialValues?.createdAt}
             />
             <div
-              className={
-                isEditing ? 'w-full flex flex-row space-x-4' : 'w-1/4'
-              }
+              className={isEditing ? 'w-full flex flex-row space-x-4' : 'w-1/4'}
             >
-              <Button
-                type='submit'
-                disabled={isSubmitting}
-                className='w-full'
-              >
+              <Button type='submit' disabled={isSubmitting} className='w-full'>
                 {isEditing
                   ? isLoadingSubmit
                     ? 'Editing...'

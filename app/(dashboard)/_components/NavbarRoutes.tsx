@@ -3,6 +3,7 @@ import ProfileCard from './ProfileCard';
 import { CopyPlus, FolderPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ModeToggle } from './ModeToggle';
+import { TrackExpenseButton } from './TrackExpenseButton';
 
 const NavbarRoutes = () => {
   return (
@@ -18,6 +19,16 @@ const NavbarRoutes = () => {
             Track expense
           </Button>
         </Link>
+        <TrackExpenseButton mode='modal' asChild>
+          <Button
+            variant='ghost'
+            size='sm'
+            className='font-mono text-secondary-grey text-sm'
+          >
+            <CopyPlus className='mr-2 h-5 w-5' />
+            Track expense (modal)
+          </Button>
+        </TrackExpenseButton>
         <Link href='/accounts/create'>
           <Button
             variant='ghost'
