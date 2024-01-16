@@ -1,10 +1,6 @@
 import * as z from 'zod';
 import { AccountColor } from '../enums/app_enums';
-import {
-  AccountType,
-  RecordType,
-  CategoryType,
-} from '@prisma/client';
+import { AccountType, RecordType, CategoryType } from '@prisma/client';
 
 export const accountSchema = z.object({
   name: z.string().min(3, {
@@ -12,9 +8,7 @@ export const accountSchema = z.object({
   }),
   color: AccountColor,
   type: z.nativeEnum(AccountType),
-  startedBalance: z.coerce
-    .number()
-    .min(1, { message: 'Please enter a value greater than 0' }),
+  startedBalance: z.coerce.number(),
 });
 
 export const recordSchema = z.object({
