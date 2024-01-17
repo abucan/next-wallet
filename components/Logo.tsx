@@ -3,7 +3,7 @@ import Image from 'next/image';
 import logo_test from '@/public/logo_test.png';
 import logo_dark from '@/public/logo_dark.png';
 
-const Logo = ({ width = 130 }: { width?: number }) => {
+export const Logo = ({ width = 130 }: { width?: number }) => {
   return (
     <>
       <div className='dark:hidden'>
@@ -15,5 +15,3 @@ const Logo = ({ width = 130 }: { width?: number }) => {
     </>
   );
 };
-
-export default Logo;

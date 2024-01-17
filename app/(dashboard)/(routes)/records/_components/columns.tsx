@@ -2,21 +2,14 @@
 
 import { ColumnDef } from '@tanstack/react-table';
 import { Button } from '@/components/ui/button';
-import { MoreHorizontal, ArrowUpDown } from 'lucide-react';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { ArrowUpDown, Pencil, Trash } from 'lucide-react';
 import { Record } from '@/models/record';
 import { getCategoryIcon, getCategoryName } from '@/actions/get-category-type';
 import { format } from 'date-fns';
-import Link from 'next/link';
 import { formatCurrency } from '@/lib/utils';
-import { TrackExpenseButton } from '@/app/(dashboard)/_components/TrackExpenseButton';
+import { TrackExpenseButton } from '@/app/(dashboard)/(routes)/records/_components/TrackExpenseButton';
+import { EditExpenseButton } from '@/app/(dashboard)/(routes)/records/_components/EditExpenseButton';
+import { RecordAction } from './RecordAction';
 
 export const columns: ColumnDef<Record>[] = [
   {
@@ -94,29 +87,7 @@ export const columns: ColumnDef<Record>[] = [
   {
     id: 'actions',
     cell: ({ row }) => {
-      const record = row.original;
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant='ghost' className='h-8 w-8 p-0'>
-              <span className='sr-only'>Open menu</span>
-              <MoreHorizontal className='h-4 w-4' />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align='end'>
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              {/* <Link href={`/records/${record.id}`}>
-                Edit & Delete
-              </Link> */}
-              <TrackExpenseButton mode='modal' asChild>
-                <p>Edit & Delete</p>
-              </TrackExpenseButton>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+      return <RecordAction id={row.original.id} />;
     },
   },
 ];

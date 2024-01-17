@@ -9,7 +9,7 @@ import { Form } from '@/components/ui/form';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useToast } from '@/components/ui/use-toast';
-import FormFieldInput from '@/components/FormInput';
+import { FormFieldInput } from '@/components/FormInput';
 
 type FormValues = z.infer<typeof loginSchema>;
 
@@ -52,10 +52,7 @@ const LoginForm = () => {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className='space-y-4'
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
         <FormFieldInput
           name='email'
           label='Email'
@@ -66,11 +63,7 @@ const LoginForm = () => {
           label='Password'
           placeholder='Enter your password'
         />
-        <Button
-          type='submit'
-          className='w-full'
-          disabled={isSubmitting}
-        >
+        <Button type='submit' className='w-full' disabled={isSubmitting}>
           Sign In
         </Button>
       </form>

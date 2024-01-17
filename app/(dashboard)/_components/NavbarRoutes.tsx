@@ -1,15 +1,15 @@
-import Link from 'next/link';
 import ProfileCard from './ProfileCard';
 import { CopyPlus, FolderPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ModeToggle } from './ModeToggle';
-import { TrackExpenseButton } from './TrackExpenseButton';
+import { TrackExpenseButton } from '../(routes)/records/_components/TrackExpenseButton';
+import { AddAccountButton } from '../(routes)/accounts/_components/AddAccountButton';
 
 const NavbarRoutes = () => {
   return (
     <>
       <div className='flex flex-row gap-x-4 items-center w-full'>
-        <Link href='/records/create'>
+        <TrackExpenseButton mode='modal' asChild>
           <Button
             variant='ghost'
             size='sm'
@@ -18,18 +18,8 @@ const NavbarRoutes = () => {
             <CopyPlus className='mr-2 h-5 w-5' />
             Track expense
           </Button>
-        </Link>
-        <TrackExpenseButton mode='modal' asChild>
-          <Button
-            variant='ghost'
-            size='sm'
-            className='font-mono text-secondary-grey text-sm'
-          >
-            <CopyPlus className='mr-2 h-5 w-5' />
-            Track expense (modal)
-          </Button>
         </TrackExpenseButton>
-        <Link href='/accounts/create'>
+        <AddAccountButton mode='modal' asChild>
           <Button
             variant='ghost'
             size='sm'
@@ -38,7 +28,7 @@ const NavbarRoutes = () => {
             <FolderPlus className='mr-2 h-5 w-5' />
             Add Account
           </Button>
-        </Link>
+        </AddAccountButton>
         <div className='ml-auto flex flex-row space-x-4'>
           <ModeToggle />
           <ProfileCard />

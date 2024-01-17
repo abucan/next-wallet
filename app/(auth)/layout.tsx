@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Logo from '@/components/Logo';
+import { Logo } from '@/components/Logo';
 import main_banner from '@/public/main_banner.svg';
 import { PropsWithChildren } from 'react';
 
@@ -11,12 +11,7 @@ const AuthLayout = ({ children }: PropsWithChildren) => {
           <Logo />
         </div>
         <div className='flex items-center justify-center mt-20'>
-          <Image
-            src={main_banner}
-            alt='banner'
-            width={400}
-            priority
-          />
+          <Image src={main_banner} alt='banner' width={400} priority />
         </div>
       </div>
       <div className='w-full lg:w-1/2 flex flex-col'>{children}</div>

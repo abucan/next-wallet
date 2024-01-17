@@ -1,5 +1,5 @@
 import SidebarRoutes from './SidebarRoutes';
-import Logo from '@/components/Logo';
+import { Logo } from '@/components/Logo';
 
 const Sidebar = async () => {
   return (

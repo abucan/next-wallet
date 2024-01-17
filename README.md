@@ -9,4 +9,5 @@
 - add a hover state for NAVBAR items etc. ADD ACCOUNT
 - when deleting an account, delete all the records linked to that account
 -- revalidate paths using query
+-- data table sliding under navbar
 ```

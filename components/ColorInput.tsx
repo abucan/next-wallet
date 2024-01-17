@@ -17,7 +17,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-const ColorInput = ({
+export const ColorInput = ({
   name,
   label,
   placeholder,
@@ -32,10 +32,7 @@ const ColorInput = ({
         <FormItem className='w-full'>
           <FormLabel className='input-label'>{label}</FormLabel>
           <FormControl>
-            <Select
-              onValueChange={field.onChange}
-              defaultValue={initialValue}
-            >
+            <Select onValueChange={field.onChange} defaultValue={initialValue}>
               <SelectTrigger className='w-full'>
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
@@ -70,5 +67,3 @@ const ColorInput = ({
     />
   );
 };
-
-export default ColorInput;

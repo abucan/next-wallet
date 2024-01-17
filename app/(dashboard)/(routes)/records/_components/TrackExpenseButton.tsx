@@ -2,13 +2,14 @@
 
 import axios from 'axios';
 import { toast } from '@/components/ui/use-toast';
-import RecordForm from '@/components/RecordForm';
+import { RecordForm } from '@/components/RecordForm';
 import { Record } from '@/models/record';
 import { RecordFormValues } from '@/ts/types/app_types';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { SubmitHandler } from 'react-hook-form';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { useState } from 'react';
 
 interface TrackExpenseButtonProps {
   children: React.ReactNode;
@@ -22,6 +23,7 @@ export const TrackExpenseButton = ({
   asChild,
 }: TrackExpenseButtonProps) => {
   const router = useRouter();
+  const [open, setOpen] = useState(false);
 
   const { mutate: createPost, status } = useMutation({
     mutationFn: (record: Record) => {
@@ -39,6 +41,7 @@ export const TrackExpenseButton = ({
       });
       router.push('/records');
       router.refresh();
+      setOpen(false);
     },
   });
 
@@ -52,7 +55,7 @@ export const TrackExpenseButton = ({
 
   if (mode === 'modal') {
     return (
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
         <DialogContent className='p-0 w-auto bg-transparent border-none'>
           <RecordForm

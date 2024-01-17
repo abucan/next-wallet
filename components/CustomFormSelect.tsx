@@ -17,7 +17,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-const CustomFormSelect = ({
+export const CustomFormSelect = ({
   name,
   label,
   placeholder,
@@ -33,10 +33,7 @@ const CustomFormSelect = ({
         <FormItem className='w-full'>
           <FormLabel className='input-label'>{label}</FormLabel>
           <FormControl>
-            <Select
-              onValueChange={field.onChange}
-              defaultValue={initialValue}
-            >
+            <Select onValueChange={field.onChange} defaultValue={initialValue}>
               <SelectTrigger className='w-full'>
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
@@ -69,5 +66,3 @@ const CustomFormSelect = ({
     />
   );
 };
-
-export default CustomFormSelect;

@@ -9,7 +9,7 @@ import {
   FormMessage,
 } from './ui/form';
 
-const FormFieldInput = ({
+export const FormFieldInput = ({
   name,
   label = '',
   placeholder,
@@ -44,5 +44,3 @@ const FormFieldInput = ({
     />
   );
 };
-
-export default FormFieldInput;

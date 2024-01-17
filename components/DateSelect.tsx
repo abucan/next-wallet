@@ -20,7 +20,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 
-const DataSelect = ({
+export const DateSelect = ({
   name,
   label,
   placeholder,
@@ -42,7 +42,7 @@ const DataSelect = ({
                   variant={'outline'}
                   className={cn(
                     'w-full pl-3 text-left font-normal input-placeholder',
-                    !field.value && 'text-muted-foreground',
+                    !field.value && 'text-muted-foreground'
                   )}
                 >
                   {field.value instanceof Date ? (
@@ -76,5 +76,3 @@ const DataSelect = ({
     />
   );
 };
-
-export default DataSelect;

@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 
-const ActionDialog = ({
+export const ActionDialog = ({
   open,
   onOpenChange,
   onClick,
@@ -22,8 +22,12 @@ const ActionDialog = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{dialogTitle}</DialogTitle>
-          <DialogDescription>{dialogDescription}</DialogDescription>
+          <DialogTitle className='font-mono font-[500]'>
+            {dialogTitle}
+          </DialogTitle>
+          <DialogDescription className='font-mono'>
+            {dialogDescription}
+          </DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <Button
@@ -39,5 +43,3 @@ const ActionDialog = ({
     </Dialog>
   );
 };
-
-export default ActionDialog;

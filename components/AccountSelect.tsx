@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-const AccountSelect = ({
+export const AccountSelect = ({
   name,
   label,
   placeholder,
@@ -45,7 +45,7 @@ const AccountSelect = ({
   });
 
   const currentRecordAccount = userAccounts?.find(
-    (item) => item.id === initialValue,
+    (item) => item.id === initialValue
   )?.id;
 
   return (
@@ -97,5 +97,3 @@ const AccountSelect = ({
     />
   );
 };
-
-export default AccountSelect;

@@ -1,4 +1,4 @@
-import MobileLogo from '@/components/MobileLogo';
+import { MobileLogo } from '@/components/MobileLogo';
 import AuthHeader from '../_components/AuthHeader';
 import AuthFormCard from '../_components/AuthFormCard';
 import RegisterForm from './_components/RegisterForm';
@@ -8,10 +8,10 @@ import { redirect } from 'next/navigation';
 export default async function SignUp() {
   const session = await getServerSession();
 
-  if(session) {
-    return redirect('/')
+  if (session) {
+    return redirect('/');
   }
-  
+
   return (
     <>
       <AuthHeader
