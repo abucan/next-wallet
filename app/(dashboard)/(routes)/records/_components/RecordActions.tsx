@@ -12,7 +12,7 @@ interface RecordActionProps {
   id: string | undefined;
 }
 
-export const RecordAction = ({ id }: RecordActionProps) => {
+export const RecordActions = ({ id }: RecordActionProps) => {
   const router = useRouter();
   const [showDialog, setShowDialog] = useState(false);
 

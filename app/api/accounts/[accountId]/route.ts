@@ -1,21 +1,18 @@
 import prisma from '@/lib/db';
 import { NextResponse } from 'next/server';
-import { authOptions } from '@/lib/auth';
+import { authOptions } from '@/auth';
 import { getServerSession } from 'next-auth';
 import { accountSchema } from '@/ts/form-schemas/form-schemas';
 
 export async function GET(
   req: Request,
-  { params }: { params: { accountId: string } },
+  { params }: { params: { accountId: string } }
 ) {
   try {
     const session = await getServerSession(authOptions);
 
     if (!session)
-      return NextResponse.json(
-        { message: 'Unauthorized' },
-        { status: 401 },
-      );
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
 
     const account = await prisma.account.findUnique({
       where: {
@@ -27,7 +24,7 @@ export async function GET(
     if (!account) {
       return NextResponse.json(
         { message: 'Account not found' },
-        { status: 404 },
+        { status: 404 }
       );
     }
 
@@ -40,15 +37,12 @@ export async function GET(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { accountId: string } },
+  { params }: { params: { accountId: string } }
 ) {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user?.id) {
-      return NextResponse.json(
-        { message: 'Unauthorized' },
-        { status: 401 },
-      );
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
     const account = await prisma.account.findUnique({
@@ -61,7 +55,7 @@ export async function DELETE(
     if (!account) {
       return NextResponse.json(
         { message: 'Account not found' },
-        { status: 404 },
+        { status: 404 }
       );
     }
 
@@ -91,21 +85,17 @@ export async function DELETE(
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { accountId: string } },
+  { params }: { params: { accountId: string } }
 ) {
   try {
     const session = await getServerSession(authOptions);
     const body = await req.json();
-    const { name, color, type, startedBalance } =
-      accountSchema.parse(body);
+    const { name, color, type, startedBalance } = accountSchema.parse(body);
 
     const { accountId } = params;
 
     if (!session?.user?.id) {
-      return NextResponse.json(
-        { message: 'Unauthorized' },
-        { status: 401 },
-      );
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
     const newStartedBalance = Number(startedBalance * 100);

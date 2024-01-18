@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import { toast } from '@/components/ui/use-toast';
-import { AccountForm } from '@/components/AccountForm';
+import { AccountForm } from '@/app/(dashboard)/(routes)/accounts/_components/AccountForm';
 import { Account } from '@prisma/client';
 import { AccountFormValues } from '@/ts/types/app_types';
 import { useRouter } from 'next/navigation';

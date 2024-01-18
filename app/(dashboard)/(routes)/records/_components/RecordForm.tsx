@@ -6,11 +6,11 @@ import { useForm } from 'react-hook-form';
 import { FormFieldInput } from '@/components/FormInput';
 import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
-import { AccountSelect } from './AccountSelect';
-import { DateSelect } from './DateSelect';
+import { AccountSelect } from '../../../../../components/AccountSelect';
+import { DateSelect } from '../../../../../components/DateSelect';
 import { GenericFormProps } from '@/ts/interfaces/app_interfaces';
 import { RecordFormValues } from '@/ts/types/app_types';
-import { CustomFormSelect } from './CustomFormSelect';
+import { CustomFormSelect } from '../../../../../components/CustomFormSelect';
 import { categoryTypes, recordTypes } from '@/actions/get-category-type';
 
 export const RecordForm = ({

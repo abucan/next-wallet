@@ -1,10 +1,6 @@
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/components/ui/avatar';
+import { authOptions } from '@/auth';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import UserLogoutBtn from './UserLogoutBtn';
 
 const ProfileCard = async () => {

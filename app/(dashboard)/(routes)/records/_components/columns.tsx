@@ -1,15 +1,12 @@
 'use client';
 
 import { ColumnDef } from '@tanstack/react-table';
-import { Button } from '@/components/ui/button';
-import { ArrowUpDown, Pencil, Trash } from 'lucide-react';
+import { ArrowUpDown } from 'lucide-react';
 import { Record } from '@/models/record';
 import { getCategoryIcon, getCategoryName } from '@/actions/get-category-type';
 import { format } from 'date-fns';
 import { formatCurrency } from '@/lib/utils';
-import { TrackExpenseButton } from '@/app/(dashboard)/(routes)/records/_components/TrackExpenseButton';
-import { EditExpenseButton } from '@/app/(dashboard)/(routes)/records/_components/EditExpenseButton';
-import { RecordAction } from './RecordAction';
+import { RecordActions } from './RecordActions';
 
 export const columns: ColumnDef<Record>[] = [
   {
@@ -87,7 +84,7 @@ export const columns: ColumnDef<Record>[] = [
   {
     id: 'actions',
     cell: ({ row }) => {
-      return <RecordAction id={row.original.id} />;
+      return <RecordActions id={row.original.id} />;
     },
   },
 ];

@@ -11,15 +11,26 @@ import {
   DropdownMenuTrigger,
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
-import { FaChevronDown } from 'react-icons/fa';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { useState } from 'react';
 
 const UserLogoutBtn = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>
-        <FaChevronDown className='text-[#737898] text-xs' />
+    <DropdownMenu onOpenChange={toggleDropdown}>
+      <DropdownMenuTrigger className='focus-visible:ring-0'>
+        {isOpen ? (
+          <FaChevronUp className='text-[#737898] text-xs' />
+        ) : (
+          <FaChevronDown className='text-[#737898] text-xs' />
+        )}
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent align='end'>
         <DropdownMenuLabel className='font-mono font-[500] text-sm text-small-icon'>
           My Account
         </DropdownMenuLabel>

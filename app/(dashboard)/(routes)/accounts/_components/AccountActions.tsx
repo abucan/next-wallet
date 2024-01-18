@@ -10,7 +10,7 @@ import { Pencil, Trash } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-const Actions = ({ id }: { id: string }) => {
+export const AccountActions = ({ id }: { id: string }) => {
   const router = useRouter();
   const [showDialog, setShowDialog] = useState(false);
 
@@ -63,5 +63,3 @@ const Actions = ({ id }: { id: string }) => {
     </>
   );
 };
-
-export default Actions;

@@ -1,7 +1,7 @@
 import prisma from '@/lib/db';
 import { Account } from '@/models/account';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authOptions } from '@/auth';
 import { redirect } from 'next/navigation';
 import { getOrderByClause } from '@/lib/utils';
 import { SearchAccountProps } from '@/ts/interfaces/app_interfaces';

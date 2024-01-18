@@ -13,7 +13,7 @@ import { FormFieldInput } from '@/components/FormInput';
 
 type FormValues = z.infer<typeof registerSchema>;
 
-const RegisterForm = () => {
+export const RegisterForm = () => {
   const router = useRouter();
   const { toast } = useToast();
   const form = useForm<FormValues>({
@@ -75,5 +75,3 @@ const RegisterForm = () => {
     </Form>
   );
 };
-
-export default RegisterForm;

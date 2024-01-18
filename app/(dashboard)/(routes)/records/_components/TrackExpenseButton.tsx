@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import { toast } from '@/components/ui/use-toast';
-import { RecordForm } from '@/components/RecordForm';
+import { RecordForm } from '@/app/(dashboard)/(routes)/records/_components/RecordForm';
 import { Record } from '@/models/record';
 import { RecordFormValues } from '@/ts/types/app_types';
 import { useRouter } from 'next/navigation';

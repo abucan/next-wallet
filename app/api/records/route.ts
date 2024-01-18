@@ -1,7 +1,7 @@
 import prisma from '@/lib/db';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authOptions } from '@/auth';
 import { recordSchema } from '@/ts/form-schemas/form-schemas';
 
 export async function POST(req: Request) {
@@ -13,10 +13,7 @@ export async function POST(req: Request) {
       recordSchema.parse(body);
 
     if (!session)
-      return NextResponse.json(
-        { message: 'Unauthorized' },
-        { status: 401 },
-      );
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
 
     const accountExists = await prisma.account.findUnique({
       where: {
@@ -29,10 +26,7 @@ export async function POST(req: Request) {
     });
 
     if (!accountExists) {
-      return NextResponse.json(
-        { message: 'Unauthorized' },
-        { status: 401 },
-      );
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
     const numAmount = Number(amount * 100);
@@ -54,8 +48,7 @@ export async function POST(req: Request) {
         },
         data: {
           currentBalance: {
-            [recordType === 'INCOME' ? 'increment' : 'decrement']:
-              numAmount,
+            [recordType === 'INCOME' ? 'increment' : 'decrement']: numAmount,
           },
         },
       }),

@@ -1,9 +1,11 @@
-import { ThemeProvider } from '@/components/ThemeProvider';
 import './globals.css';
-import QueryProvider from '@/components/QueryProvider';
-import { Toaster } from '@/components/ui/toaster';
-import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import QueryProvider from '@/components/QueryProvider';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import { SessionProvider } from 'next-auth/react';
+import { Toaster } from '@/components/ui/toaster';
+import { auth } from '@/auth';
+import type { Metadata } from 'next';
 
 const roboto = localFont({
   src: [
@@ -42,29 +44,32 @@ export const metadata: Metadata = {
   description: 'Track your expenses and income',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await auth();
   return (
-    <html
-      lang='en'
-      className={`${roboto.variable} ${poppins.variable}`}
-      suppressHydrationWarning
-    >
-      <body>
-        <QueryProvider>
-          <ThemeProvider
-            attribute='class'
-            defaultTheme='light'
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </QueryProvider>
-        <Toaster />
-      </body>
-    </html>
+    <SessionProvider session={session}>
+      <html
+        lang='en'
+        className={`${roboto.variable} ${poppins.variable}`}
+        suppressHydrationWarning
+      >
+        <body>
+          <QueryProvider>
+            <ThemeProvider
+              attribute='class'
+              defaultTheme='light'
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </QueryProvider>
+          <Toaster />
+        </body>
+      </html>
+    </SessionProvider>
   );
 }

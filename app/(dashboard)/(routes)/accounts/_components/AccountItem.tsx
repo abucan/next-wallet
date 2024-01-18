@@ -1,10 +1,10 @@
-import Actions from './Actions';
+import { AccountActions } from './AccountActions';
 import { Account } from '@/models/account';
 import { getAccountIcon, getAccountType } from '@/actions/get-account-type';
 import { Card } from '@/components/ui/card';
 import { formatCurrency } from '@/lib/utils';
 
-const AccountItem = ({
+export const AccountItem = ({
   id,
   color,
   name,
@@ -29,10 +29,8 @@ const AccountItem = ({
         <p className='text-lg font-mono text-tertiary mr-20 font-bold'>
           {formatCurrency(currentBalance! + startedBalance)}
         </p>
-        <Actions id={`${id}`} />
+        <AccountActions id={`${id}`} />
       </div>
     </Card>
   );
 };
-
-export default AccountItem;

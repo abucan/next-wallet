@@ -13,7 +13,7 @@ import { FormFieldInput } from '@/components/FormInput';
 
 type FormValues = z.infer<typeof loginSchema>;
 
-const LoginForm = () => {
+export const LoginForm = () => {
   const router = useRouter();
   const { toast } = useToast();
   const form = useForm<FormValues>({
@@ -70,5 +70,3 @@ const LoginForm = () => {
     </Form>
   );
 };
-
-export default LoginForm;

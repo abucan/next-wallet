@@ -9,7 +9,7 @@ import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import { GenericFormProps } from '@/ts/interfaces/app_interfaces';
 import { AccountFormValues } from '@/ts/types/app_types';
-import { CustomFormSelect } from './CustomFormSelect';
+import { CustomFormSelect } from '../../../../../components/CustomFormSelect';
 import { accountTypes } from '@/actions/get-account-type';
 
 export const AccountForm = ({

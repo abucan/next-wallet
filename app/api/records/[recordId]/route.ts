@@ -1,4 +1,4 @@
-import { authOptions } from '@/lib/auth';
+import { authOptions } from '@/auth';
 import prisma from '@/lib/db';
 import { recordSchema } from '@/ts/form-schemas/form-schemas';
 import { getServerSession } from 'next-auth';
@@ -6,16 +6,13 @@ import { NextResponse } from 'next/server';
 
 export async function GET(
   req: Request,
-  { params }: { params: { recordId: string } },
+  { params }: { params: { recordId: string } }
 ) {
   try {
     const session = await getServerSession(authOptions);
 
     if (!session)
-      return NextResponse.json(
-        { message: 'Unauthorized' },
-        { status: 401 },
-      );
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
 
     const record = await prisma.record.findUnique({
       where: {
@@ -43,7 +40,7 @@ export async function GET(
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { recordId: string } },
+  { params }: { params: { recordId: string } }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -54,10 +51,7 @@ export async function PATCH(
     const { recordId } = params;
 
     if (!session?.user?.id) {
-      return NextResponse.json(
-        { message: 'Unauthorized' },
-        { status: 401 },
-      );
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
     const accountExists = await prisma.account.findUnique({
@@ -73,7 +67,7 @@ export async function PATCH(
     if (!accountExists) {
       return NextResponse.json(
         { message: 'Unauthorized Account' },
-        { status: 401 },
+        { status: 401 }
       );
     }
 
@@ -92,7 +86,7 @@ export async function PATCH(
     if (!recordExits) {
       return NextResponse.json(
         { message: 'Unauthorized Record' },
-        { status: 401 },
+        { status: 401 }
       );
     }
 
@@ -143,8 +137,7 @@ export async function PATCH(
         },
         data: {
           currentBalance: {
-            [recordType === 'INCOME' ? 'increment' : 'decrement']:
-              realAmount,
+            [recordType === 'INCOME' ? 'increment' : 'decrement']: realAmount,
           },
         },
       }),
@@ -159,15 +152,12 @@ export async function PATCH(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { recordId: string } },
+  { params }: { params: { recordId: string } }
 ) {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user?.id) {
-      return NextResponse.json(
-        { message: 'Unauthorized' },
-        { status: 401 },
-      );
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
     const recordExits = await prisma.record.findUnique({
@@ -185,7 +175,7 @@ export async function DELETE(
     if (!recordExits) {
       return NextResponse.json(
         { message: 'Unauthorized Record' },
-        { status: 401 },
+        { status: 401 }
       );
     }
 
@@ -202,7 +192,7 @@ export async function DELETE(
     if (!accountExists) {
       return NextResponse.json(
         { message: 'Unauthorized Account' },
-        { status: 401 },
+        { status: 401 }
       );
     }
 
@@ -214,9 +204,8 @@ export async function DELETE(
         },
         data: {
           currentBalance: {
-            [recordExits.recordType === 'INCOME'
-              ? 'decrement'
-              : 'increment']: recordExits.amount,
+            [recordExits.recordType === 'INCOME' ? 'decrement' : 'increment']:
+              recordExits.amount,
           },
         },
       }),

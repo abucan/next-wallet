@@ -1,11 +1,11 @@
 import { MobileLogo } from '@/components/MobileLogo';
-import AuthHeader from '../_components/AuthHeader';
-import AuthFormCard from '../_components/AuthFormCard';
-import RegisterForm from './_components/RegisterForm';
+import { AuthHeader } from '../_components/AuthHeader';
+import { AuthCardForm } from '../_components/AuthFormCard';
+import { RegisterForm } from './_components/RegisterForm';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 
-export default async function SignUp() {
+const SignUpPage = async () => {
   const session = await getServerSession();
 
   if (session) {
@@ -20,7 +20,7 @@ export default async function SignUp() {
         href='/sign-in'
       />
       <MobileLogo />
-      <AuthFormCard
+      <AuthCardForm
         cardTitle='Sign Up!'
         cardDescription='Create a new account'
         cardFooterText='Already have an account?'
@@ -28,7 +28,9 @@ export default async function SignUp() {
         linkText='Sign In'
       >
         <RegisterForm />
-      </AuthFormCard>
+      </AuthCardForm>
     </>
   );
-}
+};
+
+export default SignUpPage;
