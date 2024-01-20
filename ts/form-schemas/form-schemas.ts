@@ -1,6 +1,10 @@
 import * as z from 'zod';
 import { AccountColor } from '../enums/app_enums';
-import { AccountType, RecordType, CategoryType } from '@prisma/client';
+import {
+  AccountType,
+  RecordType,
+  CategoryType,
+} from '@prisma/client';
 
 export const accountSchema = z.object({
   name: z.string().min(3, {
@@ -22,7 +26,7 @@ export const recordSchema = z.object({
 });
 
 export const registerSchema = z.object({
-  username: z
+  name: z
     .string()
     .min(3, { message: 'Name is too short' })
     .max(20, 'Username is too long'),

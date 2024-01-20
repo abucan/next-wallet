@@ -1,9 +1,10 @@
-import NextAuth from 'next-auth';
+import NextAuth, { Session } from 'next-auth';
 import authConfig from './auth.config';
 import prisma from './lib/db';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { getUserById } from './data/user';
 import { getAccountByUserId } from './data/account';
+import { type JWT } from 'next-auth/jwt';
 
 export const {
   handlers: { GET, POST },
@@ -27,21 +28,27 @@ export const {
     async signIn({ user, account }) {
       if (account?.provider !== 'credentials') return true;
 
-      const existingUser = await getUserById(user.id);
+      const existingUser = await getUserById(user.id!);
       if (!existingUser?.emailVerified) return false;
 
       return true;
     },
-    async session({ session, token }) {
-      if (token.sub && session.user) {
+    async session({
+      session,
+      token,
+    }: {
+      session: Session;
+      token?: JWT;
+    }) {
+      if (token && token.sub && session.user) {
         session.user.id = token.sub;
       }
 
-      if (token.role && session.user) {
+      if (token && token.role && session.user) {
         session.user.role = token.role as 'ADMIN' | 'USER';
       }
 
-      if (session.user) {
+      if (token && session.user) {
         session.user.name = token.name;
         session.user.email = token.email;
         session.user.isOAuth = token.isOAuth as boolean;
@@ -50,6 +57,7 @@ export const {
     },
     async jwt({ token }) {
       if (!token.sub) return token;
+      console.log(token);
 
       const user = await getUserById(token.sub);
       if (!user) return token;

@@ -45,7 +45,7 @@ export const AccountSelect = ({
   });
 
   const currentRecordAccount = userAccounts?.find(
-    (item) => item.id === initialValue
+    (item) => item.id === initialValue,
   )?.id;
 
   return (

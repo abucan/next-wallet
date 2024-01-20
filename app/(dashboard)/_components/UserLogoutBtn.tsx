@@ -36,7 +36,7 @@ const UserLogoutBtn = () => {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          onClick={() => signOut({ redirect: true })}
+          onClick={() => signOut({ redirect: false })}
           className='hover:cursor-pointer font-mono font-[500] text-sm'
         >
           <LogOut className='mr-2 h-4 w-4' />
