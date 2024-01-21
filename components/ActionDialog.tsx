@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 
-const ActionDialog = ({
+export const ActionDialog = ({
   open,
   onOpenChange,
   onClick,
@@ -39,5 +39,3 @@ const ActionDialog = ({
     </Dialog>
   );
 };
-
-export default ActionDialog;

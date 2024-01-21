@@ -1,11 +1,10 @@
-const User = () => {
-  return (
-    <div>
-      <h1 className='font-mono font-[500] text-2xl text-tertiary'>
-        User
-      </h1>
-    </div>
-  );
+import { UserProfile, currentUser } from '@clerk/nextjs';
+
+const UserPage = async () => {
+  const user = await currentUser();
+  console.log(user);
+
+  return <UserProfile path='/user' routing='path' />;
 };
 
-export default User;
+export default UserPage;

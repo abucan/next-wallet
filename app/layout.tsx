@@ -1,6 +1,7 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import './globals.css';
 import QueryProvider from '@/components/QueryProvider';
+import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from '@/components/ui/toaster';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
@@ -48,23 +49,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang='en'
-      className={`${roboto.variable} ${poppins.variable}`}
-      suppressHydrationWarning
-    >
-      <body>
-        <QueryProvider>
-          <ThemeProvider
-            attribute='class'
-            defaultTheme='light'
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </QueryProvider>
-        <Toaster />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html
+        lang='en'
+        className={`${roboto.variable} ${poppins.variable}`}
+        suppressHydrationWarning
+      >
+        <body>
+          <QueryProvider>
+            <ThemeProvider
+              attribute='class'
+              defaultTheme='light'
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </QueryProvider>
+          <Toaster />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

@@ -1,7 +1,11 @@
 import { Account } from '@/models/account';
-import AccountItem from './AccountItem';
+import { AccountItem } from './AccountItem';
 
-const Accounts = ({ accounts }: { accounts: Account[] }) => {
+export const AccountsList = ({
+  accounts,
+}: {
+  accounts: Account[];
+}) => {
   return (
     <>
       {accounts.map((account) => {
@@ -20,5 +24,3 @@ const Accounts = ({ accounts }: { accounts: Account[] }) => {
     </>
   );
 };
-
-export default Accounts;

@@ -1,17 +1,16 @@
 import prisma from '@/lib/db';
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
 import { accountSchema } from '@/ts/form-schemas/form-schemas';
+import { auth } from '@clerk/nextjs';
 
 export async function GET(
   req: Request,
   { params }: { params: { id: string } },
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const { userId } = auth();
 
-    if (!session)
+    if (!userId)
       return NextResponse.json(
         { message: 'Unauthorized' },
         { status: 401 },
@@ -19,7 +18,7 @@ export async function GET(
 
     const accounts = await prisma.account.findMany({
       where: {
-        userId: session?.user?.id,
+        userId: userId,
       },
     });
 
@@ -32,13 +31,13 @@ export async function GET(
 
 export async function POST(req: Request) {
   try {
-    const session = await getServerSession(authOptions);
+    const { userId } = auth();
 
     const body = await req.json();
     const { name, color, type, startedBalance } =
       accountSchema.parse(body);
 
-    if (!session)
+    if (!userId)
       return NextResponse.json(
         { message: 'Unauthorized' },
         { status: 401 },
@@ -51,7 +50,7 @@ export async function POST(req: Request) {
         type,
         startedBalance: numBalance,
         currentBalance: 0,
-        userId: session?.user?.id,
+        userId: userId,
       },
     });
     return NextResponse.json(post, { status: 201 });

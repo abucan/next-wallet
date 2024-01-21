@@ -1,7 +1,7 @@
 import { getAccounts } from '@/actions/get-accounts';
 import SortingOptions from './_components/Sorting';
 import SearchInput from '../../_components/SearchInput';
-import Accounts from './_components/Accounts';
+import { AccountsList } from './_components/AccountsList';
 
 // TODO useQuery
 const AccountsPage = async ({
@@ -25,7 +25,7 @@ const AccountsPage = async ({
             <SortingOptions />
             <SearchInput />
           </div>
-          <Accounts accounts={accounts} />
+          <AccountsList accounts={accounts} />
         </>
       ) : (
         <h1 className='font-mono font-[400] text-2xl text-tertiary'>

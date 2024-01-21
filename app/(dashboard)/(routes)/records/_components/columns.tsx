@@ -1,24 +1,15 @@
 'use client';
 
 import { ColumnDef } from '@tanstack/react-table';
-import { Button } from '@/components/ui/button';
-import { MoreHorizontal, ArrowUpDown } from 'lucide-react';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { ArrowUpDown } from 'lucide-react';
 import { Record } from '@/models/record';
 import {
   getCategoryIcon,
   getCategoryName,
 } from '@/actions/get-category-type';
 import { format } from 'date-fns';
-import Link from 'next/link';
 import { formatCurrency } from '@/lib/utils';
+import { RecordActions } from './RecordActions';
 
 export const columns: ColumnDef<Record>[] = [
   {
@@ -105,26 +96,7 @@ export const columns: ColumnDef<Record>[] = [
   {
     id: 'actions',
     cell: ({ row }) => {
-      const record = row.original;
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant='ghost' className='h-8 w-8 p-0'>
-              <span className='sr-only'>Open menu</span>
-              <MoreHorizontal className='h-4 w-4' />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align='end'>
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href={`/records/${record.id}`}>
-                Edit & Delete
-              </Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+      return <RecordActions id={row.original.id} />;
     },
   },
 ];

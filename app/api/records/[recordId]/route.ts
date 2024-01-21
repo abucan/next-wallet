@@ -1,7 +1,6 @@
-import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/db';
 import { recordSchema } from '@/ts/form-schemas/form-schemas';
-import { getServerSession } from 'next-auth';
+import { auth } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 
 export async function GET(
@@ -9,9 +8,9 @@ export async function GET(
   { params }: { params: { recordId: string } },
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const { userId } = auth();
 
-    if (!session)
+    if (!userId)
       return NextResponse.json(
         { message: 'Unauthorized' },
         { status: 401 },
@@ -20,7 +19,7 @@ export async function GET(
     const record = await prisma.record.findUnique({
       where: {
         id: params.recordId,
-        userId: session?.user?.id,
+        userId: userId,
       },
       select: {
         id: true,
@@ -46,14 +45,14 @@ export async function PATCH(
   { params }: { params: { recordId: string } },
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const { userId } = auth();
     const body = await req.json();
     const { amount, recordType, category, accountId, createdAt } =
       recordSchema.parse(body);
 
     const { recordId } = params;
 
-    if (!session?.user?.id) {
+    if (!userId) {
       return NextResponse.json(
         { message: 'Unauthorized' },
         { status: 401 },
@@ -63,7 +62,7 @@ export async function PATCH(
     const accountExists = await prisma.account.findUnique({
       where: {
         id: accountId,
-        userId: session.user.id,
+        userId: userId,
       },
       select: {
         type: true,
@@ -80,7 +79,7 @@ export async function PATCH(
     const recordExits = await prisma.record.findUnique({
       where: {
         id: recordId,
-        userId: session.user.id,
+        userId: userId,
       },
       select: {
         amount: true,
@@ -125,7 +124,7 @@ export async function PATCH(
       prisma.record.update({
         where: {
           id: recordId,
-          userId: session?.user?.id,
+          userId: userId,
         },
         data: {
           accountId,
@@ -139,7 +138,7 @@ export async function PATCH(
       prisma.account.update({
         where: {
           id: accountId,
-          userId: session?.user?.id,
+          userId: userId,
         },
         data: {
           currentBalance: {
@@ -162,8 +161,8 @@ export async function DELETE(
   { params }: { params: { recordId: string } },
 ) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.id) {
+    const { userId } = auth();
+    if (!userId) {
       return NextResponse.json(
         { message: 'Unauthorized' },
         { status: 401 },
@@ -173,7 +172,7 @@ export async function DELETE(
     const recordExits = await prisma.record.findUnique({
       where: {
         id: params.recordId,
-        userId: session.user.id,
+        userId: userId,
       },
       select: {
         amount: true,
@@ -192,7 +191,7 @@ export async function DELETE(
     const accountExists = await prisma.account.findUnique({
       where: {
         id: recordExits.accountId,
-        userId: session.user.id,
+        userId: userId,
       },
       select: {
         currentBalance: true,
@@ -210,7 +209,7 @@ export async function DELETE(
       prisma.account.update({
         where: {
           id: recordExits.accountId,
-          userId: session.user.id,
+          userId: userId,
         },
         data: {
           currentBalance: {
@@ -223,7 +222,7 @@ export async function DELETE(
       prisma.record.delete({
         where: {
           id: params.recordId,
-          userId: session.user.id,
+          userId: userId,
         },
       }),
     ]);

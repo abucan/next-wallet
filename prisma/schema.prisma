@@ -12,17 +12,6 @@ datasource db {
   shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
 }
 
-model User {
-  id        String    @id @default(uuid())
-  email     String    @unique
-  username  String    @unique
-  password  String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  accounts  Account[]
-  records   Record[]
-}
-
 model Account {
   id             String      @id @default(uuid())
   name           String
@@ -31,7 +20,6 @@ model Account {
   startedBalance Float
   currentBalance Float
   userId         String
-  user           User        @relation(fields: [userId], references: [id])
   accountRecords Record[]
   createdAt      DateTime    @default(now())
   updatedAt      DateTime    @updatedAt
@@ -42,7 +30,6 @@ model Record {
   accountId  String
   account    Account      @relation(fields: [accountId], references: [id])
   userId     String
-  user       User         @relation(fields: [userId], references: [id])
   recordType RecordType
   amount     Float
   category   CategoryType

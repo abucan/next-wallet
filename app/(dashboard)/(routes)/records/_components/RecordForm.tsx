@@ -6,11 +6,11 @@ import { useForm } from 'react-hook-form';
 import FormFieldInput from '@/components/FormInput';
 import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
-import AccountSelect from './AccountSelect';
-import DataSelect from './DateSelect';
+import AccountSelect from '../../../../../components/AccountSelect';
+import DataSelect from '../../../../../components/DateSelect';
 import { GenericFormProps } from '@/ts/interfaces/app_interfaces';
 import { RecordFormValues } from '@/ts/types/app_types';
-import CustomFormSelect from './CustomFormSelect';
+import CustomFormSelect from '../../../../../components/CustomFormSelect';
 import {
   categoryTypes,
   recordTypes,
@@ -19,10 +19,10 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { toast } from './ui/use-toast';
-import ActionDialog from './ActionDialog';
+import { toast } from '../../../../../components/ui/use-toast';
+import { ActionDialog } from '@/components/ActionDialog';
 
-const RecordForm = ({
+export const RecordForm = ({
   submit,
   isEditing,
   initialValues,
@@ -79,7 +79,7 @@ const RecordForm = ({
           onSubmit={form.handleSubmit(submit)}
           className='w-full flex flex-col items-center justify-center'
         >
-          <div className='w-1/2 space-y-4 border px-6 py-8 rounded-lg bg-card text-card-foreground shadow-sm'>
+          <div className='w-full space-y-4 border px-6 py-8 rounded-lg bg-card text-card-foreground shadow-sm'>
             <div className='flex flex-row gap-x-3 items-center'>
               <AccountSelect
                 name='accountId'
@@ -123,7 +123,9 @@ const RecordForm = ({
             />
             <div
               className={
-                isEditing ? 'w-full flex flex-row space-x-4' : 'w-1/4'
+                isEditing
+                  ? 'w-full flex flex-row space-x-4'
+                  : 'w-full'
               }
             >
               <Button
@@ -139,16 +141,6 @@ const RecordForm = ({
                   ? 'Adding...'
                   : 'Add record'}
               </Button>
-              {isEditing && (
-                <Button
-                  className='w-full'
-                  variant='destructive'
-                  type='button'
-                  onClick={() => setShowDialog(!showDialog)}
-                >
-                  Delete
-                </Button>
-              )}
             </div>
           </div>
         </form>
@@ -156,5 +148,3 @@ const RecordForm = ({
     </>
   );
 };
-
-export default RecordForm;

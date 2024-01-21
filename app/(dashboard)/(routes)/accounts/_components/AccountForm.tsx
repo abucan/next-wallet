@@ -9,10 +9,10 @@ import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import { GenericFormProps } from '@/ts/interfaces/app_interfaces';
 import { AccountFormValues } from '@/ts/types/app_types';
-import CustomFormSelect from './CustomFormSelect';
+import CustomFormSelect from '../../../../../components/CustomFormSelect';
 import { accountTypes } from '@/actions/get-account-type';
 
-const AccountForm = ({
+export const AccountForm = ({
   submit,
   isEditing,
   initialValues,
@@ -37,7 +37,7 @@ const AccountForm = ({
           onSubmit={form.handleSubmit(submit)}
           className='w-full flex flex-col items-center justify-center'
         >
-          <div className='w-1/2 space-y-4 border px-6 py-8 rounded-lg bg-card text-card-foreground shadow-sm'>
+          <div className='w-full space-y-4 border px-6 py-8 rounded-lg bg-card text-card-foreground shadow-sm'>
             <div className='flex flex-row gap-x-3 items-center'>
               <FormFieldInput
                 name='name'
@@ -63,7 +63,11 @@ const AccountForm = ({
               label='Account balance'
               placeholder='Enter the starting balance'
             />
-            <Button type='submit' disabled={isSubmitting}>
+            <Button
+              type='submit'
+              disabled={isSubmitting}
+              className='w-full'
+            >
               {isEditing
                 ? isLoadingSubmit
                   ? 'Editing...'
@@ -78,5 +82,3 @@ const AccountForm = ({
     </>
   );
 };
-
-export default AccountForm;
