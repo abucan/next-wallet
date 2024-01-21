@@ -1,9 +1,9 @@
-import { ProfileButton } from './ProfileButton';
 import { CopyPlus, FolderPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ModeToggle } from './ModeToggle';
 import { TrackExpenseButton } from '../(routes)/records/_components/TrackExpenseButton';
 import { AddAccountButton } from '../(routes)/accounts/_components/AddAccountButton';
+import { SignedIn, UserButton } from '@clerk/nextjs';
 
 const NavbarRoutes = () => {
   return (
@@ -31,7 +31,12 @@ const NavbarRoutes = () => {
         </AddAccountButton>
         <div className='ml-auto flex flex-row space-x-4 items-center justify-center'>
           <ModeToggle />
-          <ProfileButton />
+          <SignedIn>
+            <UserButton
+              afterSignOutUrl='/auth/sign-in'
+              userProfileMode='navigation'
+            />
+          </SignedIn>
         </div>
       </div>
     </>

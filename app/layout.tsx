@@ -49,12 +49,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html
-        lang='en'
-        className={`${roboto.variable} ${poppins.variable}`}
-        suppressHydrationWarning
-      >
+    <html
+      lang='en'
+      className={`${roboto.variable} ${poppins.variable}`}
+      suppressHydrationWarning
+    >
+      <ClerkProvider>
         <body>
           <QueryProvider>
             <ThemeProvider
@@ -67,7 +67,7 @@ export default function RootLayout({
           </QueryProvider>
           <Toaster />
         </body>
-      </html>
-    </ClerkProvider>
+      </ClerkProvider>
+    </html>
   );
 }
