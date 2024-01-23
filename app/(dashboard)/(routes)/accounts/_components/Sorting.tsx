@@ -7,11 +7,7 @@ import {
   SelectValue,
   SelectGroup,
 } from '@/components/ui/select';
-import {
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string';
 
 const sortingMap = {
@@ -19,8 +15,8 @@ const sortingMap = {
   za: 'Name (Z-A)',
   newest: 'Newest',
   oldest: 'Oldest',
-  highest: 'Highest balance',
-  lowest: 'Lowest balance',
+  // highest: 'Highest balance',
+  // lowest: 'Lowest balance',
 };
 
 const SortingOptions = () => {
@@ -39,7 +35,7 @@ const SortingOptions = () => {
           title: currentTitle,
         },
       },
-      { skipNull: true, skipEmptyString: true },
+      { skipNull: true, skipEmptyString: true }
     );
 
     router.push(url);

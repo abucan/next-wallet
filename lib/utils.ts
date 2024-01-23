@@ -16,10 +16,10 @@ export function getOrderByClause(sorting: string): AccountOrderBy {
       return { createdAt: 'desc' };
     case 'oldest':
       return { createdAt: 'asc' };
-    case 'highest':
-      return { balance: 'desc' };
-    case 'lowest':
-      return { balance: 'asc' };
+    // case 'highest':
+    //   return { balance: 'desc' };
+    // case 'lowest':
+    //   return { balance: 'asc' };
     default:
       return {};
   }
