@@ -20,7 +20,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 
-const DataSelect = ({
+export const DateSelect = ({
   name,
   label,
   placeholder,
@@ -76,5 +76,3 @@ const DataSelect = ({
     />
   );
 };
-
-export default DataSelect;

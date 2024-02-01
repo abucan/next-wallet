@@ -1,11 +1,11 @@
 import { CopyPlus, FolderPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ModeToggle } from './ModeToggle';
-import { TrackExpenseButton } from '../(routes)/records/_components/TrackExpenseButton';
-import { AddAccountButton } from '../(routes)/accounts/_components/AddAccountButton';
+import { ModeToggle } from './mode-toggle';
+import { TrackExpenseButton } from '../(routes)/records/_components/track-expense-button';
+import { AddAccountButton } from '../(routes)/accounts/_components/add-account-button';
 import { SignedIn, UserButton } from '@clerk/nextjs';
 
-const NavbarRoutes = () => {
+export const NavbarRoutes = () => {
   return (
     <>
       <div className='flex flex-row gap-x-4 items-center w-full'>
@@ -42,5 +42,3 @@ const NavbarRoutes = () => {
     </>
   );
 };
-
-export default NavbarRoutes;

@@ -3,14 +3,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { recordSchema } from '@/ts/form-schemas/form-schemas';
 import { useForm } from 'react-hook-form';
-import FormFieldInput from '@/components/FormInput';
+import { FormFieldInput } from '@/components/form-input';
 import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
-import AccountSelect from '../../../../../components/AccountSelect';
-import DataSelect from '../../../../../components/DateSelect';
+import { AccountSelect } from '@/components/account-select';
+import { DateSelect } from '@/components/date-select';
 import { GenericFormProps } from '@/ts/interfaces/app_interfaces';
 import { RecordFormValues } from '@/ts/types/app_types';
-import CustomFormSelect from '../../../../../components/CustomFormSelect';
+import { CustomFormSelect } from '@/components/custom-form-select';
 import {
   categoryTypes,
   recordTypes,
@@ -20,7 +20,7 @@ import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { toast } from '../../../../../components/ui/use-toast';
-import { ActionDialog } from '@/components/ActionDialog';
+import { ActionDialog } from '@/components/action-dialog';
 
 export const RecordForm = ({
   submit,
@@ -115,7 +115,7 @@ export const RecordForm = ({
               initialValue={initialValues?.category}
               options={categoryTypes}
             />
-            <DataSelect
+            <DateSelect
               name='createdAt'
               label='Record Date'
               placeholder='Pick a date'

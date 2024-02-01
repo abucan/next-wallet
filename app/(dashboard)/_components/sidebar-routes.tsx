@@ -1,6 +1,6 @@
 'use client';
 import { routes } from '@/lib/route';
-import SidebarItem from './SidebarItem';
+import { SidebarItem } from './sidebar-item';
 
 const SidebarTitle = ({ title }: { title: string }) => {
   return (
@@ -10,7 +10,7 @@ const SidebarTitle = ({ title }: { title: string }) => {
   );
 };
 
-const SidebarRoutes = () => {
+export const SidebarRoutes = () => {
   return (
     <div className='flex flex-col w-full'>
       <SidebarTitle title='MAIN MENU' />
@@ -27,5 +27,3 @@ const SidebarRoutes = () => {
     </div>
   );
 };
-
-export default SidebarRoutes;

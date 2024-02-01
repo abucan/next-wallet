@@ -1,10 +1,10 @@
-import { ThemeProvider } from '@/components/theme-provider';
 import './globals.css';
-import QueryProvider from '@/components/QueryProvider';
-import { ClerkProvider } from '@clerk/nextjs';
-import { Toaster } from '@/components/ui/toaster';
-import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import QueryProvider from '@/components/query-provider';
+import type { Metadata } from 'next';
+import { Toaster } from '@/components/ui/toaster';
+import { ClerkProvider } from '@clerk/nextjs';
+import { PropsWithChildren } from 'react';
 
 const roboto = localFont({
   src: [
@@ -43,11 +43,7 @@ export const metadata: Metadata = {
   description: 'Track your expenses and income',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <html
       lang='en'
@@ -56,18 +52,12 @@ export default function RootLayout({
     >
       <ClerkProvider>
         <body>
-          <QueryProvider>
-            <ThemeProvider
-              attribute='class'
-              defaultTheme='light'
-              disableTransitionOnChange
-            >
-              {children}
-            </ThemeProvider>
-          </QueryProvider>
+          <QueryProvider>{children}</QueryProvider>
           <Toaster />
         </body>
       </ClerkProvider>
     </html>
   );
-}
+};
+
+export default RootLayout;

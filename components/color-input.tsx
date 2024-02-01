@@ -1,6 +1,6 @@
 import { InputProps } from '@/ts/interfaces/app_interfaces';
-import { GenericInputProps } from '@/ts/types/app_types';
 import { useFormContext } from 'react-hook-form';
+import { accountColors } from '@/lib/colors';
 import {
   FormField,
   FormItem,
@@ -17,13 +17,12 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-const CustomFormSelect = ({
+export const ColorInput = ({
   name,
   label,
   placeholder,
   initialValue,
-  options,
-}: InputProps & { options: GenericInputProps[] }) => {
+}: InputProps) => {
   const { control } = useFormContext();
   return (
     <FormField
@@ -42,19 +41,21 @@ const CustomFormSelect = ({
               </SelectTrigger>
               <SelectContent className='max-h-[200px]'>
                 <SelectGroup>
-                  {options.map((item) => {
-                    const { icon: CurrentIcon } = item;
+                  {accountColors.map((item) => {
                     return (
                       <SelectItem
                         key={item.value}
                         value={item.value}
                         className='hover:cursor-pointer'
                       >
-                        <div className='flex flex-row items-center'>
-                          <span className='mr-1 p-1'>
-                            <CurrentIcon />
-                          </span>
-                          {item.label}
+                        <div className='flex flex-row items-center capitalize'>
+                          <div
+                            style={{
+                              backgroundColor: `${item.value}`,
+                            }}
+                            className='w-5 h-5 rounded-full mr-2 p-1 opacity-70'
+                          ></div>
+                          {item.value}
                         </div>
                       </SelectItem>
                     );
@@ -69,5 +70,3 @@ const CustomFormSelect = ({
     />
   );
 };
-
-export default CustomFormSelect;

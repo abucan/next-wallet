@@ -1,6 +1,6 @@
-import Logo from './Logo';
+import { Logo } from './site-logo';
 
-const MobileLogo = () => {
+export const MobileLogo = () => {
   return (
     <div className='lg:hidden w-full flex justify-center items-center'>
       <div className='flex items-center justify-start p-8'>
@@ -8,6 +8,4 @@ const MobileLogo = () => {
       </div>
     </div>
   );
-}
-
-export default MobileLogo;
+};

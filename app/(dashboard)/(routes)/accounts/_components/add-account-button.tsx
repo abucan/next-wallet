@@ -2,9 +2,9 @@
 
 import axios from 'axios';
 import { toast } from '@/components/ui/use-toast';
-import { RecordForm } from '@/app/(dashboard)/(routes)/records/_components/RecordForm';
-import { Record } from '@/models/record';
-import { RecordFormValues } from '@/ts/types/app_types';
+import { AccountForm } from '@/app/(dashboard)/(routes)/accounts/_components/account-form';
+import { Account } from '@prisma/client';
+import { AccountFormValues } from '@/ts/types/app_types';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { SubmitHandler } from 'react-hook-form';
@@ -15,23 +15,23 @@ import {
 } from '@/components/ui/dialog';
 import { useState } from 'react';
 
-interface TrackExpenseButtonProps {
+interface AddAccountButtonProps {
   children: React.ReactNode;
   mode?: 'modal' | 'redirect';
   asChild?: boolean;
 }
 
-export const TrackExpenseButton = ({
+export const AddAccountButton = ({
   children,
   mode,
   asChild,
-}: TrackExpenseButtonProps) => {
+}: AddAccountButtonProps) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
   const { mutate: createPost, status } = useMutation({
-    mutationFn: (record: Record) => {
-      return axios.post('/api/records', record);
+    mutationFn: (account: Account) => {
+      return axios.post('/api/accounts', account);
     },
     onError: (error) => {
       console.log(error);
@@ -39,11 +39,10 @@ export const TrackExpenseButton = ({
     onSuccess: () => {
       toast({
         title: 'Success',
-        description:
-          'Record created successfully.\nAccount updated successfully.',
+        description: 'Account created successfully.',
         variant: 'default',
       });
-      router.push('/records');
+      router.push('/accounts');
       router.refresh();
       setOpen(false);
     },
@@ -51,8 +50,9 @@ export const TrackExpenseButton = ({
 
   const isLoadingSubmit = status === 'pending';
 
-  const handleCreateRecord: SubmitHandler<RecordFormValues> = (
-    values: RecordFormValues,
+  // TODO
+  const handleCreateAccount: SubmitHandler<AccountFormValues> = (
+    values: any,
   ) => {
     createPost(values);
   };
@@ -62,8 +62,8 @@ export const TrackExpenseButton = ({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
         <DialogContent className='p-0 w-auto bg-transparent border-none'>
-          <RecordForm
-            submit={handleCreateRecord}
+          <AccountForm
+            submit={handleCreateAccount}
             isEditing={false}
             isLoadingSubmit={isLoadingSubmit}
           />

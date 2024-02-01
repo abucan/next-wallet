@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-const AccountSelect = ({
+export const AccountSelect = ({
   name,
   label,
   placeholder,
@@ -97,5 +97,3 @@ const AccountSelect = ({
     />
   );
 };
-
-export default AccountSelect;

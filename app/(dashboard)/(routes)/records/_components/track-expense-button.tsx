@@ -2,9 +2,9 @@
 
 import axios from 'axios';
 import { toast } from '@/components/ui/use-toast';
-import { AccountForm } from '@/app/(dashboard)/(routes)/accounts/_components/AccountForm';
-import { Account } from '@prisma/client';
-import { AccountFormValues } from '@/ts/types/app_types';
+import { RecordForm } from '@/app/(dashboard)/(routes)/records/_components/record-form';
+import { Record } from '@/models/record';
+import { RecordFormValues } from '@/ts/types/app_types';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { SubmitHandler } from 'react-hook-form';
@@ -15,23 +15,23 @@ import {
 } from '@/components/ui/dialog';
 import { useState } from 'react';
 
-interface AddAccountButtonProps {
+interface TrackExpenseButtonProps {
   children: React.ReactNode;
   mode?: 'modal' | 'redirect';
   asChild?: boolean;
 }
 
-export const AddAccountButton = ({
+export const TrackExpenseButton = ({
   children,
   mode,
   asChild,
-}: AddAccountButtonProps) => {
+}: TrackExpenseButtonProps) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
   const { mutate: createPost, status } = useMutation({
-    mutationFn: (account: Account) => {
-      return axios.post('/api/accounts', account);
+    mutationFn: (record: Record) => {
+      return axios.post('/api/records', record);
     },
     onError: (error) => {
       console.log(error);
@@ -39,10 +39,11 @@ export const AddAccountButton = ({
     onSuccess: () => {
       toast({
         title: 'Success',
-        description: 'Account created successfully.',
+        description:
+          'Record created successfully.\nAccount updated successfully.',
         variant: 'default',
       });
-      router.push('/accounts');
+      router.push('/records');
       router.refresh();
       setOpen(false);
     },
@@ -50,9 +51,8 @@ export const AddAccountButton = ({
 
   const isLoadingSubmit = status === 'pending';
 
-  // TODO
-  const handleCreateAccount: SubmitHandler<AccountFormValues> = (
-    values: any,
+  const handleCreateRecord: SubmitHandler<RecordFormValues> = (
+    values: RecordFormValues,
   ) => {
     createPost(values);
   };
@@ -62,8 +62,8 @@ export const AddAccountButton = ({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
         <DialogContent className='p-0 w-auto bg-transparent border-none'>
-          <AccountForm
-            submit={handleCreateAccount}
+          <RecordForm
+            submit={handleCreateRecord}
             isEditing={false}
             isLoadingSubmit={isLoadingSubmit}
           />

@@ -5,7 +5,7 @@ import { XCircle } from 'lucide-react';
 import { Separator } from './ui/separator';
 import { usePathname } from 'next/navigation';
 
-const PageHeader = ({
+export const PageHeader = ({
   title,
   href,
 }: {
@@ -36,5 +36,3 @@ const PageHeader = ({
     </>
   );
 };
-
-export default PageHeader;

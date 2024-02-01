@@ -3,13 +3,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { accountSchema } from '@/ts/form-schemas/form-schemas';
 import { useForm } from 'react-hook-form';
-import FormFieldInput from '@/components/FormInput';
-import ColorInput from '@/components/ColorInput';
+import { FormFieldInput } from '@/components/form-input';
+import { ColorInput } from '@/components/color-input';
 import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import { GenericFormProps } from '@/ts/interfaces/app_interfaces';
 import { AccountFormValues } from '@/ts/types/app_types';
-import CustomFormSelect from '../../../../../components/CustomFormSelect';
+import { CustomFormSelect } from '@/components/custom-form-select';
 import { accountTypes } from '@/actions/get-account-type';
 
 export const AccountForm = ({

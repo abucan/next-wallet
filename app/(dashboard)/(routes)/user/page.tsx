@@ -1,6 +1,6 @@
-import { currentUser } from '@clerk/nextjs';
-import { UserInfoBox } from './_components/UserInfoBox';
 import Image from 'next/image';
+import { currentUser } from '@clerk/nextjs';
+import { UserInfoBox } from './_components/user-info-box';
 
 const UserPage = async () => {
   const user = await currentUser();
@@ -27,7 +27,10 @@ const UserPage = async () => {
               />
               <div className='w-full'>
                 <UserInfoBox label='Username' text={user.username} />
-                <UserInfoBox label='First name' text={user.firstName} />
+                <UserInfoBox
+                  label='First name'
+                  text={user.firstName}
+                />
                 <UserInfoBox label='Last name' text={user.lastName} />
                 <UserInfoBox
                   label='Email address'

@@ -1,7 +1,7 @@
-import SidebarRoutes from './SidebarRoutes';
-import Logo from '@/components/Logo';
+import { Logo } from '@/components/site-logo';
+import { SidebarRoutes } from './sidebar-routes';
 
-const Sidebar = async () => {
+export const Sidebar = () => {
   return (
     <div className='h-full flex flex-col overflow-y-auto bg-sidebar-color items-center pt-5 border-r'>
       <div className='p-3'>
@@ -13,5 +13,3 @@ const Sidebar = async () => {
     </div>
   );
 };
-
-export default Sidebar;

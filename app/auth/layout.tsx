@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import main_banner from '@/public/main_banner.svg';
 import { PropsWithChildren } from 'react';
-import Logo from '@/components/Logo';
+import { Logo } from '@/components/site-logo';
 
 const AuthLayout = ({ children }: PropsWithChildren) => {
   return (

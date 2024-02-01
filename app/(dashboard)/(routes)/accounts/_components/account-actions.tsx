@@ -1,11 +1,11 @@
 'use client';
 
-import { EditAccountButton } from '@/app/(dashboard)/(routes)/accounts/_components/EditAccountButton';
-import { ActionDialog } from '@/components/ActionDialog';
+import axios from 'axios';
+import { EditAccountButton } from '@/app/(dashboard)/(routes)/accounts/_components/edit-account-button';
+import { ActionDialog } from '@/components/action-dialog';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
 import { Pencil, Trash } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';

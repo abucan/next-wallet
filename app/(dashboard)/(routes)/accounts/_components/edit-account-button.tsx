@@ -2,9 +2,9 @@
 
 import axios from 'axios';
 import { toast } from '@/components/ui/use-toast';
-import { RecordForm } from '@/app/(dashboard)/(routes)/records/_components/RecordForm';
-import { Record } from '@/models/record';
-import { RecordFormValues } from '@/ts/types/app_types';
+import { AccountForm } from '@/app/(dashboard)/(routes)/accounts/_components/account-form';
+import { Account } from '@prisma/client';
+import { AccountFormValues } from '@/ts/types/app_types';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { SubmitHandler } from 'react-hook-form';
@@ -16,35 +16,33 @@ import {
 import { useState } from 'react';
 import { Loader } from 'lucide-react';
 
-interface EditExpenseButtonProps {
+interface EditAccountButtonProps {
   children: React.ReactNode;
   mode?: 'modal' | 'redirect';
   asChild?: boolean;
-  recordId: string | undefined;
+  accountId?: string;
 }
 
-export const EditExpenseButton = ({
+export const EditAccountButton = ({
   children,
   mode,
   asChild,
-  recordId,
-}: EditExpenseButtonProps) => {
+  accountId,
+}: EditAccountButtonProps) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
-  const { data: record, isLoading } = useQuery<Record>({
-    queryKey: ['record', recordId],
+  const { data: account, isLoading } = useQuery({
+    queryKey: ['account', accountId],
     queryFn: async () => {
-      const response = await axios.get(`/api/records/${recordId}`);
-
+      const response = await axios.get(`/api/accounts/${accountId}`);
       return response.data;
     },
   });
 
   const { mutate: editAccount, status } = useMutation({
-    mutationFn: (record: Record) => {
-      console.log(record);
-      return axios.patch(`/api/records/${recordId}`, record);
+    mutationFn: (account: Account) => {
+      return axios.patch(`/api/accounts/${accountId}`, account);
     },
     onError: (error) => {
       console.log(error);
@@ -52,18 +50,19 @@ export const EditExpenseButton = ({
     onSuccess: () => {
       toast({
         title: 'Success',
-        description: 'Record updated successfully.',
+        description: 'Account updated successfully.',
         variant: 'default',
       });
-      router.push('/records');
+      router.push('/accounts');
       router.refresh();
+      setOpen(false);
     },
   });
 
   const isLoadingSubmit = status === 'pending';
 
-  const handleEditAccount: SubmitHandler<RecordFormValues> = (
-    values: RecordFormValues,
+  const handleEditAccount: SubmitHandler<AccountFormValues> = (
+    values: any,
   ) => {
     editAccount(values);
   };
@@ -78,12 +77,11 @@ export const EditExpenseButton = ({
               <Loader />
             </div>
           ) : (
-            <RecordForm
+            <AccountForm
               submit={handleEditAccount}
               isEditing={true}
               isLoadingSubmit={isLoadingSubmit}
-              initialValues={record}
-              id={record?.id}
+              initialValues={account}
             />
           )}
         </DialogContent>

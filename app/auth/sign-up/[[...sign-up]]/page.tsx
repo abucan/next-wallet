@@ -1,5 +1,5 @@
 import { SignUp } from '@clerk/nextjs';
-import MobileLogo from '@/components/MobileLogo';
+import { MobileLogo } from '@/components/mobile-logo';
 
 export default function Page() {
   return (

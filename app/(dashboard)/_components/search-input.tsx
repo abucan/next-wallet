@@ -9,7 +9,7 @@ import {
   useSearchParams,
 } from 'next/navigation';
 
-const SearchInput = () => {
+export const SearchInput = () => {
   const [value, setValue] = useState('');
 
   const searchParams = useSearchParams();
@@ -45,5 +45,3 @@ const SearchInput = () => {
     </div>
   );
 };
-
-export default SearchInput;

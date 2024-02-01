@@ -1,7 +1,7 @@
 import { getAccounts } from '@/actions/get-accounts';
-import SortingOptions from './_components/Sorting';
-import SearchInput from '../../_components/SearchInput';
-import { AccountsList } from './_components/AccountsList';
+import { AccountSorting } from './_components/account-sorting';
+import { AccountsList } from './_components/accounts-list';
+import { SearchInput } from '../../_components/search-input';
 
 // TODO useQuery
 const AccountsPage = async ({
@@ -22,7 +22,7 @@ const AccountsPage = async ({
       {accounts.length > 0 ? (
         <>
           <div className='flex items-center justify-between'>
-            <SortingOptions />
+            <AccountSorting />
             <SearchInput />
           </div>
           <AccountsList accounts={accounts} />

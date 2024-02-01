@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SidebarRoutesProps } from '@/ts/interfaces/app_interfaces';
 
-const SidebarItem = ({
+export const SidebarItem = ({
   icon: Icon,
   label,
   href,
@@ -41,5 +41,3 @@ const SidebarItem = ({
     </Link>
   );
 };
-
-export default SidebarItem;

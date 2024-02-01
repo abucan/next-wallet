@@ -1,5 +1,5 @@
 import { Account } from '@/models/account';
-import { AccountItem } from './AccountItem';
+import { AccountItem } from './account-item';
 
 export const AccountsList = ({
   accounts,

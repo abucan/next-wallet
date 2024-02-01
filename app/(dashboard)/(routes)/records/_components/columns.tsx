@@ -9,7 +9,7 @@ import {
 } from '@/actions/get-category-type';
 import { format } from 'date-fns';
 import { formatCurrency } from '@/lib/utils';
-import { RecordActions } from './RecordActions';
+import { RecordActions } from './record-actions';
 
 export const columns: ColumnDef<Record>[] = [
   {

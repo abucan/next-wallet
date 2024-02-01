@@ -1,4 +1,4 @@
-import { AccountActions } from './AccountActions';
+import { AccountActions } from './account-actions';
 import { Account } from '@/models/account';
 import {
   getAccountIcon,
