@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
-import { Sidebar } from './_components/sidebar';
-import { Navbar } from './_components/navbar';
+import { Navbar } from './_components/main-navbar';
+import { Sidebar } from './_components/main-sidebar';
 import { ThemeProvider } from '@/components/theme-provider';
 
 const DashboardLayout = ({ children }: PropsWithChildren) => {
