@@ -3,7 +3,7 @@ import localFont from 'next/font/local';
 import QueryProvider from '@/components/query-provider';
 import type { Metadata } from 'next';
 import { Toaster } from '@/components/ui/toaster';
-import { ClerkProvider } from '@clerk/nextjs';
+// import { ClerkProvider } from '@clerk/nextjs';
 import { PropsWithChildren } from 'react';
 
 const roboto = localFont({
@@ -50,12 +50,12 @@ const RootLayout = ({ children }: PropsWithChildren) => {
       className={`${roboto.variable} ${poppins.variable}`}
       suppressHydrationWarning
     >
-      <ClerkProvider>
-        <body>
-          <QueryProvider>{children}</QueryProvider>
-          <Toaster />
-        </body>
-      </ClerkProvider>
+      {/* <ClerkProvider> */}
+      <body>
+        <QueryProvider>{children}</QueryProvider>
+        <Toaster />
+      </body>
+      {/* </ClerkProvider> */}
     </html>
   );
 };

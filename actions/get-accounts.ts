@@ -2,13 +2,14 @@ import prisma from '@/lib/db';
 import { Account } from '@/models/account';
 import { getOrderByClause } from '@/lib/utils';
 import { SearchAccountProps } from '@/ts/interfaces/app_interfaces';
-import { auth } from '@clerk/nextjs';
+// import { auth } from '@clerk/nextjs';
 
 export const getAccounts = async ({
   sort = 'az',
   title,
 }: SearchAccountProps): Promise<Account[]> => {
-  const { userId } = auth();
+  // const { userId } = auth();
+  const userId = '5554354';
 
   if (!userId) return [];
 

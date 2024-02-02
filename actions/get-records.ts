@@ -1,9 +1,10 @@
 import prisma from '@/lib/db';
 import { Record } from '@/models/record';
-import { auth } from '@clerk/nextjs';
+// import { auth } from '@clerk/nextjs';
 
 export const getRecords = async (): Promise<Record[]> => {
-  const { userId } = auth();
+  // const { userId } = auth();
+  const userId = '5554354';
 
   if (!userId) return [];
 

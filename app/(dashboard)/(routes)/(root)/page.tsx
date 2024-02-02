@@ -1,15 +1,14 @@
-import { auth } from '@clerk/nextjs';
+// import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
 export default function Dashboard() {
-  const { userId } = auth();
+  // const { userId } = auth();
+  const userId = '5554354';
 
-  if (!userId) return redirect('/auth/sign-in');
+  // if (!userId) return redirect('/auth/sign-in');
   return (
     <div className=''>
-      <h1 className='font-mono font-[500] text-2xl text-tertiary'>
-        Dashboard
-      </h1>
+      <h1 className='font-mono font-[500] text-2xl text-tertiary'>Dashboard</h1>
     </div>
   );
 }

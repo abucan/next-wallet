@@ -1,17 +1,17 @@
 import Image from 'next/image';
-import { currentUser } from '@clerk/nextjs';
+// import { currentUser } from '@clerk/nextjs';
 import { UserInfoBox } from './_components/user-info-box';
 
 const UserPage = async () => {
-  const user = await currentUser();
-  console.log(user);
+  // const user = await currentUser();
+  // console.log(user);
 
   return (
     <div className='space-y-10 w-full'>
       <h1 className='font-mono font-[500] text-2xl text-tertiary'>
         Your Profile
       </h1>
-      <div className='flex items-start justify-center flex-col w-full max-w-full'>
+      {/* <div className='flex items-start justify-center flex-col w-full max-w-full'>
         {user &&
           user.username &&
           user.firstName &&
@@ -39,7 +39,7 @@ const UserPage = async () => {
               </div>
             </div>
           )}
-      </div>
+      </div> */}
     </div>
   );
 };
