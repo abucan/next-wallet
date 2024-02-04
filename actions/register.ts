@@ -1,29 +1,29 @@
 'use server';
 
-// import { getUserByEmail } from '@/data/user';
-import prisma from '@/lib/db';
-// import { sendVerificationEmail } from '@/lib/mail';
-// import { generateVerificationToken } from '@/lib/tokens';
-// import { RegisterSchema } from '@/schemas';
-import bcrypt from 'bcrypt';
 import * as z from 'zod';
+import prisma from '@/lib/db';
+import bcrypt from 'bcrypt';
+import { RegisterSchema } from '@/ts/form-schemas/form-schemas';
+import { getUserByEmail } from '@/data/user';
 
-export const register = async (values: any) => {
-  const validatedFields = values;
+export const register = async (
+  values: z.infer<typeof RegisterSchema>,
+) => {
+  const validatedFields = RegisterSchema.safeParse(values);
 
-  // if (!validatedFields.success) {
-  //   return { error: 'Invalid fields!' };
-  // }
+  if (!validatedFields.success) {
+    return { error: 'Invalid fields!' };
+  }
 
-  const { email, password, name } = validatedFields;
+  const { email, password, name } = validatedFields.data;
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // check if email is not already taken
-  //   const existingUser = await getUserByEmail(email);
+  const existingUser = await getUserByEmail(email);
 
-  //   if (existingUser) {
-  //     return { error: 'Email already taken!' };
-  //   }
+  if (existingUser) {
+    return { error: 'Email already taken!' };
+  }
 
   await prisma.user.create({
     data: {
@@ -32,13 +32,6 @@ export const register = async (values: any) => {
       name,
     },
   });
-
-  //   const verificationToken = await generateVerificationToken(email);
-
-  //   await sendVerificationEmail(
-  //     verificationToken.email,
-  //     verificationToken.token,
-  //   );
 
   return { success: 'Confirmation email sent!' };
 };

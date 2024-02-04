@@ -1,25 +1,25 @@
 import prisma from '@/lib/db';
 import { NextResponse } from 'next/server';
 import { accountSchema } from '@/ts/form-schemas/form-schemas';
-import { auth } from '@clerk/nextjs';
+import { auth } from '@/auth';
 
 export async function GET(
   req: Request,
   { params }: { params: { accountId: string } },
 ) {
   try {
-    const { userId } = auth();
+    const session = await auth();
 
-    if (!userId)
+    if (!session?.user.id)
       return NextResponse.json(
         { message: 'Unauthorized' },
         { status: 401 },
       );
 
-    const account = await prisma.account.findUnique({
+    const account = await prisma.myAccount.findUnique({
       where: {
         id: params.accountId,
-        userId: userId,
+        userId: session.user.id,
       },
     });
 
@@ -42,18 +42,19 @@ export async function DELETE(
   { params }: { params: { accountId: string } },
 ) {
   try {
-    const { userId } = auth();
-    if (!userId) {
+    const session = await auth();
+
+    if (!session?.user.id) {
       return NextResponse.json(
         { message: 'Unauthorized' },
         { status: 401 },
       );
     }
 
-    const account = await prisma.account.findUnique({
+    const account = await prisma.myAccount.findUnique({
       where: {
         id: params.accountId,
-        userId: userId,
+        userId: session.user.id,
       },
     });
 
@@ -68,13 +69,13 @@ export async function DELETE(
       prisma.record.deleteMany({
         where: {
           accountId: account.id,
-          userId: userId,
+          userId: session.user.id,
         },
       }),
-      prisma.account.delete({
+      prisma.myAccount.delete({
         where: {
           id: params.accountId,
-          userId: userId,
+          userId: session.user.id,
         },
       }),
     ]);
@@ -93,14 +94,14 @@ export async function PATCH(
   { params }: { params: { accountId: string } },
 ) {
   try {
-    const { userId } = auth();
+    const session = await auth();
     const body = await req.json();
     const { name, color, type, startedBalance } =
       accountSchema.parse(body);
 
     const { accountId } = params;
 
-    if (!userId) {
+    if (!session?.user.id) {
       return NextResponse.json(
         { message: 'Unauthorized' },
         { status: 401 },
@@ -108,10 +109,10 @@ export async function PATCH(
     }
 
     const newStartedBalance = Number(startedBalance * 100);
-    const account = await prisma.account.update({
+    const account = await prisma.myAccount.update({
       where: {
         id: accountId,
-        userId: userId,
+        userId: session.user.id,
       },
       data: {
         name,

@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { ModeToggle } from './mode-toggle';
 import { TrackExpenseButton } from '../(routes)/records/_components/track-expense-button';
 import { AddAccountButton } from '../(routes)/accounts/_components/add-account-button';
-// import { SignedIn, UserButton } from '@clerk/nextjs';
+import { UserButton } from './user-button';
 
 export const NavbarRoutes = () => {
   return (
@@ -31,12 +31,7 @@ export const NavbarRoutes = () => {
         </AddAccountButton>
         <div className='ml-auto flex flex-row space-x-4 items-center justify-center'>
           <ModeToggle />
-          {/* <SignedIn>
-            <UserButton
-              afterSignOutUrl='/auth/sign-in'
-              userProfileMode='navigation'
-            />
-          </SignedIn> */}
+          <UserButton />
         </div>
       </div>
     </>

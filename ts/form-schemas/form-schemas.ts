@@ -4,7 +4,25 @@ import {
   AccountType,
   RecordType,
   CategoryType,
+  UserRole,
 } from '@prisma/client';
+
+export const RegisterSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(6, {
+    message: 'Password must be at least 6 characters long',
+  }),
+  name: z.string().min(1, {
+    message: 'Name is required',
+  }),
+});
+
+export const LoginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(1, {
+    message: 'Password is required',
+  }),
+});
 
 export const accountSchema = z.object({
   name: z.string().min(3, {
@@ -24,3 +42,35 @@ export const recordSchema = z.object({
   accountId: z.string(),
   createdAt: z.any(),
 });
+
+export const SettingsSchema = z
+  .object({
+    name: z.optional(z.string()),
+    email: z.optional(z.string().email()),
+    password: z.optional(z.string().min(6)),
+    newPassword: z.optional(z.string().min(6)),
+  })
+  .refine(
+    (data) => {
+      if (data.password && !data.newPassword) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message: 'New password is required.',
+      path: ['newPassword'],
+    },
+  )
+  .refine(
+    (data) => {
+      if (!data.password && data.newPassword) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message: 'Password is required.',
+      path: ['password'],
+    },
+  );

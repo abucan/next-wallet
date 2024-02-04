@@ -1,9 +1,12 @@
 'use client';
 
 import * as z from 'zod';
-import { useForm } from 'react-hook-form';
-import { CardWrapper } from './card-wrapper';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { register } from '@/actions/register';
+import { useState, useTransition } from 'react';
+import { RegisterSchema } from '@/ts/form-schemas/form-schemas';
+import { CardWrapper } from './card-wrapper';
 import {
   Form,
   FormControl,
@@ -12,21 +15,18 @@ import {
   FormMessage,
   FormField,
 } from '../ui/form';
-// import { RegisterSchema } from '@/schemas';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
-// import { FormError } from '../form-error';
-// import { FormSuccess } from '../form-success';
-import { useState, useTransition } from 'react';
-import { register } from '@/actions/register';
+import { FormError } from '../form-error';
+import { FormSuccess } from '../form-success';
 
 export const RegisterForm = () => {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | undefined>('');
   const [success, setSuccess] = useState<string | undefined>('');
 
-  const form = useForm({
-    // resolver: zodResolver(),
+  const form = useForm<z.infer<typeof RegisterSchema>>({
+    resolver: zodResolver(RegisterSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -35,7 +35,7 @@ export const RegisterForm = () => {
     // mode: 'all',
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: z.infer<typeof RegisterSchema>) => {
     setError('');
     setSuccess('');
 
@@ -55,7 +55,10 @@ export const RegisterForm = () => {
       showSocial
     >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className='space-y-6'
+        >
           <div className='space-y-4'>
             <FormField
               control={form.control}
@@ -111,9 +114,13 @@ export const RegisterForm = () => {
               )}
             />
           </div>
-          {/* <FormError message={error} />
-          <FormSuccess message={success} /> */}
-          <Button type='submit' className='w-full' disabled={isPending}>
+          <FormError message={error} />
+          <FormSuccess message={success} />
+          <Button
+            type='submit'
+            className='w-full'
+            disabled={isPending}
+          >
             Create an account
           </Button>
         </form>

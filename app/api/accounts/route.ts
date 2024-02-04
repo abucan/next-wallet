@@ -1,24 +1,24 @@
 import prisma from '@/lib/db';
 import { NextResponse } from 'next/server';
 import { accountSchema } from '@/ts/form-schemas/form-schemas';
-import { auth } from '@clerk/nextjs';
+import { auth } from '@/auth';
 
 export async function GET(
   req: Request,
   { params }: { params: { id: string } },
 ) {
   try {
-    const { userId } = auth();
+    const session = await auth();
 
-    if (!userId)
+    if (!session?.user.id)
       return NextResponse.json(
         { message: 'Unauthorized' },
         { status: 401 },
       );
 
-    const accounts = await prisma.account.findMany({
+    const accounts = await prisma.myAccount.findMany({
       where: {
-        userId: userId,
+        userId: session.user.id,
       },
     });
 
@@ -31,26 +31,26 @@ export async function GET(
 
 export async function POST(req: Request) {
   try {
-    const { userId } = auth();
+    const session = await auth();
 
     const body = await req.json();
     const { name, color, type, startedBalance } =
       accountSchema.parse(body);
 
-    if (!userId)
+    if (!session?.user.id)
       return NextResponse.json(
         { message: 'Unauthorized' },
         { status: 401 },
       );
     const numBalance = Number(startedBalance * 100);
-    const post = await prisma.account.create({
+    const post = await prisma.myAccount.create({
       data: {
         name,
         color,
         type,
         startedBalance: numBalance,
         currentBalance: 0,
-        userId: userId,
+        userId: session.user.id,
       },
     });
     return NextResponse.json(post, { status: 201 });

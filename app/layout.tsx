@@ -3,8 +3,9 @@ import localFont from 'next/font/local';
 import QueryProvider from '@/components/query-provider';
 import type { Metadata } from 'next';
 import { Toaster } from '@/components/ui/toaster';
-// import { ClerkProvider } from '@clerk/nextjs';
 import { PropsWithChildren } from 'react';
+import { SessionProvider } from 'next-auth/react';
+import { auth } from '@/auth';
 
 const roboto = localFont({
   src: [
@@ -43,20 +44,21 @@ export const metadata: Metadata = {
   description: 'Track your expenses and income',
 };
 
-const RootLayout = ({ children }: PropsWithChildren) => {
+const RootLayout = async ({ children }: PropsWithChildren) => {
+  const session = await auth();
   return (
-    <html
-      lang='en'
-      className={`${roboto.variable} ${poppins.variable}`}
-      suppressHydrationWarning
-    >
-      {/* <ClerkProvider> */}
-      <body>
-        <QueryProvider>{children}</QueryProvider>
-        <Toaster />
-      </body>
-      {/* </ClerkProvider> */}
-    </html>
+    <SessionProvider session={session}>
+      <html
+        lang='en'
+        className={`${roboto.variable} ${poppins.variable}`}
+        suppressHydrationWarning
+      >
+        <body>
+          <QueryProvider>{children}</QueryProvider>
+          <Toaster />
+        </body>
+      </html>
+    </SessionProvider>
   );
 };
 

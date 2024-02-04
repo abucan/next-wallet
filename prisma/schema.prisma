@@ -25,11 +25,11 @@ model User {
   image              String?
   password           String?
   role               UserRole      @default(USER)
-  accounts           UserAccount[]
+  accounts           Account[]
   isTwoFactorEnabled Boolean       @default(false)
 }
 
-model UserAccount {
+model Account {
   id                String  @id @default(cuid())
   userId            String
   type              String
@@ -48,7 +48,7 @@ model UserAccount {
   @@unique([provider, providerAccountId])
 }
 
-model Account {
+model MyAccount {
   id             String      @id @default(uuid())
   name           String
   type           AccountType
@@ -64,7 +64,7 @@ model Account {
 model Record {
   id          String       @id @default(uuid())
   accountId   String
-  account     Account      @relation(fields: [accountId], references: [id])
+  account     MyAccount      @relation(fields: [accountId], references: [id])
   userId      String
   recordType  RecordType
   amount      Float

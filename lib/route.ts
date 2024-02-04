@@ -24,7 +24,7 @@ export const routes: SidebarRoutesProps[] = [
   },
   {
     icon: User,
-    label: 'User',
-    href: '/user',
+    label: 'Profile',
+    href: '/profile',
   },
 ];
