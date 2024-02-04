@@ -4,7 +4,9 @@
 
 ## TODO
 
-- fix the caching of queries (DELETE)
-- add some stats for dashboard for the accounts, for example number of them or the preview
+-- fix the caching of queries (DELETE)
+-- add some stats for dashboard for the accounts, for example number of them or the preview
 -- revalidate paths using query
+-- redirect after deleting account
+-- fix the message when date is not selected when creating record
 ```

@@ -1,16 +1,16 @@
+import { auth } from '@/auth';
 import prisma from '@/lib/db';
 import { Record } from '@/models/record';
-import { auth } from '@clerk/nextjs';
 
 export const getRecords = async (): Promise<Record[]> => {
-  const { userId } = auth();
+  const session = await auth();
 
-  if (!userId) return [];
+  if (!session?.user.id) return [];
 
   try {
     const records = await prisma.record.findMany({
       where: {
-        userId: userId,
+        userId: session.user.id,
       },
       select: {
         id: true,

@@ -12,7 +12,43 @@ datasource db {
   shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
 }
 
+enum UserRole {
+  USER
+  ADMIN
+}
+
+model User {
+  id                 String        @id @default(cuid())
+  name               String?
+  email              String?       @unique
+  emailVerified      DateTime?
+  image              String?
+  password           String?
+  role               UserRole      @default(USER)
+  accounts           Account[]
+  isTwoFactorEnabled Boolean       @default(false)
+}
+
 model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model MyAccount {
   id             String      @id @default(uuid())
   name           String
   type           AccountType
@@ -26,16 +62,16 @@ model Account {
 }
 
 model Record {
-  id         String       @id @default(uuid())
-  accountId  String
-  account    Account      @relation(fields: [accountId], references: [id])
-  userId     String
-  recordType RecordType
-  amount     Float
-  category   CategoryType
+  id          String       @id @default(uuid())
+  accountId   String
+  account     MyAccount      @relation(fields: [accountId], references: [id])
+  userId      String
+  recordType  RecordType
+  amount      Float
+  category    CategoryType
   accountName AccountType
-  createdAt  DateTime     
-  updatedAt  DateTime     @updatedAt
+  createdAt   DateTime
+  updatedAt   DateTime     @updatedAt
 }
 
 enum CategoryType {

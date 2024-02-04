@@ -1,26 +1,26 @@
 import prisma from '@/lib/db';
 import { NextResponse } from 'next/server';
 import { recordSchema } from '@/ts/form-schemas/form-schemas';
-import { auth } from '@clerk/nextjs';
+import { auth } from '@/auth';
 
 export async function POST(req: Request) {
   try {
-    const { userId } = auth();
+    const session = await auth();
 
     const body = await req.json();
     const { accountId, recordType, amount, category, createdAt } =
       recordSchema.parse(body);
 
-    if (!userId)
+    if (!session?.user.id)
       return NextResponse.json(
         { message: 'Unauthorized' },
         { status: 401 },
       );
 
-    const accountExists = await prisma.account.findUnique({
+    const accountExists = await prisma.myAccount.findUnique({
       where: {
         id: accountId,
-        userId: userId,
+        userId: session.user.id,
       },
       select: {
         type: true,
@@ -42,12 +42,12 @@ export async function POST(req: Request) {
           recordType: recordType,
           amount: numAmount,
           category: category,
-          userId: userId,
+          userId: session.user.id,
           createdAt: new Date(createdAt),
           accountName: accountExists.type,
         },
       }),
-      prisma.account.update({
+      prisma.myAccount.update({
         where: {
           id: accountId,
         },

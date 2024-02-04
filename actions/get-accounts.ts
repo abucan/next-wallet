@@ -2,20 +2,20 @@ import prisma from '@/lib/db';
 import { Account } from '@/models/account';
 import { getOrderByClause } from '@/lib/utils';
 import { SearchAccountProps } from '@/ts/interfaces/app_interfaces';
-import { auth } from '@clerk/nextjs';
+import { auth } from '@/auth';
 
 export const getAccounts = async ({
   sort = 'az',
   title,
 }: SearchAccountProps): Promise<Account[]> => {
-  const { userId } = auth();
+  const session = await auth();
 
-  if (!userId) return [];
+  if (!session?.user.id) return [];
 
   try {
-    const accounts = await prisma.account.findMany({
+    const accounts = await prisma.myAccount.findMany({
       where: {
-        userId: userId,
+        userId: session.user.id,
         name: {
           contains: title,
         },
