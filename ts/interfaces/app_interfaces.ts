@@ -1,13 +1,14 @@
 import { LucideIcon } from 'lucide-react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 
-export interface AuthFormCard {
+export interface AuthFormCardProps {
   children: React.ReactNode;
   cardTitle: string;
   cardDescription: string;
   cardFooterText: string;
   href: string;
   linkText: string;
+  showSocial?: boolean;
 }
 
 export interface GenericFormProps<T extends FieldValues> {
