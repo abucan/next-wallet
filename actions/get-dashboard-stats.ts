@@ -83,7 +83,8 @@ export const getFinancialData = async (): Promise<FinancialData> => {
     const incomePrec =
       (incomeTotal?._sum.amount ?? 0) / (cashFlow?._sum.amount ?? 1);
     const expensesPrec =
-      (expensesTotal?._sum.amount ?? 0) / (cashFlow?._sum.amount ?? 1);
+      (expensesTotal?._sum.amount ?? 0) /
+      (cashFlow?._sum.amount ?? 1);
 
     const income = incomeTotal?._sum.amount ?? 0;
     const expenses = expensesTotal?._sum.amount ?? 0;
@@ -93,8 +94,9 @@ export const getFinancialData = async (): Promise<FinancialData> => {
       totalAccounts: totalAccounts,
       totalExpenses: totalExpenses,
       totalBalance: totalBalance.reduce(
-        (acc, record) => acc + (record.currentBalance + record.startedBalance),
-        0
+        (acc, record) =>
+          acc + (record.currentBalance + record.startedBalance),
+        0,
       ),
       cashFlow: {
         totalCashFlow: cashFlow._sum.amount ?? 0,
@@ -121,7 +123,7 @@ export interface ChartProps {
   data: ChartDataItem[];
 }
 
-export const getGraphData = async (): Promise<ChartDataItem[]> => {
+export const getExpenses = async (): Promise<ChartDataItem[]> => {
   const session = await auth();
 
   if (!session?.user.id) return [];
@@ -131,12 +133,49 @@ export const getGraphData = async (): Promise<ChartDataItem[]> => {
       by: ['createdAt'],
       where: {
         userId: session.user.id,
+        recordType: RecordType.EXPENSE,
       },
       _sum: {
         amount: true,
       },
     });
     return groupRecords as ChartDataItem[];
+  } catch (error) {
+    console.error('[GET_GRAPH_DATA]', error);
+    return [];
+  }
+};
+
+export interface PieDataItem {
+  category: string;
+  _sum: {
+    amount: number | null;
+  };
+}
+
+export interface PieProps {
+  data: PieDataItem[];
+}
+
+export const getExpensesByCategory = async (): Promise<
+  PieDataItem[]
+> => {
+  const session = await auth();
+
+  if (!session?.user.id) return [];
+
+  try {
+    const groupRecords = await prisma.record.groupBy({
+      by: ['category'],
+      where: {
+        userId: session.user.id,
+        recordType: RecordType.EXPENSE,
+      },
+      _sum: {
+        amount: true,
+      },
+    });
+    return groupRecords as PieDataItem[];
   } catch (error) {
     console.error('[GET_GRAPH_DATA]', error);
     return [];

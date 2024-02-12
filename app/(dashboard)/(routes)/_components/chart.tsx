@@ -11,41 +11,65 @@ import {
   BarChart,
   Bar,
   Legend,
+  LineChart,
+  CartesianGrid,
+  Line,
 } from 'recharts';
 import moment from 'moment';
 import {
   Card,
+  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
 import { Calendar } from 'lucide-react';
+import { Separator } from '@/components/ui/separator';
 
 const AreaChartPlot = ({ data }: ChartProps) => {
   function formatXAxis(tickItem: any) {
     // If using moment.js
-    return moment(tickItem).format('MMM Do YY');
+    return moment(tickItem).format('MMM Do');
   }
   return (
-    <Card className='flex flex-col items-start justify-center'>
+    <Card className='h-72'>
       <CardHeader className='space-y-2'>
-        <CardTitle>
+        <CardTitle className='flex flex-row space-x-2 items-center justify-start'>
           <div className='bg-gray-200 rounded p-1 w-10 flex items-center justify-center'>
             <Calendar />
           </div>
+          <p className='text-lg font-mono font-[300]'>
+            Expenses by Date
+          </p>
         </CardTitle>
+        <Separator />
         <CardDescription className='text-base font-mono text-tertiary'>
-          DATE
+          This Month
         </CardDescription>
       </CardHeader>
-      <ResponsiveContainer className='p-6'>
-        <BarChart width={730} height={250} data={data}>
+      <CardContent>
+        <LineChart
+          width={450}
+          height={150}
+          data={data}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray='3 3' />
           <XAxis dataKey='createdAt' tickFormatter={formatXAxis} />
           <YAxis />
-          <Tooltip />
-          <Bar dataKey='_sum.amount' fill='#bf2138' />
-        </BarChart>
-      </ResponsiveContainer>
+          <Line
+            type='monotone'
+            dataKey='_sum.amount'
+            stroke='#8884d8'
+            strokeWidth={2}
+          />
+        </LineChart>
+      </CardContent>
     </Card>
   );
 };

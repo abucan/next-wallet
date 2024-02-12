@@ -26,7 +26,7 @@ export const CashFlowWidget = ({
   expensesPrec,
 }: CashFlowWidgetProps) => {
   return (
-    <Card className=''>
+    <Card className='h-72'>
       <CardHeader className='space-y-2'>
         <CardTitle className='flex flex-row space-x-2 items-center justify-start'>
           <div className='bg-gray-200 rounded p-1 w-10 flex items-center justify-center'>
@@ -45,14 +45,18 @@ export const CashFlowWidget = ({
         <div className='flex flex-col items-start justify-start space-y-1'>
           <div className='flex flex-row w-full justify-between'>
             <p className='text-sm'>Income</p>
-            <p className='text-sm font-mono'>+ {formatCurrency(income)}</p>
+            <p className='text-sm font-mono'>
+              + {formatCurrency(income)}
+            </p>
           </div>
           <Progress value={incomePrec} max={100} />
         </div>
         <div className='flex flex-col items-start justify-start space-y-1'>
           <div className='flex flex-row w-full justify-between'>
             <p className='text-sm'>Expenses</p>
-            <p className='text-sm font-mono'>- {formatCurrency(expenses)}</p>
+            <p className='text-sm font-mono'>
+              - {formatCurrency(expenses)}
+            </p>
           </div>
           <Progress value={expensesPrec} max={100} />
         </div>
