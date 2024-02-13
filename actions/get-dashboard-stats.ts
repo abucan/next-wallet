@@ -1,20 +1,11 @@
 import prisma from '@/lib/db';
 import { auth } from '@/auth';
 import { RecordType } from '@prisma/client';
-
-interface FinancialData {
-  totalRecords: number;
-  totalAccounts: number;
-  totalExpenses: number;
-  totalBalance: number;
-  cashFlow: {
-    totalCashFlow: number;
-    income: number;
-    expenses: number;
-    incomePrec: number;
-    expensesPrec: number;
-  };
-}
+import {
+  BarDataItem,
+  ChartDataItem,
+  FinancialData,
+} from '@/ts/interfaces/app_interfaces';
 
 export const getFinancialData = async (): Promise<FinancialData> => {
   const session = await auth();
@@ -83,8 +74,7 @@ export const getFinancialData = async (): Promise<FinancialData> => {
     const incomePrec =
       (incomeTotal?._sum.amount ?? 0) / (cashFlow?._sum.amount ?? 1);
     const expensesPrec =
-      (expensesTotal?._sum.amount ?? 0) /
-      (cashFlow?._sum.amount ?? 1);
+      (expensesTotal?._sum.amount ?? 0) / (cashFlow?._sum.amount ?? 1);
 
     const income = incomeTotal?._sum.amount ?? 0;
     const expenses = expensesTotal?._sum.amount ?? 0;
@@ -94,9 +84,8 @@ export const getFinancialData = async (): Promise<FinancialData> => {
       totalAccounts: totalAccounts,
       totalExpenses: totalExpenses,
       totalBalance: totalBalance.reduce(
-        (acc, record) =>
-          acc + (record.currentBalance + record.startedBalance),
-        0,
+        (acc, record) => acc + (record.currentBalance + record.startedBalance),
+        0
       ),
       cashFlow: {
         totalCashFlow: cashFlow._sum.amount ?? 0,
@@ -111,17 +100,6 @@ export const getFinancialData = async (): Promise<FinancialData> => {
     return {} as FinancialData;
   }
 };
-
-export interface ChartDataItem {
-  createdAt: Date | string[]; // Adapt the type based on the actual data
-  _sum: {
-    amount: number | null;
-  };
-}
-
-export interface ChartProps {
-  data: ChartDataItem[];
-}
 
 export const getExpenses = async (): Promise<ChartDataItem[]> => {
   const session = await auth();
@@ -146,20 +124,7 @@ export const getExpenses = async (): Promise<ChartDataItem[]> => {
   }
 };
 
-export interface PieDataItem {
-  category: string;
-  _sum: {
-    amount: number | null;
-  };
-}
-
-export interface PieProps {
-  data: PieDataItem[];
-}
-
-export const getExpensesByCategory = async (): Promise<
-  PieDataItem[]
-> => {
+export const getExpensesByCategory = async (): Promise<BarDataItem[]> => {
   const session = await auth();
 
   if (!session?.user.id) return [];
@@ -175,7 +140,7 @@ export const getExpensesByCategory = async (): Promise<
         amount: true,
       },
     });
-    return groupRecords as PieDataItem[];
+    return groupRecords as BarDataItem[];
   } catch (error) {
     console.error('[GET_GRAPH_DATA]', error);
     return [];

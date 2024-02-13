@@ -5,11 +5,12 @@ import {
 } from '@/actions/get-dashboard-stats';
 import { DashWidget } from '../_components/dash-widget';
 import { CashFlowWidget } from '../_components/cash-flow-widget';
-import { ArrowDown, ArrowUpDown, Wallet } from 'lucide-react';
+import { DashLineChart } from '../_components/line-chart';
+import { DashBarChart } from '../_components/bar-chart';
+import { RecordsWidget } from '../_components/records-widget';
 import { formatCurrency } from '@/lib/utils';
-import AreaChartPlot from '../_components/chart';
 import { GiBank } from 'react-icons/gi';
-import PieChartWidget from '../_components/pie-chart';
+import { ArrowDown, ArrowUpDown, Wallet } from 'lucide-react';
 
 export default async function Dashboard() {
   const data = await getFinancialData();
@@ -18,9 +19,7 @@ export default async function Dashboard() {
 
   return (
     <div className='space-y-8 md:pr-12 mb-4'>
-      <h1 className='font-mono font-[500] text-2xl text-tertiary'>
-        Dashboard
-      </h1>
+      <h1 className='font-mono font-[500] text-2xl text-tertiary'>Dashboard</h1>
       <div className='flex gap-4'>
         <div className='flex-1'>
           <DashWidget
@@ -63,12 +62,15 @@ export default async function Dashboard() {
           />
         </div>
         <div className='w-1/2'>
-          <AreaChartPlot data={graph_data} />
+          <DashLineChart data={graph_data} />
         </div>
       </div>
-      <div>
+      <div className='flex gap-4'>
         <div className='w-1/2'>
-          <PieChartWidget data={graph_data_2} />
+          <DashBarChart data={graph_data_2} />
+        </div>
+        <div className='w-1/2'>
+          <RecordsWidget />
         </div>
       </div>
     </div>

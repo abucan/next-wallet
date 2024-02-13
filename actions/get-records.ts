@@ -2,7 +2,7 @@ import { auth } from '@/auth';
 import prisma from '@/lib/db';
 import { Record } from '@/models/record';
 
-export const getRecords = async (): Promise<Record[]> => {
+export const getRecords = async (limit?: number): Promise<Record[]> => {
   const session = await auth();
 
   if (!session?.user.id) return [];
@@ -21,6 +21,7 @@ export const getRecords = async (): Promise<Record[]> => {
         createdAt: true,
         updatedAt: true,
       },
+      take: limit,
     });
     return records;
   } catch (error) {

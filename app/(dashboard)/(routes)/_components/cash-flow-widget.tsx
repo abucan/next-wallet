@@ -8,15 +8,8 @@ import {
 import { Progress } from '@/components/ui/progress';
 import { Separator } from '@/components/ui/separator';
 import { formatCurrency } from '@/lib/utils';
+import { CashFlowWidgetProps } from '@/ts/interfaces/app_interfaces';
 import { FaMoneyBill } from 'react-icons/fa6';
-
-interface CashFlowWidgetProps {
-  totalFlow: number;
-  income: number;
-  expenses: number;
-  incomePrec: number;
-  expensesPrec: number;
-}
 
 export const CashFlowWidget = ({
   totalFlow,
@@ -45,18 +38,14 @@ export const CashFlowWidget = ({
         <div className='flex flex-col items-start justify-start space-y-1'>
           <div className='flex flex-row w-full justify-between'>
             <p className='text-sm'>Income</p>
-            <p className='text-sm font-mono'>
-              + {formatCurrency(income)}
-            </p>
+            <p className='text-sm font-mono'>+ {formatCurrency(income)}</p>
           </div>
           <Progress value={incomePrec} max={100} />
         </div>
         <div className='flex flex-col items-start justify-start space-y-1'>
           <div className='flex flex-row w-full justify-between'>
             <p className='text-sm'>Expenses</p>
-            <p className='text-sm font-mono'>
-              - {formatCurrency(expenses)}
-            </p>
+            <p className='text-sm font-mono'>- {formatCurrency(expenses)}</p>
           </div>
           <Progress value={expensesPrec} max={100} />
         </div>

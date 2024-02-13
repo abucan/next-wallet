@@ -1,3 +1,4 @@
+import { RecordType } from '@prisma/client';
 import { LucideIcon } from 'lucide-react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 
@@ -58,4 +59,65 @@ export interface ActionDialogProps {
 export interface SearchAccountProps {
   sort?: string;
   title?: string;
+}
+
+export interface CashFlowWidgetProps {
+  totalFlow: number;
+  income: number;
+  expenses: number;
+  incomePrec: number;
+  expensesPrec: number;
+}
+
+export interface DashWidgetProps {
+  icon: LucideIcon;
+  title: string;
+  content: string;
+}
+
+export interface DashRecordItemProps {
+  recordCategory: string;
+  recordAmount: number;
+  recordType: RecordType;
+}
+
+export interface FinancialData {
+  totalRecords: number;
+  totalAccounts: number;
+  totalExpenses: number;
+  totalBalance: number;
+  cashFlow: {
+    totalCashFlow: number;
+    income: number;
+    expenses: number;
+    incomePrec: number;
+    expensesPrec: number;
+  };
+}
+
+export interface ChartDataItem {
+  createdAt: Date | string[];
+  _sum: {
+    amount: number | null;
+  };
+}
+
+export interface ChartProps {
+  data: ChartDataItem[];
+}
+
+export interface BarDataItem {
+  category: string;
+  _sum: {
+    amount: number | null;
+  };
+}
+
+export interface BarProps {
+  data: BarDataItem[];
+}
+
+export interface CustomTooltipProps {
+  active?: boolean;
+  payload?: { payload?: { category: string; _sum: { amount: number } } }[];
 }

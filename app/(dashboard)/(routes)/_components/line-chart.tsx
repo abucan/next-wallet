@@ -1,21 +1,7 @@
 'use client';
 
-import { ChartProps } from '@/actions/get-dashboard-stats';
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  Legend,
-  LineChart,
-  CartesianGrid,
-  Line,
-} from 'recharts';
 import moment from 'moment';
+import { XAxis, YAxis, LineChart, CartesianGrid, Line } from 'recharts';
 import {
   Card,
   CardContent,
@@ -23,14 +9,16 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Calendar } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
+import { formatCurrency } from '@/lib/utils';
+import { Calendar } from 'lucide-react';
+import { ChartProps } from '@/ts/interfaces/app_interfaces';
 
-const AreaChartPlot = ({ data }: ChartProps) => {
+export const DashLineChart = ({ data }: ChartProps) => {
   function formatXAxis(tickItem: any) {
-    // If using moment.js
     return moment(tickItem).format('MMM Do');
   }
+
   return (
     <Card className='h-72'>
       <CardHeader className='space-y-2'>
@@ -38,9 +26,7 @@ const AreaChartPlot = ({ data }: ChartProps) => {
           <div className='bg-gray-200 rounded p-1 w-10 flex items-center justify-center'>
             <Calendar />
           </div>
-          <p className='text-lg font-mono font-[300]'>
-            Expenses by Date
-          </p>
+          <p className='text-lg font-mono font-[300]'>Expenses by Date</p>
         </CardTitle>
         <Separator />
         <CardDescription className='text-base font-mono text-tertiary'>
@@ -49,7 +35,7 @@ const AreaChartPlot = ({ data }: ChartProps) => {
       </CardHeader>
       <CardContent>
         <LineChart
-          width={450}
+          width={700}
           height={150}
           data={data}
           margin={{
@@ -61,7 +47,7 @@ const AreaChartPlot = ({ data }: ChartProps) => {
         >
           <CartesianGrid strokeDasharray='3 3' />
           <XAxis dataKey='createdAt' tickFormatter={formatXAxis} />
-          <YAxis />
+          <YAxis tickFormatter={(value) => formatCurrency(value)} />
           <Line
             type='monotone'
             dataKey='_sum.amount'
@@ -73,5 +59,3 @@ const AreaChartPlot = ({ data }: ChartProps) => {
     </Card>
   );
 };
-
-export default AreaChartPlot;

@@ -5,19 +5,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { LucideIcon } from 'lucide-react';
+import { DashWidgetProps } from '@/ts/interfaces/app_interfaces';
 
-export interface SidebarRoutesProps {
-  icon: LucideIcon;
-  title: string;
-  content: string;
-}
-
-export const DashWidget = ({
-  icon: Icon,
-  title,
-  content,
-}: SidebarRoutesProps) => {
+export const DashWidget = ({ icon: Icon, title, content }: DashWidgetProps) => {
   return (
     <Card className='flex flex-row items-center justify-between'>
       <CardHeader className='space-y-2'>
