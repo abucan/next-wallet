@@ -9,7 +9,7 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
   if (active && payload && payload.length) {
     const dataPoint = payload[0].payload;
     return (
-      <div className='custom-tooltip bg-gray-200 p-2 rounded shadow-md'>
+      <div className='custom-tooltip bg-muted p-2 rounded shadow-md'>
         <p className='text-mono'>{`Category: ${getCategoryName(
           dataPoint?.category!
         )}`}</p>

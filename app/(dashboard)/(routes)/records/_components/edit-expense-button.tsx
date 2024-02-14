@@ -8,11 +8,7 @@ import { RecordFormValues } from '@/ts/types/app_types';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { SubmitHandler } from 'react-hook-form';
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { useState } from 'react';
 import { Loader } from 'lucide-react';
 
@@ -55,7 +51,7 @@ export const EditExpenseButton = ({
         description: 'Record updated successfully.',
         variant: 'default',
       });
-      router.push('/records');
+      setOpen(false);
       router.refresh();
     },
   });
@@ -63,7 +59,7 @@ export const EditExpenseButton = ({
   const isLoadingSubmit = status === 'pending';
 
   const handleEditAccount: SubmitHandler<RecordFormValues> = (
-    values: RecordFormValues,
+    values: RecordFormValues
   ) => {
     editAccount(values);
   };

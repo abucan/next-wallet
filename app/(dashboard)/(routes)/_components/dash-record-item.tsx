@@ -13,7 +13,7 @@ export const DashRecordItem = ({
     <>
       <div
         className={`flex items-center justify-between rounded p-2 ${
-          recordType === 'INCOME' ? 'bg-green-200' : 'bg-red-200'
+          recordType === 'INCOME' ? 'bg-success' : 'bg-destructive'
         }`}
       >
         <div className='flex flex-row items-center justify-center gap-2'>

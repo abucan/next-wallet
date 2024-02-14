@@ -13,7 +13,7 @@ import { GiBank } from 'react-icons/gi';
 import { ArrowDown, ArrowUpDown, Wallet } from 'lucide-react';
 
 export default async function Dashboard() {
-  const data = await getFinancialData();
+  const results = await getFinancialData();
   const graph_data = await getExpenses();
   const graph_data_2 = await getExpensesByCategory();
 
@@ -25,28 +25,28 @@ export default async function Dashboard() {
           <DashWidget
             icon={Wallet}
             title='Accounts'
-            content={data.totalAccounts.toString()}
+            content={results.totalAccounts.toString()!}
           />
         </div>
         <div className='flex-1'>
           <DashWidget
             icon={ArrowUpDown}
             title='Records'
-            content={data.totalRecords.toString()}
+            content={results.totalRecords.toString()}
           />
         </div>
         <div className='flex-1'>
           <DashWidget
             icon={GiBank}
             title='Balance'
-            content={formatCurrency(data.totalBalance)}
+            content={formatCurrency(results.totalBalance)}
           />
         </div>
         <div className='flex-1'>
           <DashWidget
             icon={ArrowDown}
             title='Expenses'
-            content={data.totalExpenses.toString()}
+            content={results.totalExpenses.toString()}
           />
         </div>
       </div>
@@ -54,11 +54,11 @@ export default async function Dashboard() {
       <div className='flex gap-4'>
         <div className='w-1/2'>
           <CashFlowWidget
-            income={data.cashFlow.income}
-            expenses={data.cashFlow.expenses}
-            incomePrec={data.cashFlow.incomePrec}
-            expensesPrec={data.cashFlow.expensesPrec}
-            totalFlow={data.cashFlow.totalCashFlow}
+            income={results.cashFlow.income}
+            expenses={results.cashFlow.expenses}
+            incomePrec={results.cashFlow.incomePrec}
+            expensesPrec={results.cashFlow.expensesPrec}
+            totalFlow={results.cashFlow.totalCashFlow}
           />
         </div>
         <div className='w-1/2'>

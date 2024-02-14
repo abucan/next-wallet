@@ -8,11 +8,7 @@ import { AccountFormValues } from '@/ts/types/app_types';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { SubmitHandler } from 'react-hook-form';
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { useState } from 'react';
 import { Loader } from 'lucide-react';
 
@@ -53,7 +49,6 @@ export const EditAccountButton = ({
         description: 'Account updated successfully.',
         variant: 'default',
       });
-      router.push('/accounts');
       router.refresh();
       setOpen(false);
     },
@@ -61,9 +56,7 @@ export const EditAccountButton = ({
 
   const isLoadingSubmit = status === 'pending';
 
-  const handleEditAccount: SubmitHandler<AccountFormValues> = (
-    values: any,
-  ) => {
+  const handleEditAccount: SubmitHandler<AccountFormValues> = (values: any) => {
     editAccount(values);
   };
 

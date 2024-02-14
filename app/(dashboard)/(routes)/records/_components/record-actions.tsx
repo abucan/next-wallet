@@ -31,7 +31,6 @@ export const RecordActions = ({ id }: RecordActionProps) => {
         variant: 'default',
       });
       setShowDialog(false);
-      router.push('/records');
       router.refresh();
     },
   });
@@ -50,11 +49,7 @@ export const RecordActions = ({ id }: RecordActionProps) => {
       />
       <div className='space-x-2 text-right'>
         <EditExpenseButton mode='modal' asChild recordId={id}>
-          <Button
-            size='sm'
-            variant='outline'
-            className='place-items-center'
-          >
+          <Button size='sm' variant='outline' className='place-items-center'>
             <Pencil className='h-4 w-4 cursor-pointer' />
           </Button>
         </EditExpenseButton>

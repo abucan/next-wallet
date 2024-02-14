@@ -12,7 +12,7 @@ export const DashWidget = ({ icon: Icon, title, content }: DashWidgetProps) => {
     <Card className='flex flex-row items-center justify-between'>
       <CardHeader className='space-y-2'>
         <CardTitle>
-          <div className='bg-gray-200 rounded p-1 w-10 flex items-center justify-center'>
+          <div className='bg-muted rounded p-1 w-10 flex items-center justify-center'>
             <Icon />
           </div>
         </CardTitle>

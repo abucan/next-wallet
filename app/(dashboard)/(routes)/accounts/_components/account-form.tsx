@@ -23,12 +23,12 @@ export const AccountForm = ({
     defaultValues: {
       ...initialValues,
       startedBalance:
-        initialValues?.startedBalance &&
-        initialValues.startedBalance / 100,
+        initialValues?.startedBalance && initialValues.startedBalance / 100,
     },
+    mode: 'onSubmit',
   });
 
-  const { isSubmitting } = form.formState;
+  const { isSubmitting, isValid, isDirty } = form.formState;
 
   return (
     <>
@@ -65,7 +65,7 @@ export const AccountForm = ({
             />
             <Button
               type='submit'
-              disabled={isSubmitting}
+              disabled={!isDirty || !isValid || isLoadingSubmit}
               className='w-full'
             >
               {isEditing

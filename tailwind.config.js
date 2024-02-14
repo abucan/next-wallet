@@ -29,6 +29,8 @@ module.exports = {
         tertiary: 'hsl(var(--tertiary))',
         'small-icon': 'hsl(var(--small-icon))',
         'sidebar-icon': 'hsl(var(--sidebar-icon))',
+        'navbar-color': 'hsl(var(--navbar-color))',
+        'success': 'hsl(var(--success))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',

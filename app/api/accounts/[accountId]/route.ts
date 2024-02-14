@@ -5,16 +5,13 @@ import { auth } from '@/auth';
 
 export async function GET(
   req: Request,
-  { params }: { params: { accountId: string } },
+  { params }: { params: { accountId: string } }
 ) {
   try {
     const session = await auth();
 
     if (!session?.user.id)
-      return NextResponse.json(
-        { message: 'Unauthorized' },
-        { status: 401 },
-      );
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
 
     const account = await prisma.myAccount.findUnique({
       where: {
@@ -26,7 +23,7 @@ export async function GET(
     if (!account) {
       return NextResponse.json(
         { message: 'Account not found' },
-        { status: 404 },
+        { status: 404 }
       );
     }
 
@@ -39,16 +36,13 @@ export async function GET(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { accountId: string } },
+  { params }: { params: { accountId: string } }
 ) {
   try {
     const session = await auth();
 
     if (!session?.user.id) {
-      return NextResponse.json(
-        { message: 'Unauthorized' },
-        { status: 401 },
-      );
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
     const account = await prisma.myAccount.findUnique({
@@ -61,7 +55,7 @@ export async function DELETE(
     if (!account) {
       return NextResponse.json(
         { message: 'Account not found' },
-        { status: 404 },
+        { status: 404 }
       );
     }
 
@@ -91,21 +85,17 @@ export async function DELETE(
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { accountId: string } },
+  { params }: { params: { accountId: string } }
 ) {
   try {
     const session = await auth();
     const body = await req.json();
-    const { name, color, type, startedBalance } =
-      accountSchema.parse(body);
+    const { name, color, type, startedBalance } = accountSchema.parse(body);
 
     const { accountId } = params;
 
     if (!session?.user.id) {
-      return NextResponse.json(
-        { message: 'Unauthorized' },
-        { status: 401 },
-      );
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
     const newStartedBalance = Number(startedBalance * 100);

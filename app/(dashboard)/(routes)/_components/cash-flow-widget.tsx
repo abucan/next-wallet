@@ -22,7 +22,7 @@ export const CashFlowWidget = ({
     <Card className='h-72'>
       <CardHeader className='space-y-2'>
         <CardTitle className='flex flex-row space-x-2 items-center justify-start'>
-          <div className='bg-gray-200 rounded p-1 w-10 flex items-center justify-center'>
+          <div className='bg-muted rounded p-1 w-10 flex items-center justify-center'>
             <FaMoneyBill size={24} />
           </div>
           <p className='text-lg font-mono font-[300]'>

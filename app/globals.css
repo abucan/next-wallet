@@ -75,6 +75,8 @@ input::placeholder {
     --tertiary: 232.3 58.5% 20.8%;
     --small-icon: 231.9 15.2% 52.4%;
     --sidebar-icon: 0 0% 69.8%;
+    --navbar-color: 0 0% 100%;
+    --success: 127 75% 42%;
   }
 
   .dark {
@@ -99,12 +101,14 @@ input::placeholder {
     --ring: 212.7 26.8% 83.9;
 
     --sidebar-color: 222.2 84% 4.9%;
+    --navbar-color: 222.2 84% 4.9%;
     --main-color: 0 100% 65.9%;
     --primary-grey: 0 0% 100%;
     --secondary-grey: 215 20.2% 65.1%;
     --tertiary: 0 0% 100%;
     --small-icon: 231.9 15.2% 52.4%;
     --sidebar-icon: 0 0% 69.8%;
+    --success: 140 100% 23%;
   }
 }
 

@@ -29,7 +29,6 @@ export const AccountActions = ({ id }: { id: string }) => {
         variant: 'default',
       });
       setShowDialog(false);
-      router.push('/');
       router.refresh();
     },
   });

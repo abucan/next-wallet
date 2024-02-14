@@ -8,11 +8,7 @@ import { AccountFormValues } from '@/ts/types/app_types';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { SubmitHandler } from 'react-hook-form';
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { useState } from 'react';
 
 interface AddAccountButtonProps {
@@ -50,9 +46,8 @@ export const AddAccountButton = ({
 
   const isLoadingSubmit = status === 'pending';
 
-  // TODO
   const handleCreateAccount: SubmitHandler<AccountFormValues> = (
-    values: any,
+    values: any
   ) => {
     createPost(values);
   };

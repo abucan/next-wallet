@@ -11,10 +11,7 @@ import { DateSelect } from '@/components/date-select';
 import { GenericFormProps } from '@/ts/interfaces/app_interfaces';
 import { RecordFormValues } from '@/ts/types/app_types';
 import { CustomFormSelect } from '@/components/custom-form-select';
-import {
-  categoryTypes,
-  recordTypes,
-} from '@/actions/get-category-type';
+import { categoryTypes, recordTypes } from '@/actions/get-category-type';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
@@ -55,12 +52,11 @@ export const RecordForm = ({
         variant: 'default',
       });
       setShowDialog(false);
-      router.push('/records');
       router.refresh();
     },
   });
 
-  const { isSubmitting } = form.formState;
+  const { isDirty, isValid } = form.formState;
 
   return (
     <>
@@ -123,14 +119,12 @@ export const RecordForm = ({
             />
             <div
               className={
-                isEditing
-                  ? 'w-full flex flex-row space-x-4'
-                  : 'w-full'
+                isEditing ? 'w-full flex flex-row space-x-4' : 'w-full'
               }
             >
               <Button
                 type='submit'
-                disabled={isSubmitting}
+                disabled={isLoadingSubmit || !isDirty || !isValid}
                 className='w-full'
               >
                 {isEditing

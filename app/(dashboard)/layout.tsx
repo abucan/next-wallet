@@ -11,7 +11,7 @@ const DashboardLayout = ({ children }: PropsWithChildren) => {
       disableTransitionOnChange
     >
       <div className='h-full'>
-        <div className='h-[75px] md:pl-72 fixed inset-y-0 bg-white w-full z-50'>
+        <div className='h-[75px] md:pl-72 fixed inset-y-0 bg-navbar-color w-full z-50'>
           <Navbar />
         </div>
         <div className='hidden md:flex w-60 flex-col fixed inset-y-0 z-50'>
