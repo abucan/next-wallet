@@ -19,6 +19,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { useState } from 'react';
 
 export const DateSelect = ({
   name,
@@ -27,6 +28,7 @@ export const DateSelect = ({
   initialValue,
 }: InputProps) => {
   const { control } = useFormContext();
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   return (
     <FormField
@@ -35,14 +37,14 @@ export const DateSelect = ({
       render={({ field }) => (
         <FormItem className='flex flex-col w-full'>
           <FormLabel className='input-label'>{label}</FormLabel>
-          <Popover>
+          <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
             <PopoverTrigger asChild>
               <FormControl>
                 <Button
                   variant={'outline'}
                   className={cn(
                     'w-full pl-3 text-left font-normal input-placeholder',
-                    !field.value && 'text-muted-foreground',
+                    !field.value && 'text-muted-foreground'
                   )}
                 >
                   {field.value instanceof Date ? (
@@ -62,7 +64,10 @@ export const DateSelect = ({
               <Calendar
                 mode='single'
                 selected={field.value}
-                onSelect={field.onChange}
+                onSelect={(e) => {
+                  field.onChange(e);
+                  setIsCalendarOpen(false);
+                }}
                 disabled={(date) =>
                   date > new Date() || date < new Date('1900-01-01')
                 }

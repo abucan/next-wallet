@@ -64,7 +64,7 @@ export const EditAccountButton = ({
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
-        <DialogContent className='p-0 w-auto bg-transparent border-none'>
+        <DialogContent className='bg-transparent border-none w-full p-1 md:p-0'>
           {isLoading ? (
             <div className='w-full grid place-items-center animate-spin'>
               <Loader />

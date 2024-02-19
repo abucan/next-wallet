@@ -55,7 +55,7 @@ const UserPage = () => {
   };
 
   return (
-    <div className='space-y-8 w-1/2'>
+    <div className='space-y-8 md:w-1/2 w-full'>
       <h1 className='font-mono font-[500] text-2xl text-tertiary'>
         Your Profile
       </h1>
@@ -101,7 +101,11 @@ const UserPage = () => {
             )}
             <FormError message={error} />
             <FormSuccess message={success} />
-            <Button type='submit' disabled={isPending}>
+            <Button
+              type='submit'
+              disabled={isPending}
+              className='w-full md:w-auto'
+            >
               Save
             </Button>
           </div>

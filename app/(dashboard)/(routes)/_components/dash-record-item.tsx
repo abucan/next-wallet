@@ -11,16 +11,16 @@ export const DashRecordItem = ({
   const Icon = getCategoryIcon(recordCategory);
   return (
     <>
-      <div
-        className={`flex items-center justify-between rounded p-2 ${
-          recordType === 'INCOME' ? 'bg-success' : 'bg-destructive'
-        }`}
-      >
+      <div className={`flex items-center justify-between rounded p-2`}>
         <div className='flex flex-row items-center justify-center gap-2'>
           <Icon />
           {getCategoryName(recordCategory)}
         </div>
-        <p>
+        <p
+          className={`${
+            recordType === 'INCOME' ? 'text-success' : 'text-destructive'
+          }`}
+        >
           {recordType === 'INCOME' ? '+ ' : '- '}
           {formatCurrency(recordAmount)}
         </p>

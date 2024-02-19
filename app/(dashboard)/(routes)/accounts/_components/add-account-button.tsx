@@ -56,7 +56,7 @@ export const AddAccountButton = ({
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
-        <DialogContent className='p-0 w-auto bg-transparent border-none'>
+        <DialogContent className='bg-transparent border-none w-full p-1 md:p-0'>
           <AccountForm
             submit={handleCreateAccount}
             isEditing={false}

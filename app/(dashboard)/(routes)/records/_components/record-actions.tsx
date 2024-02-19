@@ -47,7 +47,7 @@ export const RecordActions = ({ id }: RecordActionProps) => {
         the record.'
         dialogBtnText={isPending ? 'Deleting...' : 'Delete'}
       />
-      <div className='space-x-2 text-right'>
+      <div className='space-x-2 text-right space-y-2 lg:space-y-0'>
         <EditExpenseButton mode='modal' asChild recordId={id}>
           <Button size='sm' variant='outline' className='place-items-center'>
             <Pencil className='h-4 w-4 cursor-pointer' />

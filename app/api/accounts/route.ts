@@ -5,16 +5,13 @@ import { auth } from '@/auth';
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: { id: string } }
 ) {
   try {
     const session = await auth();
 
     if (!session?.user.id)
-      return NextResponse.json(
-        { message: 'Unauthorized' },
-        { status: 401 },
-      );
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
 
     const accounts = await prisma.myAccount.findMany({
       where: {
@@ -34,18 +31,14 @@ export async function POST(req: Request) {
     const session = await auth();
 
     const body = await req.json();
-    const { name, color, type, startedBalance } =
-      accountSchema.parse(body);
+    const { name, color, type, startedBalance } = accountSchema.parse(body);
 
     if (!session?.user.id)
-      return NextResponse.json(
-        { message: 'Unauthorized' },
-        { status: 401 },
-      );
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     const numBalance = Number(startedBalance * 100);
     const post = await prisma.myAccount.create({
       data: {
-        name,
+        name: name.toLowerCase(),
         color,
         type,
         startedBalance: numBalance,

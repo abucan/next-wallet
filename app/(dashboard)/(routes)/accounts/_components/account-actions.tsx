@@ -45,20 +45,23 @@ export const AccountActions = ({ id }: { id: string }) => {
         your account.'
         dialogBtnText={isPending ? 'Deleting...' : 'Delete'}
       />
-      <EditAccountButton mode='modal' asChild accountId={id}>
-        <Button variant='outline'>
-          <Pencil className='mr-2 h-4 w-4' />
-          <span className='font-mono font-[500]'>Edit</span>
+      <div className='flex flex-col space-y-2 lg:space-y-0 lg:flex-row lg:space-x-4 w-full'>
+        <EditAccountButton mode='modal' asChild accountId={id}>
+          <Button variant='outline' className='w-full'>
+            <Pencil className='mr-2 h-4 w-4' />
+            <span className='font-mono font-[500]'>Edit</span>
+          </Button>
+        </EditAccountButton>
+        <Button
+          variant='destructive'
+          onClick={() => setShowDialog(!showDialog)}
+          disabled={isPending}
+          className='w-full'
+        >
+          <Trash className='h-4 w-4 mr-2' />
+          <span className='font-mono font-[500]'>Delete</span>
         </Button>
-      </EditAccountButton>
-      <Button
-        variant='destructive'
-        onClick={() => setShowDialog(!showDialog)}
-        disabled={isPending}
-      >
-        <Trash className='h-4 w-4 mr-2' />
-        <span className='font-mono font-[500]'>Delete</span>
-      </Button>
+      </div>
     </>
   );
 };

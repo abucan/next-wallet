@@ -17,7 +17,7 @@ export const getAccounts = async ({
       where: {
         userId: session.user.id,
         name: {
-          contains: title,
+          contains: title?.toLowerCase(),
         },
       },
       select: {

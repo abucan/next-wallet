@@ -38,7 +38,7 @@ export const AccountForm = ({
           className='w-full flex flex-col items-center justify-center'
         >
           <div className='w-full space-y-4 border px-6 py-8 rounded-lg bg-card text-card-foreground shadow-sm'>
-            <div className='flex flex-row gap-x-3 items-center'>
+            <div className='flex flex-col space-y-4 md:flex-row md:gap-x-3 md:space-y-0 items-center'>
               <FormFieldInput
                 name='name'
                 label='Account name'
@@ -53,8 +53,8 @@ export const AccountForm = ({
             </div>
             <CustomFormSelect
               name='type'
-              label='Account'
-              placeholder='Select an account'
+              label='Account Type'
+              placeholder='Select an account type'
               initialValue={initialValues?.type}
               options={accountTypes}
             />

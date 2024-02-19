@@ -45,7 +45,7 @@ export const AccountSelect = ({
   });
 
   const currentRecordAccount = userAccounts?.find(
-    (item) => item.id === initialValue,
+    (item) => item.id === initialValue
   )?.id;
 
   return (
@@ -75,9 +75,9 @@ export const AccountSelect = ({
                           value={item?.id!}
                           className='hover:cursor-pointer'
                         >
-                          <div className='flex flex-row items-center'>
+                          <div className='flex flex-row items-center capitalize'>
                             <span
-                              className='mr-1 p-1'
+                              className='mr-1 p-1 capitalize'
                               style={{ color: item.color }}
                             >
                               <AccountIcon />

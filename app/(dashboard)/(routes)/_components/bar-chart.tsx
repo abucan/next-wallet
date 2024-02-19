@@ -1,6 +1,14 @@
 'use client';
 
-import { Tooltip, Cell, BarChart, XAxis, YAxis, Bar } from 'recharts';
+import {
+  Tooltip,
+  Cell,
+  BarChart,
+  XAxis,
+  YAxis,
+  Bar,
+  ResponsiveContainer,
+} from 'recharts';
 import {
   Card,
   CardContent,
@@ -18,7 +26,7 @@ import { barChartColors } from '@/lib/colors';
 export const DashBarChart = ({ data }: BarProps) => {
   if (data.length === 0) {
     return (
-      <Card className=''>
+      <Card className='w-full'>
         <CardHeader className='space-y-2'>
           <CardTitle className='flex flex-row space-x-2 items-center justify-start'>
             <div className='bg-muted rounded p-1 w-10 flex items-center justify-center'>
@@ -38,7 +46,7 @@ export const DashBarChart = ({ data }: BarProps) => {
     );
   }
   return (
-    <Card className=''>
+    <Card className='w-full'>
       <CardHeader className='space-y-2'>
         <CardTitle className='flex flex-row space-x-2 items-center justify-start'>
           <div className='bg-muted rounded p-1 w-10 flex items-center justify-center'>
@@ -52,16 +60,18 @@ export const DashBarChart = ({ data }: BarProps) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <BarChart width={700} height={350} data={data}>
-          <XAxis dataKey='category' tickFormatter={(value) => ''} />
-          <YAxis tickFormatter={(value) => formatCurrency(value)} />
-          <Tooltip content={<CustomTooltip />} />
-          <Bar dataKey='_sum.amount' fill='#8884d8'>
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={barChartColors[index]} />
-            ))}
-          </Bar>
-        </BarChart>
+        <ResponsiveContainer width='100%' height={350}>
+          <BarChart width={700} height={350} data={data} barCategoryGap={5}>
+            <XAxis dataKey='category' tickFormatter={(value) => ''} />
+            <YAxis tickFormatter={(value) => formatCurrency(value)} />
+            <Tooltip content={<CustomTooltip />} />
+            <Bar dataKey='_sum.amount' fill='#8884d8'>
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={barChartColors[index]} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
       </CardContent>
     </Card>
   );

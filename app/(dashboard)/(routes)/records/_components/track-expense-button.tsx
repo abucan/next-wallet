@@ -8,11 +8,7 @@ import { RecordFormValues } from '@/ts/types/app_types';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { SubmitHandler } from 'react-hook-form';
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { useState } from 'react';
 
 interface TrackExpenseButtonProps {
@@ -52,7 +48,7 @@ export const TrackExpenseButton = ({
   const isLoadingSubmit = status === 'pending';
 
   const handleCreateRecord: SubmitHandler<RecordFormValues> = (
-    values: RecordFormValues,
+    values: RecordFormValues
   ) => {
     createPost(values);
   };
@@ -61,7 +57,7 @@ export const TrackExpenseButton = ({
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
-        <DialogContent className='p-0 w-auto bg-transparent border-none'>
+        <DialogContent className='bg-transparent border-none w-full p-1 md:p-0'>
           <RecordForm
             submit={handleCreateRecord}
             isEditing={false}

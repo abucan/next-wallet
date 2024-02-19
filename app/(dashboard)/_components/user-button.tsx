@@ -8,6 +8,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
+import { Separator } from '@/components/ui/separator';
 import { useCurrentUser } from '@/hooks/use-current-user';
 import { LogOutIcon } from 'lucide-react';
 
@@ -24,10 +25,16 @@ export const UserButton = () => {
             />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
-          <p className='font-mono text-sm text-primary-grey'>{user?.name}</p>
+          <p className='font-mono text-sm text-primary-grey hidden md:flex'>
+            {user?.name}
+          </p>
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
+        <DropdownMenuItem className='md:hidden'>
+          <p className='font-mono'>{user && user.name}</p>
+        </DropdownMenuItem>
+        <Separator className='md:hidden' />
         <DropdownMenuItem
           className='hover:cursor-pointer'
           onClick={() => logout()}

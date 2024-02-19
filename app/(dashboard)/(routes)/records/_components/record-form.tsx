@@ -76,7 +76,7 @@ export const RecordForm = ({
           className='w-full flex flex-col items-center justify-center'
         >
           <div className='w-full space-y-4 border px-6 py-8 rounded-lg bg-card text-card-foreground shadow-sm'>
-            <div className='flex flex-row gap-x-3 items-center'>
+            <div className='flex flex-col space-y-4 md:space-y-0 md:flex-row md:gap-x-3 items-center'>
               <AccountSelect
                 name='accountId'
                 label='Account'
@@ -91,7 +91,7 @@ export const RecordForm = ({
                 options={recordTypes}
               />
             </div>
-            <div className='flex flex-row gap-x-3 items-center'>
+            <div className='flex flex-col space-y-4 md:space-y-0 md:flex-row md:gap-x-3 items-center'>
               <FormFieldInput
                 name='amount'
                 label='Amount'
