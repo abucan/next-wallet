@@ -5,7 +5,10 @@ import { columns } from './_components/columns';
 const Records = async () => {
   const records = await getRecords();
   return (
-    <div className='md:pr-12'>
+    <div className='space-y-4 lg:space-y-8'>
+      <h1 className='font-mono font-[500] text-2xl text-tertiary flex justify-center md:justify-start mb-2'>
+        My Records
+      </h1>
       <DataTable columns={columns} data={records} />
     </div>
   );

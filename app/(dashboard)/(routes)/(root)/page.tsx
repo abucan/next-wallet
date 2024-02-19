@@ -18,8 +18,10 @@ export default async function Dashboard() {
   const graph_data_2 = await getExpensesByCategory();
 
   return (
-    <div className='space-y-4 lg:space-y-8 lg:pr-12 mb-4'>
-      <h1 className='font-mono font-[500] text-2xl text-tertiary'>Dashboard</h1>
+    <div className='space-y-4 lg:space-y-8'>
+      <h1 className='font-mono font-[500] text-2xl text-tertiary flex justify-center md:justify-start mb-2'>
+        Dashboard
+      </h1>
       <div className='flex flex-col lg:flex-row gap-4'>
         <div className='flex flex-col w-full space-y-4 xl:flex-row lg:space-y-0 lg:gap-4'>
           <div className='flex-1'>
@@ -69,6 +71,7 @@ export default async function Dashboard() {
           <DashLineChart data={graph_data} />
         </div>
       </div>
+
       <div className='flex flex-col xl:flex-row gap-4'>
         <div className='w-full xl:w-1/2'>
           <DashBarChart data={graph_data_2} />

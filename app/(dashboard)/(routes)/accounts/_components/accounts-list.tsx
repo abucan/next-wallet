@@ -7,7 +7,7 @@ export const AccountsList = ({
   accounts: Account[];
 }) => {
   return (
-    <>
+    <div className='space-y-4'>
       {accounts.map((account) => {
         return (
           <AccountItem
@@ -21,6 +21,6 @@ export const AccountsList = ({
           />
         );
       })}
-    </>
+    </div>
   );
 };

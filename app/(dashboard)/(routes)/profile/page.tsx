@@ -55,9 +55,9 @@ const UserPage = () => {
   };
 
   return (
-    <div className='space-y-8 md:w-1/2 w-full'>
-      <h1 className='font-mono font-[500] text-2xl text-tertiary'>
-        Your Profile
+    <div className='space-y-4 lg:space-y-8 md:w-1/2 w-full'>
+      <h1 className='font-mono font-[500] text-2xl text-tertiary flex justify-center md:justify-start mb-2'>
+        My Profile
       </h1>
       <Form {...form}>
         <form
@@ -65,7 +65,11 @@ const UserPage = () => {
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <div className='w-full space-y-4 border px-6 py-8 rounded-lg bg-card text-card-foreground shadow-sm'>
-            <FormFieldInput name='name' label='Name' placeholder='John Doe' />
+            <FormFieldInput
+              name='name'
+              label='Name'
+              placeholder='John Doe'
+            />
             {user?.isOAuth === false && (
               <>
                 <FormFieldInput
@@ -88,14 +92,19 @@ const UserPage = () => {
             {user?.isOAuth === true && (
               <FormItem className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm'>
                 <div className='space-y-0.5'>
-                  <FormLabel>Account Linked with Third Party</FormLabel>
+                  <FormLabel>
+                    Account Linked with Third Party
+                  </FormLabel>
                   <FormDescription>
-                    Your account is currently linked with a third-party
-                    authentication provider.
+                    Your account is currently linked with a
+                    third-party authentication provider.
                   </FormDescription>
                 </div>
                 <FormControl>
-                  <Switch disabled={isPending} checked={user.isOAuth} />
+                  <Switch
+                    disabled={isPending}
+                    checked={user.isOAuth}
+                  />
                 </FormControl>
               </FormItem>
             )}

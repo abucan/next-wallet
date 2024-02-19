@@ -5,7 +5,7 @@ const AccountsLayout = async ({
 }) => {
   return (
     <>
-      <div className='md:pr-12 flex flex-col'>{children}</div>
+      <div className='flex flex-col'>{children}</div>
     </>
   );
 };

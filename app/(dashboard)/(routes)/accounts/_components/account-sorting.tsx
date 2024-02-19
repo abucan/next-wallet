@@ -48,7 +48,7 @@ export const AccountSorting = () => {
   // TODO: Maybe make a component later for records
   return (
     <Select onValueChange={(value) => onClick(value)}>
-      <SelectTrigger className='w-[180px]'>
+      <SelectTrigger className='w-full lg:w-[180px]'>
         <SelectValue placeholder='Sort' />
       </SelectTrigger>
       <SelectContent>

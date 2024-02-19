@@ -19,7 +19,7 @@ const AccountsPage = async ({
 
   return (
     <>
-      <div className='flex flex-col space-y-4'>
+      <div className='flex flex-col space-y-4 lg:space-y-8'>
         <div className='flex items-center justify-between'>
           <AccountSorting />
           <SearchInput />

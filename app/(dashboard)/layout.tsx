@@ -18,7 +18,9 @@ const DashboardLayout = ({ children }: PropsWithChildren) => {
           <Sidebar />
         </div>
         <main className='md:pl-72 pt-[75px] h-full w-full'>
-          <div className='pt-6 px-4 lg:px-0'>{children}</div>
+          <div className='py-6 px-4 md:px-0 md:pr-12 w-full'>
+            {children}
+          </div>
         </main>
       </div>
     </ThemeProvider>
