@@ -32,7 +32,7 @@ export const AuthFormCard = ({
     </CardHeader>
     <CardContent>{children}</CardContent>
     {showSocial && (
-      <CardFooter>
+      <CardFooter className='-mt-2'>
         <Social />
       </CardFooter>
     )}

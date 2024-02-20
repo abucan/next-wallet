@@ -22,7 +22,10 @@ export const Social = () => {
         variant='outline'
         onClick={() => onClick('github')}
       >
-        <FaGithub className='h-5 w-5' />
+        <div className='flex flex-row items-center justify-center space-x-2'>
+          <span>Continue with GitHub</span>
+          <FaGithub className='h-5 w-5' />
+        </div>
       </Button>
     </div>
   );

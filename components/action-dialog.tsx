@@ -22,8 +22,10 @@ export const ActionDialog = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className='w-[98%] rounded-lg'>
         <DialogHeader>
-          <DialogTitle>{dialogTitle}</DialogTitle>
-          <DialogDescription>{dialogDescription}</DialogDescription>
+          <DialogTitle className='font-mono'>{dialogTitle}</DialogTitle>
+          <DialogDescription className='font-mono'>
+            {dialogDescription}
+          </DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <Button
