@@ -6,9 +6,7 @@ import bcrypt from 'bcrypt';
 import { RegisterSchema } from '@/ts/form-schemas/form-schemas';
 import { getUserByEmail } from '@/data/user';
 
-export const register = async (
-  values: z.infer<typeof RegisterSchema>,
-) => {
+export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values);
 
   if (!validatedFields.success) {
@@ -33,5 +31,5 @@ export const register = async (
     },
   });
 
-  return { success: 'Confirmation email sent!' };
+  return { success: 'Proceed to login!' };
 };
