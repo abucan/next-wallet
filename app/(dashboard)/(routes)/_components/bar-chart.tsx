@@ -36,7 +36,7 @@ export const DashBarChart = ({ data }: BarProps) => {
           </CardTitle>
           <Separator />
           <CardDescription className='text-base font-mono text-tertiary'>
-            This Month
+            All Time
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -56,7 +56,7 @@ export const DashBarChart = ({ data }: BarProps) => {
         </CardTitle>
         <Separator />
         <CardDescription className='text-base font-mono text-tertiary'>
-          This Month
+          All Time
         </CardDescription>
       </CardHeader>
       <CardContent>

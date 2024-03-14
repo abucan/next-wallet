@@ -11,17 +11,10 @@ const AuthLayout = ({ children }: PropsWithChildren) => {
           <Logo />
         </div>
         <div className='w-full grid place-items-center'>
-          <Image
-            src={main_banner}
-            alt='banner'
-            width={400}
-            priority
-          />
+          <Image src={main_banner} alt='banner' width={400} priority />
         </div>
       </div>
-      <div className='w-full lg:flex-1 grid place-items-center'>
-        {children}
-      </div>
+      <div className='w-full lg:flex-1 grid place-items-center'>{children}</div>
     </div>
   );
 };

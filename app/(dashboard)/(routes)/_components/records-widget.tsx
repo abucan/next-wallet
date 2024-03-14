@@ -23,7 +23,7 @@ export const RecordsWidget = async () => {
         </CardTitle>
         <Separator />
         <CardDescription className='text-base font-mono text-tertiary'>
-          This Month
+          All Time
         </CardDescription>
       </CardHeader>
       {records.length > 0 ? (

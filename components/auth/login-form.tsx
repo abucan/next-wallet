@@ -39,6 +39,24 @@ export const LoginForm = () => {
     },
   });
 
+  const demoLoginClick = (data: z.infer<typeof LoginSchema>) => {
+    startTransition(() => {
+      login(data, callbackUrl)
+        .then((data) => {
+          if (data?.error) {
+            form.reset();
+            setError(data.error);
+          }
+
+          if (data?.success) {
+            form.reset();
+            setSuccess(data.success);
+          }
+        })
+        .catch(() => setError('Something went wrong, please try again later.'));
+    });
+  };
+
   const onSubmit = (data: z.infer<typeof LoginSchema>) => {
     setError('');
     setSuccess('');
@@ -113,9 +131,24 @@ export const LoginForm = () => {
         </div>
         <FormError message={error || urlError} />
         <FormSuccess message={success} />
-        <Button type='submit' className='w-full' disabled={isPending}>
-          Login
-        </Button>
+        <div className='w-full flex flex-col space-y-4'>
+          <Button type='submit' className='w-full' disabled={isPending}>
+            Login
+          </Button>
+          <Button
+            onClick={() =>
+              demoLoginClick({
+                email: 'testuser@test.com',
+                password: 'test1234',
+              })
+            }
+            className='w-full'
+            variant='destructive'
+            disabled={isPending}
+          >
+            Demo Login
+          </Button>
+        </div>
       </form>
     </Form>
   );

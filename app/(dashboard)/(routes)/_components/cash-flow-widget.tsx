@@ -31,7 +31,7 @@ export const CashFlowWidget = ({
         </CardTitle>
         <Separator />
         <CardDescription className='text-base font-mono text-tertiary'>
-          This Month
+          All Time
         </CardDescription>
       </CardHeader>
       <CardContent className='-mt-3 flex flex-col space-y-4'>
