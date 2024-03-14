@@ -14,7 +14,9 @@ export const TooltipIcon = ({ children, text }: Props) => {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
+        <TooltipTrigger asChild className='cursor-pointer'>
+          {children}
+        </TooltipTrigger>
         <TooltipContent>
           <p>{text}</p>
         </TooltipContent>
