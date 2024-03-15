@@ -9,7 +9,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Social } from './social';
-import { Separator } from '../ui/separator';
 
 export const AuthFormCard = ({
   children,
@@ -20,7 +19,7 @@ export const AuthFormCard = ({
   linkText,
   showSocial,
 }: AuthFormCardProps) => (
-  <Card className='w-96 shadow-none md:shadow-sm border-0 sm:border'>
+  <Card className='w-96'>
     <CardHeader>
       <div className='flex flex-col items-center justify-center lg:items-start lg:justify-start font-sans space-y-0.5'>
         <CardTitle className='font-bold text-xl md:text-2xl tracking-wide'>
@@ -30,7 +29,6 @@ export const AuthFormCard = ({
           {cardDescription}
         </CardDescription>
       </div>
-      <Separator className='sm:hidden' />
     </CardHeader>
     <CardContent>{children}</CardContent>
     {showSocial && (
