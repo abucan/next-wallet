@@ -10,7 +10,7 @@ import { TooltipIcon } from './TooltipIcon';
 export const TechList = () => {
   const iconWidth = 25;
   return (
-    <Card className='w-96'>
+    <Card className='w-96 shadow-none md:shadow-sm border-0 sm:border'>
       <CardHeader>
         <div className='flex flex-col space-y-4 items-center justify-center'>
           <p className='font-mono font-light text-sm'>

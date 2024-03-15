@@ -7,7 +7,7 @@ const LoginPage = () => {
   return (
     <>
       <MobileLogo />
-      <div className='flex flex-col items-center space-y-6 sm:p-4 md:p-0'>
+      <div className='flex flex-col items-center space-y-4 p-2 md:p-0'>
         <AuthFormCard
           cardTitle='Welcome back!'
           cardDescription='Sign in to your account'
