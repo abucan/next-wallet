@@ -7,7 +7,7 @@ const RegisterPage = () => {
   return (
     <>
       <MobileLogo />
-      <div className='flex flex-col items-center space-y-6'>
+      <div className='flex flex-col items-center space-y-6 sm:p-4 md:p-0'>
         <AuthFormCard
           cardTitle='First time here?'
           cardDescription='Create a new account'
