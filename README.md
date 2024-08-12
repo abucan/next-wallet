@@ -29,6 +29,12 @@
 
 The "Next Wallet" project is a web-based wallet application built with Next.js. Its primary purpose is to provide users with a convinient and user-friendly interface for managing their money. The main features include user authentication, data management, and a dashboard for viewing accounts statistics. The project aims to simplify the management of money by integrating the most important features into a single, accessible platform.
 
+<div style="display: flex; justify-content: space-between;">
+  <img src="https://i.ibb.co/qRW7wxf/next-wallet-tracker-com-auth-login-callback-Url-records.png" alt="Screenshot 1" width="30%" height="150px" />
+  <img src="https://i.ibb.co/D4qbKCc/next-wallet-tracker-com-2.png" alt="Screenshot 2" width="30%" height="150px" />
+  <img src="https://i.ibb.co/3cvXJ1M/next-wallet-tracker-com-records.png" alt="Screenshot 3" width="30%" height="150px" />
+</div>
+
 ## Built With
 
 - [React](https://reactjs.org/) - Frontend library
